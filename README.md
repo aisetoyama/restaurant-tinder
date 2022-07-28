@@ -53,40 +53,16 @@ The following directories have been created for static web resource files:
 | `<project-root>/src/main/webapp/img/` | image files (e.g. `.png`, `.jpg`, `.gif`) go here |
 | `<project-root>/src/main/webapp/js/`  | `.js` files go here                               |
 
-### JQuery and Bootstrap
 
-Minified versions of the JQuery Core and Validation libraries (including the "Additional Methods" library) have been included in the `<project-root>/src/main/webapp/js/` directory.
+## Visual Styling
 
-Minified versions of the Bootstrap CSS and Javascript files have been included  in the `<project-root>/src/main/webapp/css/` and `<project-root>/src/main/webapp/js/` directories respectively.
+The page layout is based upon a combination of CSS Grid and CSS FlexBox layouts. Please refer to `VisualStyles.md` for more details.
 
-## Testing
+### Bootstrap Version
 
-### DAO Integration Tests
-
-`com.techelevator.DAOIntegrationTest` has been provided for use as a base class for any DAO integration test. It initializes a Datasource for testing and manages rollback of database changes between tests. The following is an example of extending this class for writing your own DAO integration tests:
-
-```
-package com.techelevator;
-
-import org.junit.Before;
-import javax.sql.DataSource;
-
-public class MyJdbcDaoIntegrationTest extends DAOIntegrationTest {
-
-    private MyJdbcDao dao;
-
-    @Before
-    public void setup() {
-        DataSource dataSource = this.getDataSource();
-        dao = new MyJdbcDao(dataSource);
-    }
-
-    @Test
-    public void do_that_thing() {
-        // use the dao here to perform some kind of test
-    }
-}
-```
+If you prefer the bootstrap version, `git check boostrap` to check out
+the bootstrap branch of this repo. There you'll find a `Bootstrap.md`
+file with further details.
 
 ## Deploying
 

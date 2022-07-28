@@ -1,5 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ include file = "common/header.jspf" %>
+<%@ include file = "common/header.jsp" %>
 
 <c:url var="registerUrl" value="/register"/>
 <form:form action="${registerUrl}" method="POST" modelAttribute="user">
@@ -43,4 +43,4 @@
     <button type="submit" class="btn btn-default">Save User</button>
 </form:form>
 
-<%@ include file = "common/footer.jspf" %>
+<%@ include file = "common/footer.jsp" %>
