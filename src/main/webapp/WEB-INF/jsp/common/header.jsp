@@ -16,7 +16,7 @@
             <li><a href="about">About</a></li>
             <li><a href="private">Private</a></li>
             <c:if test="${appCurrentUser.role == 'admin'}">
-                <li><a href="admin">Admin</a></li>
+                <li><a href="admin">Administration</a></li>
             </c:if>
         </ul>
         <ul class="push">

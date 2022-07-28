@@ -1,4 +1,4 @@
-package com.techelevator.controller;
+package com.techelevator.controller.authentication;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.model.User;
@@ -23,7 +23,7 @@ public class AccountController {
     @Autowired
     private AuthProvider auth;
 
-    @RequestMapping(method = RequestMethod.GET, path = {"/", "/index"})
+    @RequestMapping(method = RequestMethod.GET, path = {"/", "/home"})
     public String index(ModelMap modelHolder) {
         modelHolder.put("user", auth.getCurrentUser());
 
@@ -32,7 +32,7 @@ public class AccountController {
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
     public String login(ModelMap modelHolder) {
-        return "login";
+        return "authentication/login";
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
@@ -48,26 +48,6 @@ public class AccountController {
     @RequestMapping(path = "/logoff", method = RequestMethod.POST)
     public String logOff() {
         auth.logOff();
-        return "redirect:/";
-    }
-
-    @RequestMapping(path = "/register", method = RequestMethod.GET)
-    public String register(ModelMap modelHolder) {
-        if (!modelHolder.containsAttribute("user")) {
-            modelHolder.put("user", new User());
-        }
-        return "register";
-    }
-
-    @RequestMapping(path = "/register", method = RequestMethod.POST)
-    public String register(@Valid @ModelAttribute("user") User user, BindingResult result, RedirectAttributes flash) {
-        if (result.hasErrors()) {
-            flash.addFlashAttribute("user", user);
-            flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
-            flash.addFlashAttribute("message", "Please fix the following errors:");
-            return "redirect:/register";
-        }
-        auth.register(user.getUsername(), user.getPassword(), user.getRole());
         return "redirect:/";
     }
 
