@@ -1,4 +1,4 @@
-package com.techelevator.controller.authentication;
+package com.techelevator.controller.user.authentication;
 
 
 import com.techelevator.authentication.UnauthorizedException;

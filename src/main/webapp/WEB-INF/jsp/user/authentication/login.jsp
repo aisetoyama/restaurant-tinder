@@ -1,4 +1,4 @@
-<%@ include file = "../common/header.jsp" %>
+<%@ include file = "../../common/header.jsp" %>
 
 <c:url var="loginUrl" value="/login"/>
 <form action="${loginUrl}" method="POST">
@@ -13,4 +13,4 @@
     <button type="submit" class="btn btn-default">Login</button>
 </form>
 
-<%@ include file = "../common/footer.jsp" %>
+<%@ include file = "../../common/footer.jsp" %>

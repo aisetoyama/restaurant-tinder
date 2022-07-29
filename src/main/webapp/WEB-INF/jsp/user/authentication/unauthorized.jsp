@@ -1,4 +1,4 @@
-<%@ include file = "../common/header.jsp" %>
+<%@ include file = "../../common/header.jsp" %>
 
 <h1>Whoops!</h1>
 
@@ -6,4 +6,4 @@
 
 <p>If you think you recieved this in error, please contact your application administrator.</p>
 
-<%@ include file = "../common/footer.jsp" %>
+<%@ include file = "../../common/footer.jsp" %>
