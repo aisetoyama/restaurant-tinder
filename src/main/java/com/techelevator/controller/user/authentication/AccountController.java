@@ -32,7 +32,7 @@ public class AccountController {
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
     public String login(ModelMap modelHolder) {
-        return "authentication/login";
+        return "user/authentication/login";
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)

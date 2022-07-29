@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class UnauthorizedController {
     @ExceptionHandler(UnauthorizedException.class)
     public String displayUnauthorizedPage(){
-        return "authentication/unauthorized";
+        return "user/authentication/unauthorized";
     }
 
 }
