@@ -4,6 +4,14 @@ This project is a basic template that provides the following capabilities out of
 
 * authentication
 
+There are two provided users:
+
+| Username | Password | Role  |
+|----------|----------|-------|
+| Admin    | admin    | admin |
+| User     | user     | user  |
+
+
 ## Authentication
 
 The authentication provider provided allows you to develop code in Spring MVC without having to develop your own authentication/authorization framework. The `AuthProvider` provided defines several methods that can be used from various parts of your application. This includes but is not limited to:

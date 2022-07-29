@@ -1,5 +1,24 @@
 # Capstone Starter Project
 
+### Read the [Authentication](AUTHENTICATION.md) information
+
+## There are two versions of this project
+
+### Standard CSS Version
+
+The page layout is based upon a combination of CSS Grid and CSS FlexBox layouts. Please refer to `VisualStyles.md` for more details.
+
+### Bootstrap Version
+
+If you prefer the bootstrap version, `git check boostrap` to check out
+the bootstrap branch of this repo. There you'll find a `Bootstrap.md`
+file with further details.
+
+
+### IMPORTANT: The first thing to do once you choose  is to create a new branch from that version! 
+
+Don't work from either the main or the bootstrap branch. Keep those clean to use as a reference.
+
 ## Database
 
 Inside the `<project-root>/database/` directory you will find an executable Bash script (`.sh` file) and several SQL scripts (`.sql` files). These can be used to (re)build a PostgreSQL database for the capstone project. From a terminal session, simply execute the following commands:
@@ -54,15 +73,6 @@ The following directories have been created for static web resource files:
 | `<project-root>/src/main/webapp/js/`  | `.js` files go here                               |
 
 
-## Visual Styling
-
-The page layout is based upon a combination of CSS Grid and CSS FlexBox layouts. Please refer to `VisualStyles.md` for more details.
-
-### Bootstrap Version
-
-If you prefer the bootstrap version, `git check boostrap` to check out
-the bootstrap branch of this repo. There you'll find a `Bootstrap.md`
-file with further details.
 
 ## Deploying
 
