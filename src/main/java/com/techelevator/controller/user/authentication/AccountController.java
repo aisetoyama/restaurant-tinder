@@ -1,4 +1,4 @@
-package com.techelevator.controller.authentication;
+package com.techelevator.controller.user.authentication;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.model.User;
@@ -32,7 +32,7 @@ public class AccountController {
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
     public String login(ModelMap modelHolder) {
-        return "authentication/login";
+        return "user/authentication/login";
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)

@@ -1,7 +1,8 @@
-        </main>
-        <hr />
-        <footer>
-            <p>&copy; 2018 - Home</p>
-        </footer>
+<hr />
+<footer>
+    <p>&copy; 2018 - Home</p>
+</footer>
+</div>
+
 </body>
 </html>
