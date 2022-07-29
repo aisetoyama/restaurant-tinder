@@ -1,4 +1,4 @@
-package com.techelevator.controller.registration;
+package com.techelevator.controller.user.registration;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.model.User;
@@ -28,7 +28,7 @@ public class RegistrationController {
         if (!modelHolder.containsAttribute("user")) {
             modelHolder.put("user", new User());
         }
-        return "registration/register";
+        return "user/registration/register";
     }
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
