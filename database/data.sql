@@ -3,6 +3,8 @@
 -- *****************************************************************************
 
 BEGIN;
+DROP TABLE IF EXISTS restaurant CASCADE;
+DROP TABLE IF EXISTS schedule CASCADE;
 
 -- INSERT statements go here
 create table restaurant (
@@ -160,5 +162,266 @@ create table schedule (
     FOREIGN KEY (restaurant_id) REFERENCES restaurant (restaurant_id)
 );
 
+-- restaurant id 1
+
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (1,
+                                           1,
+                                           '10:00',
+                                           '23:59');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (1,
+                                           2,
+                                           '16:00',
+                                           '23:59');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (1,
+                                           3,
+                                           '16:00',
+                                           '23:59');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (1,
+                                           4,
+                                           '16:00',
+                                           '23:59');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (1,
+                                           5,
+                                           '16:00',
+                                           '23:59');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (1,
+                                           6,
+                                           '16:00',
+                                           '23:59');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (1,
+                                           7,
+                                           '10:00',
+                                           '23:59');
+
+-- restaurant id 2
+
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (2,
+                                           1,
+                                           '16:00',
+                                           '22:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (2,
+                                           2,
+                                           '16:00',
+                                           '22:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (2,
+                                           3,
+                                           '16:00',
+                                           '22:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (2,
+                                           4,
+                                           '16:00',
+                                           '22:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (2,
+                                           5,
+                                           '16:00',
+                                           '22:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (2,
+                                           6,
+                                           '16:00',
+                                           '22:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (2,
+                                           7,
+                                           '16:00',
+                                           '22:00');
+
+-- restaurant id 3
+
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (3,
+                                           1,
+                                           '07:00',
+                                           '21:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (3,
+                                           2,
+                                           '07:00',
+                                           '21:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (3,
+                                           3,
+                                           '07:00',
+                                           '21:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (3,
+                                           4,
+                                           '07:00',
+                                           '21:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (3,
+                                           5,
+                                           '07:00',
+                                           '21:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (3,
+                                           6,
+                                           '07:00',
+                                           '21:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (3,
+                                           7,
+                                           '07:00',
+                                           '21:00');
+
+-- restaurant id 4
+
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (4,
+                                           1,
+                                           '07:00',
+                                           '18:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (4,
+                                           2,
+                                           '07:00',
+                                           '18:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (4,
+                                           3,
+                                           '07:00',
+                                           '18:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (4,
+                                           4,
+                                           '07:00',
+                                           '18:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (4,
+                                           5,
+                                           '07:00',
+                                           '18:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (4,
+                                           6,
+                                           '07:00',
+                                           '18:00');
+insert into schedule (restaurant_id,
+                      day_of_week,
+                      time_open,
+                      time_closed) values (4,
+                                           7,
+                                           '07:00',
+                                           '18:00');
+
+-- restaurant id 5
+
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (5,1,'11:00','22:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (5,2,'11:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (5,3,'11:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (5,4,'11:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (5,5,'11:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (5,6,'11:00','22:00');
+insert into schedule (restaurant_id, day_of_week,time_open,time_closed) values (5,7,'11:00','22:00');
+--restaurant id 6
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,1,'08:00','15:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,2,'08:00','14:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,3,'08:00','14:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,4,'08:00','14:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,5,'08:00','14:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,6,'08:00','14:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,7,'08:00','15:00');
+
+--restaurant id 7
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,1,'11:00','20:30');
+--insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,2,'08:00','14:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,3,'11:00','20:30');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,4,'11:00','20:30');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,5,'11:00','20:30');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,6,'11:00','21:30');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,7,'11:00','21:30');
+
+--restaurant id 8
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,1,'12:30','21:00');
+--insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,2,'12:30','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,3,'11:30','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,4,'11:30','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,5,'11:30','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,6,'11:30','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,7,'11:00','21:00');
+
+--restaurant id 9
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,1,'11:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,2,'16:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,3,'16:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,4,'11:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,5,'11:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,6,'11:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,7,'11:00','21:00');
+
+--restaurant id 10
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,1,'10:30','19:30');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,2,'10:30','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,3,'10:30','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,4,'10:30','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,5,'10:30','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,6,'10:30','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,7,'11:00','21:00');
 
 COMMIT;
