@@ -43,19 +43,24 @@ public class JdbcUserDao implements UserDao {
      */
     @Override
     public User saveUser(String userName, String password) {
-        byte[] salt = passwordHasher.generateRandomSalt();
-        String hashedPassword = passwordHasher.computeHash(password, salt);
-        String saltString = new String(Base64.encode(salt));
-        long newId = jdbcTemplate.queryForObject(
-                "INSERT INTO app_user(user_name, password, salt) VALUES (?, ?, ?) RETURNING id", Long.class,
-                userName, hashedPassword, saltString);
 
-        User newUser = new User();
-        newUser.setId(newId);
-        newUser.setUsername(userName);
+        try {
+            byte[] salt = passwordHasher.generateRandomSalt();
+            String hashedPassword = passwordHasher.computeHash(password, salt);
+            String saltString = new String(Base64.encode(salt));
+            long newId = jdbcTemplate.queryForObject(
+                    "INSERT INTO app_user(user_name, password, salt) VALUES (?, ?, ?) RETURNING id", Long.class,
+                    userName, hashedPassword, saltString);
+
+            User newUser = new User();
+            newUser.setId(newId);
+            newUser.setUsername(userName);
+            return newUser;
+        } catch (Exception e) {
+            System.out.println("no duplicate emails.");
+        }
 //        newUser.setRole(role);
-
-        return newUser;
+        return null;
     }
 
     @Override
