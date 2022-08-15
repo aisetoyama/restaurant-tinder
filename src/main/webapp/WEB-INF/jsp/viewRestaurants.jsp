@@ -3,10 +3,10 @@
 <h1>View Restaurants</h1>
 
   <body>
-  <form id="main-content" method="post">
+  <form id="main-content" method="GET">
     <label for="cuisine">Cuisine Preference</label>
 <select id="cuisine" name="cuisine">
-  <option value = "America">American</option>
+  <option value = "American">American</option>
   <option value = "Spanish">Spanish</option>
   <option value = "Barbeque">Barbeque</option>
   <option value = "Cafes">Cafes</option>
