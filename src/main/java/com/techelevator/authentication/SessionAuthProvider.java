@@ -1,6 +1,7 @@
 package com.techelevator.authentication;
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -74,7 +75,8 @@ public class SessionAuthProvider implements AuthProvider {
 
     @Override
     public void register(String username, String password) {
-        dao.saveUser(username, password);
+       dao.saveUser(username, password);
+
     }
 
 //    @Override

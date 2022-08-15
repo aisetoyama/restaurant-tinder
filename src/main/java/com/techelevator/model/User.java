@@ -1,10 +1,14 @@
 package com.techelevator.model;
 
+import javax.sql.DataSource;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.techelevator.authentication.PasswordHasher;
 import org.hibernate.validator.constraints.NotBlank;
+
+import java.util.List;
 
 /**
  * User
@@ -17,12 +21,14 @@ public class User {
 //    private String role;
     private long id;
 
+
     @NotBlank(message = "Password is required")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$", message = "Password must match all requirements")
     private String password;
     private String confirmPassword;
 
     private boolean passwordMatching;
+    private boolean emailExist;
 
     @AssertTrue(message = "Passwords must match")
     public boolean isPasswordMatching() {
@@ -32,6 +38,19 @@ public class User {
         return true;
     }
 
+//    @AssertTrue(message = "This username already exists")
+//    public boolean isEmailExist() {
+//        List<User> usersList = dao.getAllUsers();
+//        for(User user : usersList) {
+//            if(user.getUsername().equals(username)){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+    public void setEmailExist(boolean emailExist) {
+        this.emailExist = emailExist;
+    }
     public String getPassword() {
         return password;
     }

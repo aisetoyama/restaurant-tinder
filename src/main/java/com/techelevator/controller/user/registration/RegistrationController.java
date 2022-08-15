@@ -45,7 +45,7 @@ public class RegistrationController {
 
     @RequestMapping("/registrationSuccess")
     public String showRegistrationSuccessScreen(){
-        return"registrationSuccess";
+        return "user/registration/registrationSuccess";
     }
 
 }
