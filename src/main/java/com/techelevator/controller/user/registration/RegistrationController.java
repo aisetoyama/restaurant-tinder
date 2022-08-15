@@ -39,8 +39,13 @@ public class RegistrationController {
             flash.addFlashAttribute("message", "Please fix the following errors:");
             return "redirect:/register";
         }
-        auth.register(user.getUsername(), user.getPassword(), user.getRole());
-        return "redirect:/";
+        auth.register(user.getUsername(), user.getPassword());
+        return "redirect:/registrationSuccess";
+    }
+
+    @RequestMapping("/registrationSuccess")
+    public String showRegistrationSuccessScreen(){
+        return"registrationSuccess";
     }
 
 }

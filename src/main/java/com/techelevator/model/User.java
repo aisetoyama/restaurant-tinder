@@ -1,6 +1,8 @@
 package com.techelevator.model;
 
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -11,11 +13,12 @@ public class User {
     @NotBlank(message = "Username is required")
     private String username;
 
-    @NotBlank(message = "Role is required")
-    private String role;
+//    @NotBlank(message = "Role is required")
+//    private String role;
     private long id;
 
     @NotBlank(message = "Password is required")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$", message = "Password must match all requirements")
     private String password;
     private String confirmPassword;
 
@@ -61,16 +64,16 @@ public class User {
     /**
      * @return the role
      */
-    public String getRole() {
-        return role;
-    }
+//    public String getRole() {
+//        return role;
+//    }
 
     /**
      * @param role the role to set
      */
-    public void setRole(String role) {
-        this.role = role;
-    }
+//    public void setRole(String role) {
+//        this.role = role;
+//    }
 
     /**
      * @param username the username to set
