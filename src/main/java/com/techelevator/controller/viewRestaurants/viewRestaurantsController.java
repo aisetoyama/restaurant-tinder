@@ -17,7 +17,7 @@ public class viewRestaurantsController {
     @Autowired
     private RestaurantDao restaurantDao;
 
-    @RequestMapping(value = "/viewRestaurants", method = RequestMethod.POST)
+    @RequestMapping(value = "/viewRestaurants", method = RequestMethod.GET)
     public String viewRestaurantsResults(HttpServletRequest request){
 //        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);
         String cuisine = request.getParameter("cuisine");
@@ -28,7 +28,7 @@ public class viewRestaurantsController {
 //            viewOneRestaurant(restaurant, modelHolder);
 //        }
 //        modelHolder.put("restaurantList", restaurantDao.getRestaurantsByCuisineAndZip(cuisine,zipCode));
-        return "viewRestaurantsResults";
+        return "redirect:/viewRestaurantsResults";
     }
 
     @RequestMapping(value = "/viewRestaurantsResults", method = RequestMethod.GET)
