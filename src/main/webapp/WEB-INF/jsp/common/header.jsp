@@ -15,6 +15,7 @@
             <li><a href="home">Home</a></li>
             <li><a href="about">About</a></li>
             <li><a href="private">Private</a></li>
+            <li><a href="viewRestaurants">View Restaurants</a></li>
             <c:if test="${appCurrentUser.role == 'admin'}">
                 <li><a href="admin">Administration</a></li>
             </c:if>
