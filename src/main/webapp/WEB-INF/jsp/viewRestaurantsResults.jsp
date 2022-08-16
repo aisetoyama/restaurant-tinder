@@ -1,6 +1,6 @@
 <%@ include file = "common/header.jsp" %>
 
-<h1>ARE WE HERE</h1>
+<h1>RESULTS</h1>
 
 <body>
 

@@ -3,8 +3,8 @@
 <h1>View Restaurants</h1>
 
   <body>
-  <c:url var="formAction" value="viewRestaurants"/>
-  <form id="main-content" method="GET" action="${formAction}">
+  <c:url var="formAction" value="/viewRestaurants"/>
+  <form id="main-content" method="POST" action="${formAction}">
     <label for="cuisine">Cuisine Preference</label>
 <select id="cuisine" name="cuisine">
   <option value = "American">American</option>
