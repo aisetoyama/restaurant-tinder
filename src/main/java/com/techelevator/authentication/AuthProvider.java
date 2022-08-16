@@ -36,18 +36,20 @@ public interface AuthProvider {
      */
     boolean changePassword(String existingPassword, String newPassword);
 
-    /**
-     * Register a new user to the system
-     * @param username the new user's username
-     * @param password the new user's password
-     * @param role the new user's role
-     */
+//    /**
+//     * Register a new user to the system
+//     * @param username the new user's username
+//     * @param password the new user's password
+//     * @param role the new user's role
+//     */
     void register(String username, String password);
 
-    /**
-     * Checks to see if the current user has one of the given roles
-     * @param roles the roles to check for
-     * @return true, if the user has one of the roles
-     */
+//    /**
+//     * Checks to see if the current user has one of the given roles
+//     * @param roles the roles to check for
+//     * @return true, if the user has one of the roles
+//     */
+
+    boolean isValidEmail(String username);
 //    boolean userHasRole(String[] roles);
 }

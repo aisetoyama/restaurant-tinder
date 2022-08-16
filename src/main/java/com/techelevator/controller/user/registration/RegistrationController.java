@@ -33,12 +33,21 @@ public class RegistrationController {
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public String register(@Valid @ModelAttribute("user") User user, BindingResult result, RedirectAttributes flash) {
-        if (result.hasErrors()) {
+        if (!auth.isValidEmail(user.getUsername()) || result.hasErrors()) {
             flash.addFlashAttribute("user", user);
             flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
-            flash.addFlashAttribute("message", "Please fix the following errors:");
+            if(!auth.isValidEmail(user.getUsername())) {
+                flash.addFlashAttribute("message", "Unique emails only");
+            }
+            flash.addFlashAttribute("message", "Please fix the following errors");
             return "redirect:/register";
         }
+//        if (result.hasErrors()) {
+//            flash.addFlashAttribute("user", user);
+//            flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
+//            flash.addFlashAttribute("message", "Please fix the following errors:");
+//            return "redirect:/register";
+//        }
         auth.register(user.getUsername(), user.getPassword());
         return "redirect:/registrationSuccess";
     }

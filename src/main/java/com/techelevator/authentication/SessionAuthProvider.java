@@ -79,6 +79,18 @@ public class SessionAuthProvider implements AuthProvider {
 
     }
 
+    @Override
+    public boolean isValidEmail(String username){
+
+        List<User> userList = dao.getAllUsers();
+        for(User user : userList ) {
+            if(user.getUsername().equals(username)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 //    @Override
 //    public boolean userHasRole(String[] roles) {
 //        User currentUser = getCurrentUser();
