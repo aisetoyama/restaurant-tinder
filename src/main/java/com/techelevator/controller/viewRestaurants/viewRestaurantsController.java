@@ -22,7 +22,9 @@ public class viewRestaurantsController {
 
 
     @RequestMapping(path = "/viewRestaurants", method = RequestMethod.POST)
-    public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String zipCode) {
+    public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String zipCode, ModelMap modelHolder) {
+        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);
+        modelHolder.put("restaurantList", restaurantList);
         return "redirect:/viewRestaurantsResults";
     }
 
@@ -33,27 +35,3 @@ public class viewRestaurantsController {
 
     }
 }
-
-
-
-
-//    @RequestMapping(value = "/viewRestaurants", method = RequestMethod.GET)
-//    public String viewRestaurantsResults(HttpServletRequest request){
-////        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);
-//        String cuisine = request.getParameter("cuisine");
-//        String zipcode = request.getParameter("zipcode");
-//        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipcode);
-//        request.setAttribute("restaurant", restaurantList.get(0));
-////        for (Restaurant restaurant : restaurantList) {
-////            viewOneRestaurant(restaurant, modelHolder);
-////        }
-////        modelHolder.put("restaurantList", restaurantDao.getRestaurantsByCuisineAndZip(cuisine,zipCode));
-//        return "redirect:/viewRestaurantsResults";
-//    }
-//
-//    @RequestMapping(value = "/viewRestaurantsResults", method = RequestMethod.GET)
-//    public String viewOneRestaurant() {
-////        modelHolder.put("restaurant", restaurant);
-//        return "viewRestaurantsResults";
-//    }
-//}

@@ -424,4 +424,6 @@ insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (1
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,6,'10:30','21:00');
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,7,'11:00','21:00');
 
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO capstone_appuser;
+
 COMMIT;

@@ -3,6 +3,7 @@
 <h1>RESULTS</h1>
 
 <body>
+<p>${restaurantList}</p>
 
 </body>
 

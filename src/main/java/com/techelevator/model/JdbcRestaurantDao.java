@@ -42,7 +42,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
     @Override
     public List<Restaurant> getRestaurantsByCuisineAndZip(String cuisine, String zipCode) {
         List<Restaurant> allRestaurantsList = new ArrayList<>();
-        String sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE ? = category and ? = zipcode";
+        String sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE category = ? and zipcode = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,cuisine,zipCode);
         while (results.next()){
             Restaurant restaurant = new Restaurant();
