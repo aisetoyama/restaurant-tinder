@@ -38,4 +38,9 @@ public class SiteController {
     public String aboutPage() throws UnauthorizedException {
         return "about";
     }
+
+    @RequestMapping(path = "/viewRestaurants", method = RequestMethod.GET)
+    public String viewRestaurants() throws UnauthorizedException {
+        return "viewRestaurants";
+    }
 }
