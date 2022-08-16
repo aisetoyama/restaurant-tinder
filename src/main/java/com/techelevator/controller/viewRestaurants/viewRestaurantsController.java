@@ -25,7 +25,7 @@ public class viewRestaurantsController {
     @RequestMapping(path = "/viewRestaurants", method = RequestMethod.POST)
     public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String zipCode, HttpSession session) {
         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);
-        session.setAttribute("restaurant", restaurantList);
+        session.setAttribute("restaurantList", restaurantList);
         return "redirect:/viewRestaurantsResults";
     }
 
@@ -34,6 +34,7 @@ public class viewRestaurantsController {
     public String showAllResults(HttpSession session, ModelMap modelHolder){
         List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
         Restaurant restaurant = restaurantList.get(0);
+        modelHolder.put("restaurantList", restaurantList);
         modelHolder.put("restaurant", restaurant);
         return "viewRestaurantsResults";
     }
