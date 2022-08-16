@@ -50,6 +50,4 @@ public interface AuthProvider {
 //     * @return true, if the user has one of the roles
 //     */
 
-    boolean isValidEmail(String username);
-//    boolean userHasRole(String[] roles);
 }

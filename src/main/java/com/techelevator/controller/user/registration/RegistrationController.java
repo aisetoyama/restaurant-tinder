@@ -2,6 +2,7 @@ package com.techelevator.controller.user.registration;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.model.User;
+import com.techelevator.model.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,6 +24,9 @@ public class RegistrationController {
     @Autowired
     private AuthProvider auth;
 
+    @Autowired
+    private UserDao dao;
+
     @RequestMapping(path = "/register", method = RequestMethod.GET)
     public String register(ModelMap modelHolder) {
         if (!modelHolder.containsAttribute("user")) {
@@ -33,27 +37,18 @@ public class RegistrationController {
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public String register(@Valid @ModelAttribute("user") User user, BindingResult result, RedirectAttributes flash) {
-        if (!auth.isValidEmail(user.getUsername()) || result.hasErrors()) {
+        if (!dao.isValidEmail(user.getUsername()) || result.hasErrors()) {
             flash.addFlashAttribute("user", user);
             flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
-            if(!auth.isValidEmail(user.getUsername())) {
-                flash.addFlashAttribute("message", "Unique emails only");
-            }
-            flash.addFlashAttribute("message", "Please fix the following errors");
+            flash.addFlashAttribute("message", !dao.isValidEmail(user.getUsername()) && result.hasErrors() ? "Please fix the following errors: Unique emails only and please fix password" : result.hasErrors() ? "Please fix the following errors" : !dao.isValidEmail(user.getUsername()) ? "Unique emails only" : "");
             return "redirect:/register";
         }
-//        if (result.hasErrors()) {
-//            flash.addFlashAttribute("user", user);
-//            flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
-//            flash.addFlashAttribute("message", "Please fix the following errors:");
-//            return "redirect:/register";
-//        }
         auth.register(user.getUsername(), user.getPassword());
         return "redirect:/registrationSuccess";
     }
 
     @RequestMapping("/registrationSuccess")
-    public String showRegistrationSuccessScreen(){
+    public String showRegistrationSuccessScreen() {
         return "user/registration/registrationSuccess";
     }
 

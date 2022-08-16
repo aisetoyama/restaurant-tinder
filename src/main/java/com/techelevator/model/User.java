@@ -6,6 +6,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.techelevator.authentication.PasswordHasher;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  */
 public class User {
     @NotBlank(message = "Username is required")
+    @Email(message="Must be in Email format")
     private String username;
 
 //    @NotBlank(message = "Role is required")

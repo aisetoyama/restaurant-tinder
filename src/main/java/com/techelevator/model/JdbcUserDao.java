@@ -22,7 +22,8 @@ public class JdbcUserDao implements UserDao {
     /**
      * Create a new user dao with the supplied data source and the password hasher
      * that will salt and hash all the passwords for users.
-     *  @param dataSource an SQL data source
+     *
+     * @param dataSource     an SQL data source
      * @param passwordHasher an object to salt and hash passwords
      */
     @Autowired
@@ -38,7 +39,6 @@ public class JdbcUserDao implements UserDao {
      *
      * @param userName the user name to give the new user
      * @param password the user's password
-     * @param role the user's role
      * @return the new user
      */
     @Override
@@ -100,8 +100,21 @@ public class JdbcUserDao implements UserDao {
         }
     }
 
+    @Override
+    public boolean isValidEmail(String username) {
+        List<User> userList = getAllUsers();
+        for (User user : userList) {
+            if (user.getUsername().equals(username)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     /**
      * Get all of the users from the database.
+     *
      * @return a List of user objects
      */
     @Override
@@ -117,6 +130,19 @@ public class JdbcUserDao implements UserDao {
 
         return users;
     }
+
+
+//    @Override
+//    public Project getProject(Long projectId) {
+//        Project project = null;
+//        String sql = "SELECT * FROM project WHERE project_id = ?";
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, projectId);
+//        if (results.next()) {
+//            project = mapRowToProject(results);
+//        }
+//        return project;
+//    }
+
 
     private User mapResultToUser(SqlRowSet results) {
         User user = new User();

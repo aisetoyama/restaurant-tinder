@@ -24,22 +24,21 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <c:url var="aboutUrl" value="/about"/>
-                <c:url var="privateUrl" value="/private"/>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="${homeUrl}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${aboutUrl}">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${privateUrl}">Private</a>
-                </li>
-                <c:if test="${appCurrentUser.role == 'admin'}">
-                    <c:url var="administrationUrl" value="/admin"/>
-                    <li class="nav-item">
-                        <a class="nav-link" href="${administrationUrl}">Administration</a>
-                    </li>
-                </c:if>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link" href="${privateUrl}">Private</a>--%>
+<%--                </li>--%>
+<%--                <c:if test="${appCurrentUser.role == 'admin'}">--%>
+<%--                    <c:url var="administrationUrl" value="/admin"/>--%>
+<%--                    <li class="nav-item">--%>
+<%--                        <a class="nav-link" href="${administrationUrl}">Administration</a>--%>
+<%--                    </li>--%>
+<%--                </c:if>--%>
             </ul>
             <ul class="navbar-nav d-flex">
                 <c:if test="${empty appCurrentUser}">
@@ -52,8 +51,8 @@
                     <li class="nav-item"><a class="nav-link" href="profile"><c:out value="${appCurrentUser.username}" /></a></li>
                     <c:url var="logoffUrl" value="/logoff"/>
                     <li class="nav-item">
-                        <form action="${logoffUrl}" method="POST" class="navbar-form">
-                            <button type="submit" class="btn btn-primary">Log Off</button>
+                        <form action="${logoffUrl}" method="POST" class="navbar-link">
+                            <button type="submit" class="text-dark btn btn-outline-light">Log Off</button>
                         </form>
                     </li>
                 </c:if>
