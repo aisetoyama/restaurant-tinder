@@ -154,6 +154,19 @@ insert into restaurant (name,
                                           'CA',
                                           '94306',
                                           'Mexican');
+insert into restaurant (name,
+                        stars,
+                        street_address,
+                        city,
+                        state,
+                        zipcode,
+                        category) values ('Dinah''s Poolside Restaurant',
+                                          5,
+                                          '4261 El Camino Real',
+                                          'Palo Alto',
+                                          'CA',
+                                          '94306',
+                                          'American');
 create table schedule (
     restaurant_id int,
     day_of_week int,
@@ -423,6 +436,16 @@ insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (1
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,5,'10:30','21:00');
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,6,'10:30','21:00');
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,7,'11:00','21:00');
+
+
+--restaurant id 11
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,1,'08:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,2,'08:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,3,'08:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,4,'08:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,5,'08:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,6,'08:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,7,'08:00','21:00');
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO capstone_appuser;
 

@@ -3,7 +3,12 @@
 <h1>RESULTS</h1>
 
 <body>
-<p>${restaurantList}</p>
+<%--<c:set var="restaurant" value="${restaurant}"/>--%>
+<p>${restaurant.name}</p>
+<p>${restaurant.category}</p>
+
+<input type="button" value="like">
+<input type="hidden" value="">
 
 </body>
 

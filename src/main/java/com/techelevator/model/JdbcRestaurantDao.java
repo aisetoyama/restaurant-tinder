@@ -42,8 +42,16 @@ public class JdbcRestaurantDao implements RestaurantDao{
     @Override
     public List<Restaurant> getRestaurantsByCuisineAndZip(String cuisine, String zipCode) {
         List<Restaurant> allRestaurantsList = new ArrayList<>();
-        String sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE category = ? and zipcode = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,cuisine,zipCode);
+        String sqlAllRestaurants;
+        SqlRowSet results;
+
+        if (cuisine.equals("Any Category")) {
+            sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE zipcode = ?;";
+            results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,zipCode);
+        } else {
+            sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE category = ? and zipcode = ?;";
+            results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,cuisine,zipCode);
+        }
         while (results.next()){
             Restaurant restaurant = new Restaurant();
             restaurant.setRestaurantId(results.getLong("restaurant_id"));

@@ -16,6 +16,7 @@
   <option value = "Japanese">Japanese</option>
   <option value = "Thai">Thai</option>
   <option value = "Mexican">Mexican</option>
+  <option value = "Any Category">Any Category</option>
 </select>
   <br>
 
