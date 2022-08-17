@@ -10,5 +10,7 @@ public interface RestaurantDao {
 
     public List<Restaurant> getRestaurantsByCuisineAndZip(String cuisine, String zipCode);
 
+    public List<Schedule> getScheduleByRestaurantID(long restaurantId);
+
 
 }

@@ -67,5 +67,25 @@ public class JdbcRestaurantDao implements RestaurantDao{
         return allRestaurantsList;
     }
 
+    public List<Schedule> getScheduleByRestaurantID(long restaurantId) {
+        List<Schedule> listOfRestaurantsSchedule = new ArrayList<>();
+        String sql;
+        SqlRowSet results;
+
+        sql = "SELECT * FROM SCHEDULE WHERE restaurant_id = ?;";
+        results = jdbcTemplate.queryForRowSet(sql, restaurantId);
+
+        while (results.next()) {
+            Schedule schedule = new Schedule();
+            schedule.setRestaurantId(results.getLong("restaurant_id"));
+            schedule.setDayOfWeek(results.getInt("day_of_week"));
+            schedule.setTimeOpen(results.getTime("time_open"));
+            schedule.setTimeClosed(results.getTime("time_closed"));
+            listOfRestaurantsSchedule.add(schedule);
+        }
+
+        return listOfRestaurantsSchedule;
+    }
+
 
 }

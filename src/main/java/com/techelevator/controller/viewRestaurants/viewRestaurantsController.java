@@ -3,6 +3,7 @@ package com.techelevator.controller.viewRestaurants;
 import com.techelevator.model.JdbcRestaurantDao;
 import com.techelevator.model.Restaurant;
 import com.techelevator.model.RestaurantDao;
+import com.techelevator.model.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,12 +31,22 @@ public class viewRestaurantsController {
     }
 
 
+
+
     @RequestMapping(path="/viewRestaurantsResults", method = RequestMethod.GET)
     public String showAllResults(HttpSession session, ModelMap modelHolder){
         List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
         Restaurant restaurant = restaurantList.get(0);
         modelHolder.put("restaurantList", restaurantList);
         modelHolder.put("restaurant", restaurant);
+
+        List<Schedule> schedulesList = (List<Schedule>) session.getAttribute("schedulesList");
+        List<Schedule> restaurantSchedule = restaurantDao.getScheduleByRestaurantID(restaurant.getRestaurantId());
+        modelHolder.put("schedulesList", schedulesList);
+        modelHolder.put("restaurantSchedule", restaurantSchedule);
+
         return "viewRestaurantsResults";
     }
+
+
 }
