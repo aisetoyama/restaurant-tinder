@@ -4,7 +4,7 @@
 <c:url var="registerUrl" value="/register"/>
 
 
-<form:form class="row justify-content-center w-50" action="${registerUrl}" method="POST" modelAttribute="user">
+<form:form class="row justify-content-center w-50 mx-auto mt-5 border rounded p-5 form-bg" action="${registerUrl}" method="POST" modelAttribute="user">
     <h1 class="text-center">register</h1>
     <div class="form-group">
         <label for="username" class="font-weight-bold">Username</label>
@@ -33,7 +33,7 @@
         <form:password class="form-control" path="confirmPassword"/>
         <form:errors path="passwordMatching" cssClass="bg-danger"/>
     </div>
-    <button type="submit" class="btn btn-default w-25">Save User</button>
+    <button type="submit" class="btn btn-default w-25">submit</button>
 </form:form>
 
 <%@ include file = "../../common/footer.jsp" %>
