@@ -23,7 +23,7 @@ public class viewRestaurantsController {
     public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String zipCode, HttpSession session) {
         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);
         session.setAttribute("restaurantList", restaurantList);
-        return "/WEB-INF/jsp/viewRestaurantsResults.html";
+        return "viewRestaurantsResults";
     }
 
 
@@ -33,6 +33,6 @@ public class viewRestaurantsController {
         Restaurant restaurant = restaurantList.get(0);
         modelHolder.put("restaurantList", restaurantList);
         modelHolder.put("restaurant", restaurant);
-        return "/WEB-INF/jsp/viewRestaurantsResults.html";
+        return "viewRestaurantsResults";
     }
 }
