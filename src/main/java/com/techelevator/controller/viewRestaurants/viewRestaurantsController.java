@@ -27,10 +27,17 @@ public class viewRestaurantsController {
     public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String zipCode, HttpSession session) {
         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);
         session.setAttribute("restaurantList", restaurantList);
+        if(restaurantList.size() == 0){
+            return "redirect:/noResults";
+        }
         return "redirect:/viewRestaurantsResults";
     }
 
 
+    @RequestMapping("/noResults")
+    public String showRegistrationSuccessScreen() {
+        return "/noResults";
+    }
 
 
     @RequestMapping(path="/viewRestaurantsResults", method = RequestMethod.GET)

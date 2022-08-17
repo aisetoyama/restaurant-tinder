@@ -1,10 +1,10 @@
 <%@ include file = "common/header.jsp" %>
 
-<h1>View Restaurants</h1>
 
   <body>
   <c:url var="formAction" value="/viewRestaurants"/>
-  <form id="main-content" method="POST" action="${formAction}">
+  <h1 class="row justify-content-center w-75">View Restaurants</h1>
+  <form class="row justify-content-center w-25 mx-auto mt-5 form-bg" id="main-content" method="POST" action="${formAction}">
     <label for="cuisine">Cuisine Preference</label>
 <select id="cuisine" name="cuisine">
   <option value = "American">American</option>

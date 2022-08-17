@@ -1,6 +1,8 @@
 package com.techelevator.model;
 
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Restaurant {
 
   private long restaurantId;
@@ -9,6 +11,8 @@ public class Restaurant {
   private String streetAddress;
   private String city;
   private String state;
+
+  @NotBlank(message = "Zipcode Required.")
   private String zipcode;
   private String category;
 

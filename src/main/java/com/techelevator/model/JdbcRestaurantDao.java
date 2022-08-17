@@ -41,31 +41,36 @@ public class JdbcRestaurantDao implements RestaurantDao{
 
     @Override
     public List<Restaurant> getRestaurantsByCuisineAndZip(String cuisine, String zipCode) {
-        List<Restaurant> allRestaurantsList = new ArrayList<>();
-        String sqlAllRestaurants;
-        SqlRowSet results;
+        try{
+            List<Restaurant> allRestaurantsList = new ArrayList<>();
+            String sqlAllRestaurants;
+            SqlRowSet results;
 
-        if (cuisine.equals("Any Category")) {
-            sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE zipcode = ?;";
-            results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,zipCode);
-        } else {
-            sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE category = ? and zipcode = ?;";
-            results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,cuisine,zipCode);
+            if (cuisine.equals("Any Category")) {
+                sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE zipcode = ?;";
+                results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,zipCode);
+            } else {
+                sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE category = ? and zipcode = ?;";
+                results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,cuisine,zipCode);
+            }
+            while (results.next()){
+                Restaurant restaurant = new Restaurant();
+                restaurant.setRestaurantId(results.getLong("restaurant_id"));
+                restaurant.setName(results.getString("name"));
+                restaurant.setStars(results.getInt("stars"));
+                restaurant.setStreetAddress(results.getString("street_address"));
+                restaurant.setCity(results.getString("city"));
+                restaurant.setState(results.getString("state"));
+                restaurant.setZipcode(results.getString("zipcode"));
+                restaurant.setCategory(results.getString("category"));
+                restaurant.setPhoneNumber(results.getString("phone_number"));
+                allRestaurantsList.add(restaurant);
+            }
+            return allRestaurantsList;
+        } catch(IndexOutOfBoundsException e){
+            System.out.println("No categories found.");
         }
-        while (results.next()){
-            Restaurant restaurant = new Restaurant();
-            restaurant.setRestaurantId(results.getLong("restaurant_id"));
-            restaurant.setName(results.getString("name"));
-            restaurant.setStars(results.getInt("stars"));
-            restaurant.setStreetAddress(results.getString("street_address"));
-            restaurant.setCity(results.getString("city"));
-            restaurant.setState(results.getString("state"));
-            restaurant.setZipcode(results.getString("zipcode"));
-            restaurant.setCategory(results.getString("category"));
-            restaurant.setPhoneNumber(results.getString("phone_number"));
-            allRestaurantsList.add(restaurant);
-        }
-        return allRestaurantsList;
+        return null;
     }
 
     public List<Schedule> getScheduleByRestaurantID(long restaurantId) {
