@@ -33,15 +33,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="${aboutUrl}">About</a>
                 </li>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link" href="${privateUrl}">Private</a>--%>
-<%--                </li>--%>
-<%--                <c:if test="${appCurrentUser.role == 'admin'}">--%>
-<%--                    <c:url var="administrationUrl" value="/admin"/>--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="${administrationUrl}">Administration</a>--%>
-<%--                    </li>--%>
-<%--                </c:if>--%>
             </ul>
             <ul class="navbar-nav d-flex">
                 <c:if test="${empty appCurrentUser}">
