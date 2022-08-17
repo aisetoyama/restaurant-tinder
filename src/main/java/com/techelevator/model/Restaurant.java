@@ -12,6 +12,15 @@ public class Restaurant {
   private String zipcode;
   private String category;
 
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+  private String phoneNumber;
+
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
 
   public long getRestaurantId() {
     return restaurantId;

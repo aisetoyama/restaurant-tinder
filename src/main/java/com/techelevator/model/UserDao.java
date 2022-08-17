@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+
 import java.util.List;
 
 public interface UserDao {
@@ -11,10 +13,9 @@ public interface UserDao {
      *
      * @param userName the user name to give the new user
      * @param password the user's password
-     * @param role the user's role
      * @return the new user
      */
-    public User saveUser(String userName, String password, String role);
+    public User saveUser(String userName, String password);
 
     public void changePassword(User user, String newPassword);
 
@@ -31,8 +32,11 @@ public interface UserDao {
 
     /**
      * Get all of the users from the database.
+     *
      * @return a List of user objects
      */
     public List<User> getAllUsers();
+
+    public boolean isValidEmail(String userName);
 
 }
