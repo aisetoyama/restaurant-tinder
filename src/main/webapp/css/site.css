@@ -1,1 +1,9 @@
 .navbar-brand > img { height: 25px; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-bg {
+    background-color: #FFDAB9;
+}
