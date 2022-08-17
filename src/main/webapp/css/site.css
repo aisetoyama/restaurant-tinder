@@ -1,1 +1,5 @@
 .navbar-brand > img { height: 25px; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
