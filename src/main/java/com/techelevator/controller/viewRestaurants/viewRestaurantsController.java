@@ -1,6 +1,5 @@
 package com.techelevator.controller.viewRestaurants;
 
-import com.techelevator.model.JdbcRestaurantDao;
 import com.techelevator.model.Restaurant;
 import com.techelevator.model.RestaurantDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -26,7 +23,7 @@ public class viewRestaurantsController {
     public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String zipCode, HttpSession session) {
         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);
         session.setAttribute("restaurantList", restaurantList);
-        return "redirect:/viewRestaurantsResults";
+        return "/WEB-INF/jsp/viewRestaurantsResults.html";
     }
 
 
@@ -36,6 +33,6 @@ public class viewRestaurantsController {
         Restaurant restaurant = restaurantList.get(0);
         modelHolder.put("restaurantList", restaurantList);
         modelHolder.put("restaurant", restaurant);
-        return "viewRestaurantsResults";
+        return "/WEB-INF/jsp/viewRestaurantsResults.html";
     }
 }
