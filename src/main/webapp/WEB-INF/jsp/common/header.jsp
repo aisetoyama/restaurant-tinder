@@ -27,7 +27,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <c:url var="aboutUrl" value="/about"/>
-                <c:url var="privateUrl" value="/private"/>
                 <c:url var="viewRestaurantsUrl" value="/viewRestaurants"/>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="${homeUrl}">Home</a>
