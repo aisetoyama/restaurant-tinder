@@ -12,5 +12,7 @@ public interface RestaurantDao {
 
     public List<Schedule> getScheduleByRestaurantID(long restaurantId);
 
+    public List<Schedule> getScheduleIfOpenByRestaurantId(long restaurantId);
+
 
 }

@@ -45,6 +45,11 @@ public class viewRestaurantsController {
         modelHolder.put("schedulesList", schedulesList);
         modelHolder.put("restaurantSchedule", restaurantSchedule);
 
+        List<Schedule> scheduleOpenList = (List<Schedule>) session.getAttribute("scheduleOpenList");
+        List<Schedule> restaurantScheduleIsOpen = restaurantDao.getScheduleIfOpenByRestaurantId(restaurant.getRestaurantId());
+        modelHolder.put("scheduleOpenList", scheduleOpenList);
+        modelHolder.put("restaurantScheduleIsOpen", restaurantScheduleIsOpen);
+
         return "viewRestaurantsResults";
     }
 

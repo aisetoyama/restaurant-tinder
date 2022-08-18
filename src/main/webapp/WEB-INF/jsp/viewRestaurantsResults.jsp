@@ -6,6 +6,7 @@
 <body>
 
 <c:set var="restaurantSchedule" value="${restaurantSchedule}"/>
+<c:set var="restaurantOpen" value="${restaurantScheduleIsOpen}"/>
 <!-- Card -->
 <c:forEach items="${restaurantList}" var="restaurant">
 <div class="card" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -51,7 +52,9 @@
                 <c:url var="formAction" value="/viewRestaurantsResults"/>
 
             </div>
-
+            <c:if test="${restaurantOpen != null}">
+                <p>Restaurant is Open</p>
+            </c:if>
 
             <c:if test="${restaurant.phoneNumber != null}">
             <div class="card-footer">

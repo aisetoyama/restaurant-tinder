@@ -1,13 +1,17 @@
 package com.techelevator.model;
 
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 public class Schedule {
 
   private long restaurantId;
   private long dayOfWeek;
   private java.sql.Time timeOpen;
   private java.sql.Time timeClosed;
-
 
   public long getRestaurantId() {
     return restaurantId;
