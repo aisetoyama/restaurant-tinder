@@ -10,21 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3d5c860-63eb-4142-a83f-5daa574bafa1" name="Changes" comment="deleted api ai/brandon">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9b05a907-e152-4c68-a36f-c85155ed1d86.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9b05a907-e152-4c68-a36f-c85155ed1d86.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9b05a907-e152-4c68-a36f-c85155ed1d86/storage_v2/_src_/database/capstone.04v6_A/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9b05a907-e152-4c68-a36f-c85155ed1d86/storage_v2/_src_/database/capstone.04v6_A/schema/public.abK9xQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/noResults.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/user/authentication/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/user/authentication/AccountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/model/JdbcRestaurantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/model/JdbcRestaurantDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/model/RestaurantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/model/RestaurantDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/user/authentication/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/user/authentication/AccountController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/JdbcRestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/JdbcRestaurantDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/RestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/RestaurantDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/controller/user/authentication/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/controller/user/authentication/AccountController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/model/JdbcRestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/model/JdbcRestaurantDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/model/RestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/model/RestaurantDao.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +28,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Jsp File" />
         <option value="JavaScript File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>

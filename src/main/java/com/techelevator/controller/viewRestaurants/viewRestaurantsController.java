@@ -29,6 +29,9 @@ public class viewRestaurantsController {
     public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String city, HttpSession session) {
         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndCity(cuisine, city);
         session.setAttribute("restaurantList", restaurantList);
+        if (restaurantList.size() == 0) {
+            return "redirect:/noResults";
+        }
         String username = (String) session.getAttribute("username");
 
         List<Long> restaurantIds =  new ArrayList<>();
@@ -39,6 +42,10 @@ public class viewRestaurantsController {
         restaurantDao.createEventTable(restaurantIds, username);
 
         return "redirect:/viewRestaurantsResults";
+    }
+    @RequestMapping("/noResults")
+    public String showNoResultsScreen() {
+        return "/noResults";
     }
 
 
