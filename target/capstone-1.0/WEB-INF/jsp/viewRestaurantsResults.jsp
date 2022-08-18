@@ -36,6 +36,7 @@
                                                 id="staticBackdropLabel">${restaurantList.get(0).name}</h4>
                                         </div>
                                         <div class="card-body">
+                                            <button type="button" class="close" data-dismiss="modal">X</button>
                                             <c:url var="restaurantImage" value="/images/restaurant_${restaurantList.get(0).restaurantId}.png"></c:url>
                                             <img class="img-thumbnail w-50" src="${restaurantImage}" alt="restaurant image"/>
                                             <h5>Category:</h5>
@@ -44,7 +45,7 @@
                                             <p>${restaurantList.get(0).streetAddress}</p>
                                             <h5>Hours:</h5>
                                             <ul>
-                                                <c:forEach items="${restaurantSchedule}" var="schedule">
+                                                <c:forEach items="${allRestaurantSchedule.get(0)}" var="schedule">
                                                     <li><c:choose>
                                                         <c:when test="${schedule.dayOfWeek == 1}">
                                                             <strong>Monday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
@@ -72,12 +73,12 @@
                                             </ul>
                                         </div>
                                         <c:if test="${restaurantList.get(0).phoneNumber != null}">
-                                        <div class="card-footer">
-                                            <button type="submit" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal"
-                                                    data-bs-target="#staticBackdrop"> Call To Order
-                                            </button>
-                                            </c:if>
-                                        </div>
+                                            <div class="card-footer">
+                                                <button type="submit" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal"
+                                                        data-bs-target="#staticBackdrop"> Call To Order
+                                                </button>
+                                            </div>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +104,7 @@
                                                 <p>${restaurantList.get(index).category}</p>
                                                 <h5>Address:</h5>
                                                 <p>${restaurantList.get(index).streetAddress}</p>
-                                                <c:forEach items="${restaurantSchedule}" var="schedule">
+                                                <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">
                                                     <li><c:choose>
                                                         <c:when test="${schedule.dayOfWeek == 1}">
                                                             <strong>Monday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
@@ -128,6 +129,13 @@
                                                         </c:otherwise>
                                                     </c:choose></li>
                                                 </c:forEach>
+                                            </div>
+                                            <c:if test="${restaurantList.get(0).phoneNumber != null}">
+                                            <div class="card-footer">
+                                                <button type="submit" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal"
+                                                        data-bs-target="#staticBackdrop"> Call To Order
+                                                </button>
+                                                </c:if>
                                             </div>
                                         </div>
                                     </div>

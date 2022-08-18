@@ -22,8 +22,8 @@ public class viewRestaurantsController {
 
 
     @RequestMapping(path = "/viewRestaurants", method = RequestMethod.POST)
-    public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String zipCode, HttpSession session) {
-        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);
+    public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String city, HttpSession session) {
+        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndCity(cuisine, city);
         session.setAttribute("restaurantList", restaurantList);
         return "redirect:/viewRestaurantsResults";
     }
@@ -38,10 +38,15 @@ public class viewRestaurantsController {
         modelHolder.put("restaurantList", restaurantList);
         modelHolder.put("restaurant", restaurant);
 
+        List<Long> restaurantIds =  new ArrayList<>();
+        for (Restaurant res : restaurantList) {
+            restaurantIds.add(res.getRestaurantId());
+        }
+
         List<Schedule> schedulesList = (List<Schedule>) session.getAttribute("schedulesList");
-        List<Schedule> restaurantSchedule = restaurantDao.getScheduleByRestaurantID(restaurant.getRestaurantId());
+        List<List<Schedule>> allRestaurantSchedule = restaurantDao.getScheduleByRestaurantID(restaurantIds);
         modelHolder.put("schedulesList", schedulesList);
-        modelHolder.put("restaurantSchedule", restaurantSchedule);
+        modelHolder.put("allRestaurantSchedule", allRestaurantSchedule);
 
         return "viewRestaurantsResults";
     }

@@ -40,17 +40,17 @@ public class JdbcRestaurantDao implements RestaurantDao{
     }
 
     @Override
-    public List<Restaurant> getRestaurantsByCuisineAndZip(String cuisine, String zipCode) {
+    public List<Restaurant> getRestaurantsByCuisineAndCity(String cuisine, String city) {
         List<Restaurant> allRestaurantsList = new ArrayList<>();
         String sqlAllRestaurants;
         SqlRowSet results;
 
         if (cuisine.equals("Any Category")) {
-            sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE zipcode = ?;";
-            results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,zipCode);
+            sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE city = ?;";
+            results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,city);
         } else {
-            sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE category = ? and zipcode = ?;";
-            results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,cuisine,zipCode);
+            sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE category = ? and city = ?;";
+            results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,cuisine,city);
         }
         while (results.next()){
             Restaurant restaurant = new Restaurant();
@@ -68,24 +68,23 @@ public class JdbcRestaurantDao implements RestaurantDao{
         return allRestaurantsList;
     }
 
-    public List<Schedule> getScheduleByRestaurantID(long restaurantId) {
-        List<Schedule> listOfRestaurantsSchedule = new ArrayList<>();
-        String sql;
-        SqlRowSet results;
-
-        sql = "SELECT * FROM SCHEDULE WHERE restaurant_id = ?;";
-        results = jdbcTemplate.queryForRowSet(sql, restaurantId);
-
-        while (results.next()) {
-            Schedule schedule = new Schedule();
-            schedule.setRestaurantId(results.getLong("restaurant_id"));
-            schedule.setDayOfWeek(results.getInt("day_of_week"));
-            schedule.setTimeOpen(results.getTime("time_open"));
-            schedule.setTimeClosed(results.getTime("time_closed"));
-            listOfRestaurantsSchedule.add(schedule);
+    public List<List<Schedule>> getScheduleByRestaurantID(List<Long> restaurantIdList) {
+        List<List<Schedule>> allRestaurantSchedule = new ArrayList<>();
+        for (Long id : restaurantIdList) {
+            List<Schedule> oneRestaurantSchedule = new ArrayList<>();
+            String sql = "SELECT * FROM SCHEDULE WHERE restaurant_id = ?;";
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+            while (results.next()) {
+                Schedule schedule = new Schedule();
+                schedule.setRestaurantId(results.getLong("restaurant_id"));
+                schedule.setDayOfWeek(results.getInt("day_of_week"));
+                schedule.setTimeOpen(results.getTime("time_open"));
+                schedule.setTimeClosed(results.getTime("time_closed"));
+                oneRestaurantSchedule.add(schedule);
+            }
+            allRestaurantSchedule.add(oneRestaurantSchedule);
         }
-
-        return listOfRestaurantsSchedule;
+        return allRestaurantSchedule;
     }
 
 
