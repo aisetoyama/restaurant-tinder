@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class viewRestaurantsController {
 
 
     @RequestMapping(path = "/viewRestaurants", method = RequestMethod.POST)
-    public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String city, HttpSession session) {
+    public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String city, @RequestParam LocalDateTime deadline, HttpSession session) {
         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndCity(cuisine, city);
         session.setAttribute("restaurantList", restaurantList);
         if (restaurantList.size() == 0) {

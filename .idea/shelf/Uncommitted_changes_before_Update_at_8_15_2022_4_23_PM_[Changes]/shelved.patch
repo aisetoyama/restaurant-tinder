@@ -1,0 +1,62 @@
+Index: src/main/webapp/WEB-INF/jsp/viewRestaurants.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ include file = \"common/header.jsp\" %>\r\n\r\n<h1>View Restaurants</h1>\r\n\r\n  <body>\r\n  <form id=\"main-content\" method=\"GET\">\r\n    <label for=\"cuisine\">Cuisine Preference</label>\r\n<select id=\"cuisine\" name=\"cuisine\">\r\n  <option value = \"American\">American</option>\r\n  <option value = \"Spanish\">Spanish</option>\r\n  <option value = \"Barbeque\">Barbeque</option>\r\n  <option value = \"Cafes\">Cafes</option>\r\n  <option value = \"Italian\">Italian</option>\r\n  <option value = \"Chinese\">Chinese</option>\r\n  <option value = \"Japanese\">Japanese</option>\r\n  <option value = \"Thai\">Thai</option>\r\n  <option value = \"Mexican\">Mexican</option>\r\n</select>\r\n  <br>\r\n\r\n    <label for=\"zipCode\">Zip Code</label>\r\n    <input type=\"text\" name=\"zipCode\" id=\"zipCode\" placeholder=\"00000\"/>\r\n<br>\r\n    <button type=\"submit\">Submit</button>\r\n\r\n  </form>\r\n\r\n  </body>\r\n\r\n<%@ include file = \"common/footer.jsp\" %>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/WEB-INF/jsp/viewRestaurants.jsp b/src/main/webapp/WEB-INF/jsp/viewRestaurants.jsp
+--- a/src/main/webapp/WEB-INF/jsp/viewRestaurants.jsp	(revision 672940a9f093871f0e40da195d85805ca63dd1d4)
++++ b/src/main/webapp/WEB-INF/jsp/viewRestaurants.jsp	(date 1660605239806)
+@@ -3,7 +3,8 @@
+ <h1>View Restaurants</h1>
+ 
+   <body>
+-  <form id="main-content" method="GET">
++  <c:url value="/viewRestaurantsResults" var="pageAction"/>
++  <form id="main-content" method="POST" action = ${pageAction}>
+     <label for="cuisine">Cuisine Preference</label>
+ <select id="cuisine" name="cuisine">
+   <option value = "American">American</option>
+Index: src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.techelevator.controller.viewRestaurants;\r\n\r\nimport com.techelevator.model.JdbcRestaurantDao;\r\nimport com.techelevator.model.Restaurant;\r\nimport com.techelevator.model.RestaurantDao;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.ui.ModelMap;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\nimport org.springframework.web.bind.annotation.RequestMethod;\r\nimport org.springframework.web.bind.annotation.RequestParam;\r\nimport org.springframework.web.servlet.mvc.support.RedirectAttributes;\r\n\r\nimport javax.servlet.http.HttpServletRequest;\r\nimport java.util.List;\r\n\r\npublic class viewRestaurantsController {\r\n    @Autowired\r\n    private RestaurantDao restaurantDao;\r\n\r\n    @RequestMapping(value = \"/viewRestaurants\", method = RequestMethod.POST)\r\n    public String viewRestaurantsResults(HttpServletRequest request){\r\n//        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);\r\n        String cuisine = request.getParameter(\"cuisine\");\r\n        String zipcode = request.getParameter(\"zipcode\");\r\n        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipcode);\r\n        request.setAttribute(\"restaurant\", restaurantList.get(0));\r\n//        for (Restaurant restaurant : restaurantList) {\r\n//            viewOneRestaurant(restaurant, modelHolder);\r\n//        }\r\n//        modelHolder.put(\"restaurantList\", restaurantDao.getRestaurantsByCuisineAndZip(cuisine,zipCode));\r\n        return \"viewRestaurantsResults\";\r\n    }\r\n\r\n    @RequestMapping(value = \"/viewRestaurantsResults\", method = RequestMethod.GET)\r\n    public String viewOneRestaurant() {\r\n//        modelHolder.put(\"restaurant\", restaurant);\r\n        return \"viewRestaurantsResults\";\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java b/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java
+--- a/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java	(revision 672940a9f093871f0e40da195d85805ca63dd1d4)
++++ b/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java	(date 1660605685860)
+@@ -17,23 +17,24 @@
+     @Autowired
+     private RestaurantDao restaurantDao;
+ 
++    @RequestMapping(value = "/viewRestaurants", method = RequestMethod.GET)
++    public String viewOsomeRestaurant() {
++
++        return "viewRestaurants";
++    }
+     @RequestMapping(value = "/viewRestaurants", method = RequestMethod.POST)
+     public String viewRestaurantsResults(HttpServletRequest request){
+-//        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);
+         String cuisine = request.getParameter("cuisine");
+         String zipcode = request.getParameter("zipcode");
+         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipcode);
+         request.setAttribute("restaurant", restaurantList.get(0));
+-//        for (Restaurant restaurant : restaurantList) {
+-//            viewOneRestaurant(restaurant, modelHolder);
+-//        }
+-//        modelHolder.put("restaurantList", restaurantDao.getRestaurantsByCuisineAndZip(cuisine,zipCode));
+-        return "viewRestaurantsResults";
++
++        return "redirect:/viewRestaurantsResults";
+     }
+ 
+     @RequestMapping(value = "/viewRestaurantsResults", method = RequestMethod.GET)
+     public String viewOneRestaurant() {
+-//        modelHolder.put("restaurant", restaurant);
++
+         return "viewRestaurantsResults";
+     }
+ }

@@ -91,7 +91,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
     public void createEventTable(List<Long> restaurantId, String username) {
 //        String cleanUsername = username.replaceAll("[^a-zA-Z0-9]", "");
         String cleanUsername = username.substring(0, username.indexOf("@"));
-        String sql = "DROP TABLE IF EXISTS "+cleanUsername+ "; CREATE TABLE " + cleanUsername + " (username varchar(255), restaurant_id integer, likes integer, dislikes integer);";
+        String sql = "DROP TABLE IF EXISTS "+ cleanUsername + "; CREATE TABLE " + cleanUsername + " (username varchar(255), restaurant_id integer, likes integer, dislikes integer);";
         jdbcTemplate.update(sql);
 
         String insertSql;

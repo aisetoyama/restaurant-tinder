@@ -25,6 +25,9 @@
       <option value = "Palo Alto">Palo Alto, CA</option>
     </select>
 <br>
+    <label for="deadline"> Voting Deadline: </label>
+    <input type="datetime-local" id="deadline" name="deadline"/>
+
     <button type="submit">Submit</button>
 
   </form>

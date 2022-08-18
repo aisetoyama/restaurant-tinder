@@ -1,0 +1,61 @@
+Index: database/data.sql
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>-- *****************************************************************************\r\n-- This script contains INSERT statements for populating tables with seed data\r\n-- *****************************************************************************\r\n\r\nBEGIN;\r\n\r\n-- INSERT statements go here\r\ncreate table restaurant (\r\n    restaurant_id serial PRIMARY KEY,\r\n    name varchar(255),\r\n    stars int,\r\n    street_address varchar(255),\r\n    city varchar(255),\r\n    state varchar(255),\r\n    zipcode varchar(255),\r\n    category varchar(255)\r\n);\r\n\r\n--94043\r\n\r\ninsert into restaurant (name,\r\n                        stars,\r\n                        street_address,\r\n                        city,\r\n                        state,\r\n                        zipcode,\r\n                        category) values ('Roger Bar & Restaurant',\r\n                                          4,\r\n                                          '800 Moffett Blvd',\r\n                                          'Mountain View',\r\n                                          'CA',\r\n                                          '94043',\r\n                                          'American');\r\ninsert into restaurant (name,\r\n                        stars,\r\n                        street_address,\r\n                        city,\r\n                        state,\r\n                        zipcode,\r\n                        category) values ('The Emerald Hour',\r\n                                          5,\r\n                                          '1625 N Shoreline Blvd',\r\n                                          'Mountain View',\r\n                                          'CA',\r\n                                          '94043',\r\n                                          'Spanish');\r\ninsert into restaurant (name,\r\n                        stars,\r\n                        street_address,\r\n                        city,\r\n                        state,\r\n                        zipcode,\r\n                        category) values ('Wagon Wheel BBQ',\r\n                                          5,\r\n                                          '861 Leong Dr',\r\n                                          'Mountain View',\r\n                                          'CA',\r\n                                          '94043',\r\n                                          'Barbeque');\r\ninsert into restaurant (name,\r\n                        stars,\r\n                        street_address,\r\n                        city,\r\n                        state,\r\n                        zipcode,\r\n                        category) values ('The Fly-By',\r\n                                          5,\r\n                                          '800 Moffett Blvd',\r\n                                          'Mountain View',\r\n                                          'CA',\r\n                                          '94043',\r\n                                          'Cafes');\r\ninsert into restaurant (name,\r\n                        stars,\r\n                        street_address,\r\n                        city,\r\n                        state,\r\n                        zipcode,\r\n                        category) values ('Cucina Venti Restaurant',\r\n                                          4,\r\n                                          '1390 Pear Ave Ste D',\r\n                                          'Mountain View',\r\n                                          'CA',\r\n                                          '94043',\r\n                                          'Italian');\r\n\r\n-- 94306\r\ninsert into restaurant (name,\r\n                        stars,\r\n                        street_address,\r\n                        city,\r\n                        state,\r\n                        zipcode,\r\n                        category) values ('Hobee''s',\r\n                                          4,\r\n                                          '4224 El Camino Real',\r\n                                          'Palo Alto',\r\n                                          'CA',\r\n                                          '94306',\r\n                                          'American');\r\ninsert into restaurant (name,\r\n                        stars,\r\n                        street_address,\r\n                        city,\r\n                        state,\r\n                        zipcode,\r\n                        category) values ('Mandarin Roots',\r\n                                          4,\r\n                                          '3345 El Camino Real',\r\n                                          'Palo Alto',\r\n                                          'CA',\r\n                                          '94306',\r\n                                          'Chinese');\r\ninsert into restaurant (name,\r\n                        stars,\r\n                        street_address,\r\n                        city,\r\n                        state,\r\n                        zipcode,\r\n                        category) values ('Sushi Tomo',\r\n                                          4,\r\n                                          '4131 El Camino Way',\r\n                                          'Palo Alto',\r\n                                          'CA',\r\n                                          '94306',\r\n                                          'Japanese');\r\n\r\ninsert into restaurant (name,\r\n                        stars,\r\n                        street_address,\r\n                        city,\r\n                        state,\r\n                        zipcode,\r\n                        category) values ('Siam Fine Thai Cuisine',\r\n                                          4,\r\n                                          '3924 El Camino Real',\r\n                                          'Palo Alto',\r\n                                          'CA',\r\n                                          '94306',\r\n                                          'Thai');\r\n\r\ninsert into restaurant (name,\r\n                        stars,\r\n                        street_address,\r\n                        city,\r\n                        state,\r\n                        zipcode,\r\n                        category) values ('Sanchos''Taqueria',\r\n                                          4,\r\n                                          '2723 Middlefield Rd',\r\n                                          'Palo Alto',\r\n                                          'CA',\r\n                                          '94306',\r\n                                          'Mexican');\r\ncreate table schedule (\r\n    restaurant_id int,\r\n    day_of_week int,\r\n    time_open time,\r\n    time_closed time,\r\n    FOREIGN KEY (restaurant_id) REFERENCES restaurant (restaurant_id)\r\n);\r\n\r\n\r\nCOMMIT;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/database/data.sql b/database/data.sql
+--- a/database/data.sql	(revision 9ceccd6db833716852391ce37b115bd3f5b6aaeb)
++++ b/database/data.sql	(date 1660588722726)
+@@ -160,5 +160,49 @@
+     FOREIGN KEY (restaurant_id) REFERENCES restaurant (restaurant_id)
+ );
+ 
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,1,'08:00','15:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,2,'08:00','14:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,3,'08:00','14:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,4,'08:00','14:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,5,'08:00','14:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,6,'08:00','14:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,7,'08:00','15:00');
++
++
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,1,'11:00','20:30');
++--insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,2,'08:00','14:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,3,'11:00','20:30');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,4,'11:00','20:30');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,5,'11:00','20:30');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,6,'11:00','21:30');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,7,'11:00','21:30');
++
++
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,1,'12:30','21:00');
++--insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,2,'12:30','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,3,'11:30','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,4,'11:30','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,5,'11:30','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,6,'11:30','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,7,'11:00','21:00');
++
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,1,'11:00','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,2,'16:00','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,3,'16:00','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,4,'11:00','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,5,'11:00','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,6,'11:00','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,7,'11:00','21:00');
++
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,1,'10:30','19:30');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,2,'10:30','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,3,'10:30','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,4,'10:30','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,5,'10:30','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,6,'10:30','21:00');
++insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,7,'11:00','21:00');
++
++
++
+ 
+ COMMIT;
+\ No newline at end of file

@@ -1,0 +1,30 @@
+Index: src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.techelevator.controller.viewRestaurants;\r\n\r\nimport com.techelevator.model.Restaurant;\r\nimport com.techelevator.model.RestaurantDao;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.ui.ModelMap;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\nimport org.springframework.web.bind.annotation.RequestMethod;\r\nimport org.springframework.web.bind.annotation.RequestParam;\r\n\r\nimport javax.servlet.http.HttpSession;\r\nimport java.util.List;\r\n\r\n@Controller\r\npublic class viewRestaurantsController {\r\n\r\n    @Autowired\r\n    private RestaurantDao restaurantDao;\r\n\r\n\r\n    @RequestMapping(path = \"/viewRestaurants\", method = RequestMethod.POST)\r\n    public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String zipCode, HttpSession session) {\r\n        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);\r\n        session.setAttribute(\"restaurantList\", restaurantList);\r\n        return \"/WEB-INF/jsp/viewRestaurantsResults.html\";\r\n    }\r\n\r\n\r\n    @RequestMapping(path=\"/viewRestaurantsResults\", method = RequestMethod.GET)\r\n    public String showAllResults(HttpSession session, ModelMap modelHolder){\r\n        List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute(\"restaurantList\");\r\n        Restaurant restaurant = restaurantList.get(0);\r\n        modelHolder.put(\"restaurantList\", restaurantList);\r\n        modelHolder.put(\"restaurant\", restaurant);\r\n        return \"/WEB-INF/jsp/viewRestaurantsResults.html\";\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java b/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java
+--- a/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java	
++++ b/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java	
+@@ -23,7 +23,7 @@
+     public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String zipCode, HttpSession session) {
+         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);
+         session.setAttribute("restaurantList", restaurantList);
+-        return "/WEB-INF/jsp/viewRestaurantsResults.html";
++        return "redirect:/viewRestaurantsResults";
+     }
+ 
+ 
+@@ -33,6 +33,6 @@
+         Restaurant restaurant = restaurantList.get(0);
+         modelHolder.put("restaurantList", restaurantList);
+         modelHolder.put("restaurant", restaurant);
+-        return "/WEB-INF/jsp/viewRestaurantsResults.html";
++        return "/viewRestaurantsResults";
+     }
+ }
+diff --git a/src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.html b/src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.jsp
+rename from src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.html
+rename to src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.jsp
