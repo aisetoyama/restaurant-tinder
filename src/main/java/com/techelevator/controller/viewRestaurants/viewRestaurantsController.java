@@ -25,14 +25,19 @@ public class viewRestaurantsController {
     public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String city, HttpSession session) {
         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndCity(cuisine, city);
         session.setAttribute("restaurantList", restaurantList);
+        if (restaurantList.size() == 0) {
+            return "redirect:/noResults";
+        }
         return "redirect:/viewRestaurantsResults";
     }
 
+    @RequestMapping("/noResults")
+    public String showNoResultsScreen() {
+        return "/noResults";
+    }
 
-
-
-    @RequestMapping(path="/viewRestaurantsResults", method = RequestMethod.GET)
-    public String showAllResults(HttpSession session, ModelMap modelHolder){
+    @RequestMapping(path = "/viewRestaurantsResults", method = RequestMethod.GET)
+    public String showAllResults(HttpSession session, ModelMap modelHolder) {
         List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
         Restaurant restaurant = restaurantList.get(0);
         modelHolder.put("restaurantList", restaurantList);
