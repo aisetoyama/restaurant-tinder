@@ -87,5 +87,19 @@ public class JdbcRestaurantDao implements RestaurantDao{
         return allRestaurantSchedule;
     }
 
+    @Override
+    public void createEventTable(List<Long> restaurantId, String username) {
+//        String cleanUsername = username.replaceAll("[^a-zA-Z0-9]", "");
+        String cleanUsername = username.substring(0, username.indexOf("@"));
+        String sql = "CREATE TABLE " + cleanUsername + " (username varchar(255), restaurant_id integer, likes integer, dislikes integer);";
+        jdbcTemplate.update(sql);
+
+        String insertSql;
+        for (Long id : restaurantId) {
+            insertSql = "INSERT INTO "+ cleanUsername +" (username, restaurant_id, likes, dislikes) VALUES (?,?,?,?)";
+            jdbcTemplate.update(insertSql, username, id, 0, 0);
+        }
+    }
+
 
 }

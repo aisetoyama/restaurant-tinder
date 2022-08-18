@@ -3,6 +3,7 @@ package com.techelevator.controller.viewRestaurants;
 import com.techelevator.model.Restaurant;
 import com.techelevator.model.RestaurantDao;
 import com.techelevator.model.Schedule;
+import com.techelevator.model.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,11 +21,23 @@ public class viewRestaurantsController {
     @Autowired
     private RestaurantDao restaurantDao;
 
+//    @Autowired
+//    private UserDao userDao;
+
 
     @RequestMapping(path = "/viewRestaurants", method = RequestMethod.POST)
     public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String city, HttpSession session) {
         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndCity(cuisine, city);
         session.setAttribute("restaurantList", restaurantList);
+        String username = (String) session.getAttribute("username");
+
+        List<Long> restaurantIds =  new ArrayList<>();
+        for (Restaurant res : restaurantList) {
+            restaurantIds.add(res.getRestaurantId());
+        }
+
+        restaurantDao.createEventTable(restaurantIds, username);
+
         return "redirect:/viewRestaurantsResults";
     }
 

@@ -10,5 +10,7 @@ public interface RestaurantDao {
 
     public List<List<Schedule>> getScheduleByRestaurantID(List<Long> restaurantId);
 
+    public void createEventTable(List<Long> restaurantId, String username);
+
 
 }
