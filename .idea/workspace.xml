@@ -10,22 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3d5c860-63eb-4142-a83f-5daa574bafa1" name="Changes" comment="deleted api ai/brandon">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/model/JdbcRestaurantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/model/JdbcRestaurantDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/model/RestaurantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/model/RestaurantDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/viewRestaurants.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/viewRestaurants.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/site.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/JdbcRestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/JdbcRestaurantDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/RestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/RestaurantDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/jsp/viewRestaurants.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/jsp/viewRestaurants.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/jsp/viewRestaurantsResults.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/jsp/viewRestaurantsResults.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/model/JdbcRestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/model/JdbcRestaurantDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/model/RestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/model/RestaurantDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/css/site.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +294,7 @@
       <workItem from="1660602471673" duration="43239000" />
       <workItem from="1660835386413" duration="300000" />
       <workItem from="1660835695012" duration="45000" />
-      <workItem from="1660835744742" duration="2190000" />
+      <workItem from="1660835744742" duration="5109000" />
     </task>
     <task id="LOCAL-00001" summary="fixed privileges issue">
       <created>1660666168954</created>
