@@ -36,6 +36,8 @@
                                                 id="staticBackdropLabel">${restaurantList.get(0).name}</h4>
                                         </div>
                                         <div class="card-body">
+                                            <c:url var="restaurantImage" value="/images/restaurant_${restaurantList.get(0).restaurantId}.png"></c:url>
+                                            <img class="img-thumbnail w-50" src="${restaurantImage}" alt="restaurant image"/>
                                             <h5>Category:</h5>
                                             <p>${restaurantList.get(0).category}</p>
                                             <h5>Address:</h5>
@@ -95,6 +97,8 @@
                                                     id="staticBackdropLabel1">${restaurantList.get(index).name}</h4>
                                             </div>
                                             <div class="card-body">
+                                                <c:url var="restaurantImage" value="/images/restaurant_${restaurantList.get(index).restaurantId}.png"></c:url>
+                                                <img class="img-thumbnail w-50" src="${restaurantImage}" alt="restaurant image"/>
                                                 <h5>Category:</h5>
                                                 <p>${restaurantList.get(index).category}</p>
                                                 <h5>Address:</h5>
