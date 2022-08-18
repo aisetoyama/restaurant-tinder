@@ -3,6 +3,8 @@ package com.techelevator.model;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.Pattern;
+
 public class Restaurant {
 
   private long restaurantId;
@@ -13,6 +15,7 @@ public class Restaurant {
   private String state;
 
   @NotBlank(message = "Zipcode Required.")
+  @Pattern(regexp = "[0-9]{5}")
   private String zipcode;
   private String category;
 

@@ -35,7 +35,7 @@ public class viewRestaurantsController {
 
 
     @RequestMapping("/noResults")
-    public String showRegistrationSuccessScreen() {
+    public String showNoResultsScreen() {
         return "/noResults";
     }
 
