@@ -1,0 +1,1822 @@
+Index: src/main/webapp/css/site.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.navbar-brand > img { height: 25px; }\r\n\r\n.img-size{\r\n    /* \tpadding: 0;\r\n        margin: 0; */\r\n    height: 450px;\r\n    width: 700px;\r\n    background-size: cover;\r\n    overflow: hidden;\r\n}\r\n.modal-content {\r\n    width: 700px;\r\n    border:none;\r\n}\r\n.modal-body {\r\n    padding: 0;\r\n}\r\n\r\n.carousel-control-prev-icon {\r\n    background-image: url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E\");\r\n    width: 30px;\r\n    height: 48px;\r\n}\r\n.carousel-control-next-icon {\r\n    background-image: url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E\");\r\n    width: 30px;\r\n    height: 48px;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/css/site.css b/src/main/webapp/css/site.css
+--- a/src/main/webapp/css/site.css	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ b/src/main/webapp/css/site.css	(date 1660769470222)
+@@ -15,6 +15,9 @@
+ .modal-body {
+     padding: 0;
+ }
++.carousel {
++    data: false;
++}
+ 
+ .carousel-control-prev-icon {
+     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+Index: src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ include file = \"common/header.jsp\" %>\r\n\r\n\r\n<head>\r\n    <meta charset=\"utf-8\">\r\n    <title>Build a Full Featured Tinder Like Carousel in Vanilla JavaScript</title>\r\n    <style>\r\n        html,\r\n        body {\r\n            width: 100%;\r\n            height: 100%;\r\n            margin: 0;\r\n            padding: 0;\r\n        }\r\n\r\n        #board {\r\n            width: 100%;\r\n            height: 100%;\r\n            position: relative;\r\n            overflow: hidden;\r\n            background-color: rgb(245, 247, 250);\r\n        }\r\n\r\n        .card {\r\n            width: 320px;\r\n            height: 320px;\r\n            position: absolute;\r\n            top: 50%;\r\n            left: 50%;\r\n            border-radius: 1%;\r\n            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);\r\n            background-color: white;\r\n            transform: translateX(-50%) translateY(-50%) scale(0.95);\r\n        }\r\n    </style>\r\n</head>\r\n\r\n<body>\r\n<div id=\"board\"></div>\r\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js\"></script>\r\n<script>\r\n    /* LikeCarousel (c) 2019 Simone P.M. github.com/simonepm - Licensed MIT */\r\n\r\n    class Carousel {\r\n\r\n        constructor(element) {\r\n\r\n            this.board = element\r\n\r\n            // add first two cards programmatically\r\n            this.push()\r\n            this.push()\r\n\r\n            // handle gestures\r\n            this.handle()\r\n\r\n        }\r\n\r\n        handle() {\r\n\r\n            // list all cards\r\n            this.cards = this.board.querySelectorAll('.card')\r\n\r\n            // get top card\r\n            this.topCard = this.cards[this.cards.length - 1]\r\n\r\n            // get next card\r\n            this.nextCard = this.cards[this.cards.length - 2]\r\n\r\n            // if at least one card is present\r\n            if (this.cards.length > 0) {\r\n\r\n                // set default top card position and scale\r\n                this.topCard.style.transform =\r\n                    'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'\r\n\r\n                // destroy previous Hammer instance, if present\r\n                if (this.hammer) this.hammer.destroy()\r\n\r\n                // listen for tap and pan gestures on top card\r\n                this.hammer = new Hammer(this.topCard)\r\n                this.hammer.add(new Hammer.Tap())\r\n                this.hammer.add(new Hammer.Pan({\r\n                    position: Hammer.position_ALL,\r\n                    threshold: 0\r\n                }))\r\n\r\n                // pass events data to custom callbacks\r\n                this.hammer.on('tap', (e) => {\r\n                    this.onTap(e)\r\n                })\r\n                this.hammer.on('pan', (e) => {\r\n                    this.onPan(e)\r\n                })\r\n\r\n            }\r\n\r\n        }\r\n\r\n        onTap(e) {\r\n\r\n            // get finger position on top card\r\n            let propX = (e.center.x - e.target.getBoundingClientRect().left) / e.target.clientWidth\r\n\r\n            // get rotation degrees around Y axis (+/- 15) based on finger position\r\n            let rotateY = 15 * (propX < 0.05 ? -1 : 1)\r\n\r\n            // enable transform transition\r\n            this.topCard.style.transition = 'transform 100ms ease-out'\r\n\r\n            // apply rotation around Y axis\r\n            this.topCard.style.transform =\r\n                'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(' + rotateY + 'deg) scale(1)'\r\n\r\n            // wait for transition end\r\n            setTimeout(() => {\r\n                // reset transform properties\r\n                this.topCard.style.transform =\r\n                    'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'\r\n            }, 100)\r\n\r\n        }\r\n\r\n        onPan(e) {\r\n\r\n            if (!this.isPanning) {\r\n\r\n                this.isPanning = true\r\n\r\n                // remove transition properties\r\n                this.topCard.style.transition = null\r\n                if (this.nextCard) this.nextCard.style.transition = null\r\n\r\n                // get top card coordinates in pixels\r\n                let style = window.getComputedStyle(this.topCard)\r\n                let mx = style.transform.match(/^matrix\\((.+)\\)$/)\r\n                this.startPosX = mx ? parseFloat(mx[1].split(', ')[4]) : 0\r\n                this.startPosY = mx ? parseFloat(mx[1].split(', ')[5]) : 0\r\n\r\n                // get top card bounds\r\n                let bounds = this.topCard.getBoundingClientRect()\r\n\r\n                // get finger position on top card, top (1) or bottom (-1)\r\n                this.isDraggingFrom =\r\n                    (e.center.y - bounds.top) > this.topCard.clientHeight / 2 ? -1 : 1\r\n\r\n            }\r\n\r\n            // get new coordinates\r\n            let posX = e.deltaX + this.startPosX\r\n            let posY = e.deltaY + this.startPosY\r\n\r\n            // get ratio between swiped pixels and the axes\r\n            let propX = e.deltaX / this.board.clientWidth\r\n            let propY = e.deltaY / this.board.clientHeight\r\n\r\n            // get swipe direction, left (-1) or right (1)\r\n            let dirX = e.deltaX < 0 ? -1 : 1\r\n\r\n            // get degrees of rotation, between 0 and +/- 45\r\n            let deg = this.isDraggingFrom * dirX * Math.abs(propX) * 45\r\n\r\n            // get scale ratio, between .95 and 1\r\n            let scale = (95 + (5 * Math.abs(propX))) / 100\r\n\r\n            // move and rotate top card\r\n            this.topCard.style.transform =\r\n                'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg) rotateY(0deg) scale(1)'\r\n\r\n            // scale up next card\r\n            if (this.nextCard) this.nextCard.style.transform =\r\n                'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(' + scale + ')'\r\n\r\n            if (e.isFinal) {\r\n\r\n                this.isPanning = false\r\n\r\n                let successful = false\r\n\r\n                // set back transition properties\r\n                this.topCard.style.transition = 'transform 200ms ease-out'\r\n                if (this.nextCard) this.nextCard.style.transition = 'transform 100ms linear'\r\n\r\n                // check threshold and movement direction\r\n                if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {\r\n\r\n                    successful = true\r\n                    // get right border position\r\n                    posX = this.board.clientWidth\r\n\r\n                } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {\r\n\r\n                    successful = true\r\n                    // get left border position\r\n                    posX = -(this.board.clientWidth + this.topCard.clientWidth)\r\n\r\n                } else if (propY < -0.25 && e.direction == Hammer.DIRECTION_UP) {\r\n\r\n                    successful = true\r\n                    // get top border position\r\n                    posY = -(this.board.clientHeight + this.topCard.clientHeight)\r\n\r\n                }\r\n\r\n                if (successful) {\r\n\r\n                    // throw card in the chosen direction\r\n                    this.topCard.style.transform =\r\n                        'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg)'\r\n\r\n                    // wait transition end\r\n                    setTimeout(() => {\r\n                        // remove swiped card\r\n                        this.board.removeChild(this.topCard)\r\n                        // add new card\r\n                        this.push()\r\n                        // handle gestures on new top card\r\n                        this.handle()\r\n                    }, 200)\r\n\r\n                } else {\r\n\r\n                    // reset cards position and size\r\n                    this.topCard.style.transform =\r\n                        'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'\r\n                    if (this.nextCard) this.nextCard.style.transform =\r\n                        'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(0.95)'\r\n\r\n                }\r\n\r\n            }\r\n\r\n        }\r\n\r\n        push() {\r\n\r\n            let card = document.createElement('div')\r\n\r\n            card.classList.add('card')\r\n\r\n            card.style.backgroundImage =\r\n                \"url('https://picsum.photos/320/320/?random=\" + Math.round(Math.random() * 1000000) + \"')\"\r\n\r\n            this.board.insertBefore(card, this.board.firstChild)\r\n\r\n        }\r\n\r\n    }\r\n\r\n    let board = document.querySelector('#board')\r\n\r\n    let carousel = new Carousel(board)\r\n</script>\r\n</body>\r\n\r\n<%@ include file = \"common/footer.jsp\" %>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.jsp b/src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.jsp
+--- a/src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.jsp	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ b/src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.jsp	(date 1660769990275)
+@@ -1,256 +1,134 @@
+-<%@ include file = "common/header.jsp" %>
++<%@ include file="common/header.jsp" %>
+ 
+-
++<%--<!DOCTYPE html>--%>
++<html>
+ <head>
+-    <meta charset="utf-8">
+-    <title>Build a Full Featured Tinder Like Carousel in Vanilla JavaScript</title>
+-    <style>
+-        html,
+-        body {
+-            width: 100%;
+-            height: 100%;
+-            margin: 0;
+-            padding: 0;
+-        }
++    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+ 
+-        #board {
+-            width: 100%;
+-            height: 100%;
+-            position: relative;
+-            overflow: hidden;
+-            background-color: rgb(245, 247, 250);
+-        }
+ 
+-        .card {
+-            width: 320px;
+-            height: 320px;
+-            position: absolute;
+-            top: 50%;
+-            left: 50%;
+-            border-radius: 1%;
+-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+-            background-color: white;
+-            transform: translateX(-50%) translateY(-50%) scale(0.95);
+-        }
+-    </style>
+ </head>
+-
+ <body>
+-<div id="board"></div>
+-<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+-<script>
+-    /* LikeCarousel (c) 2019 Simone P.M. github.com/simonepm - Licensed MIT */
+-
+-    class Carousel {
+-
+-        constructor(element) {
+-
+-            this.board = element
+-
+-            // add first two cards programmatically
+-            this.push()
+-            this.push()
+-
+-            // handle gestures
+-            this.handle()
+-
+-        }
+-
+-        handle() {
+-
+-            // list all cards
+-            this.cards = this.board.querySelectorAll('.card')
+-
+-            // get top card
+-            this.topCard = this.cards[this.cards.length - 1]
+-
+-            // get next card
+-            this.nextCard = this.cards[this.cards.length - 2]
+-
+-            // if at least one card is present
+-            if (this.cards.length > 0) {
+-
+-                // set default top card position and scale
+-                this.topCard.style.transform =
+-                    'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
+-
+-                // destroy previous Hammer instance, if present
+-                if (this.hammer) this.hammer.destroy()
+-
+-                // listen for tap and pan gestures on top card
+-                this.hammer = new Hammer(this.topCard)
+-                this.hammer.add(new Hammer.Tap())
+-                this.hammer.add(new Hammer.Pan({
+-                    position: Hammer.position_ALL,
+-                    threshold: 0
+-                }))
+-
+-                // pass events data to custom callbacks
+-                this.hammer.on('tap', (e) => {
+-                    this.onTap(e)
+-                })
+-                this.hammer.on('pan', (e) => {
+-                    this.onPan(e)
+-                })
+-
+-            }
+-
+-        }
+-
+-        onTap(e) {
+-
+-            // get finger position on top card
+-            let propX = (e.center.x - e.target.getBoundingClientRect().left) / e.target.clientWidth
+-
+-            // get rotation degrees around Y axis (+/- 15) based on finger position
+-            let rotateY = 15 * (propX < 0.05 ? -1 : 1)
+-
+-            // enable transform transition
+-            this.topCard.style.transition = 'transform 100ms ease-out'
+-
+-            // apply rotation around Y axis
+-            this.topCard.style.transform =
+-                'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(' + rotateY + 'deg) scale(1)'
+-
+-            // wait for transition end
+-            setTimeout(() => {
+-                // reset transform properties
+-                this.topCard.style.transform =
+-                    'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
+-            }, 100)
+-
+-        }
+-
+-        onPan(e) {
+-
+-            if (!this.isPanning) {
+-
+-                this.isPanning = true
+-
+-                // remove transition properties
+-                this.topCard.style.transition = null
+-                if (this.nextCard) this.nextCard.style.transition = null
+-
+-                // get top card coordinates in pixels
+-                let style = window.getComputedStyle(this.topCard)
+-                let mx = style.transform.match(/^matrix\((.+)\)$/)
+-                this.startPosX = mx ? parseFloat(mx[1].split(', ')[4]) : 0
+-                this.startPosY = mx ? parseFloat(mx[1].split(', ')[5]) : 0
+-
+-                // get top card bounds
+-                let bounds = this.topCard.getBoundingClientRect()
+-
+-                // get finger position on top card, top (1) or bottom (-1)
+-                this.isDraggingFrom =
+-                    (e.center.y - bounds.top) > this.topCard.clientHeight / 2 ? -1 : 1
+-
+-            }
+-
+-            // get new coordinates
+-            let posX = e.deltaX + this.startPosX
+-            let posY = e.deltaY + this.startPosY
+-
+-            // get ratio between swiped pixels and the axes
+-            let propX = e.deltaX / this.board.clientWidth
+-            let propY = e.deltaY / this.board.clientHeight
+-
+-            // get swipe direction, left (-1) or right (1)
+-            let dirX = e.deltaX < 0 ? -1 : 1
+-
+-            // get degrees of rotation, between 0 and +/- 45
+-            let deg = this.isDraggingFrom * dirX * Math.abs(propX) * 45
+-
+-            // get scale ratio, between .95 and 1
+-            let scale = (95 + (5 * Math.abs(propX))) / 100
+-
+-            // move and rotate top card
+-            this.topCard.style.transform =
+-                'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg) rotateY(0deg) scale(1)'
+-
+-            // scale up next card
+-            if (this.nextCard) this.nextCard.style.transform =
+-                'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(' + scale + ')'
+-
+-            if (e.isFinal) {
+-
+-                this.isPanning = false
+-
+-                let successful = false
+-
+-                // set back transition properties
+-                this.topCard.style.transition = 'transform 200ms ease-out'
+-                if (this.nextCard) this.nextCard.style.transition = 'transform 100ms linear'
+-
+-                // check threshold and movement direction
+-                if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
+-
+-                    successful = true
+-                    // get right border position
+-                    posX = this.board.clientWidth
+-
+-                } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
+-
+-                    successful = true
+-                    // get left border position
+-                    posX = -(this.board.clientWidth + this.topCard.clientWidth)
+-
+-                } else if (propY < -0.25 && e.direction == Hammer.DIRECTION_UP) {
+-
+-                    successful = true
+-                    // get top border position
+-                    posY = -(this.board.clientHeight + this.topCard.clientHeight)
+-
+-                }
+-
+-                if (successful) {
+-
+-                    // throw card in the chosen direction
+-                    this.topCard.style.transform =
+-                        'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg)'
++<div class="container text-center">
++    <h3>View Results</h3>
++    <!-- Button trigger modal -->
++    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalCarousel">
++        View Restaurants
++    </button>
+ 
+-                    // wait transition end
+-                    setTimeout(() => {
+-                        // remove swiped card
+-                        this.board.removeChild(this.topCard)
+-                        // add new card
+-                        this.push()
+-                        // handle gestures on new top card
+-                        this.handle()
+-                    }, 200)
++    <!-- Modal -->
++    <div class="modal fade" id="ModalCarousel" tabindex="-1" role="dialog" aria-labelledby="ModalCarouselLabel">
++        <div class="modal-dialog" role="document">
++            <div class="modal-content">
++                <div id="carousel-modal-demo" class="carousel slide" data-ride="false" data-interval="false" data-wrap="false">
++                    <!-- Sliding images statring here -->
++                    <div class="carousel-inner">
+ 
+-                } else {
++                        <div class="item active">
++                            <%--                            <p style="width: 23px">${restaurantList.get(0).name}</p>--%>
++                            <%--                            <img src="images/banana.jpg" alt="${restaurantList.get(0).name}">--%>
++                            <div class="card" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
++                                 tabindex="-1"
++                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
++                                <div class="card-dialog">
++                                    <div class="card-content">
++                                        <div class="card-header">
++                                            <h4 class="card-title"
++                                                id="staticBackdropLabel">${restaurantList.get(0).name}</h4>
++                                        </div>
++                                        <div class="card-body">
++                                            <h5>Category:</h5>
++                                            <p>${restaurantList.get(0).category}</p>
++                                            <h5>Address:</h5>
++                                            <p>${restaurantList.get(0).streetAddress}</p>
++                                            <h5>Hours:</h5>
++                                            <ul>
++                                                <c:forEach items="${restaurantSchedule}" var="schedule">
++                                                    <li><c:choose>
++                                                        <c:when test="${schedule.dayOfWeek == 1}">
++                                                            <strong>Monday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
++                                                        </c:when>
++                                                        <c:when test="${schedule.dayOfWeek == 2}">
++                                                            <strong>Tuesday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
++                                                        </c:when>
++                                                        <c:when test="${schedule.dayOfWeek == 3}">
++                                                            <strong>Wednesday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
++                                                        </c:when>
++                                                        <c:when test="${schedule.dayOfWeek == 4}">
++                                                            <strong>Thursday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
++                                                        </c:when>
++                                                        <c:when test="${schedule.dayOfWeek == 5}">
++                                                            <strong>Friday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
++                                                        </c:when>
++                                                        <c:when test="${schedule.dayOfWeek == 6}">
++                                                            <strong>Saturday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
++                                                        </c:when>
++                                                        <c:otherwise>
++                                                            <strong>Sunday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
++                                                        </c:otherwise>
++                                                    </c:choose></li>
++                                                </c:forEach>
++                                            </ul>
++                                        </div>
++                                        <c:if test="${restaurantList.get(0).phoneNumber != null}">
++                                        <div class="card-footer">
++                                            <button type="submit" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal"
++                                                    data-bs-target="#staticBackdrop"> Call To Order
++                                            </button>
++                                            </c:if>
++                                        </div>
++                                    </div>
++                                </div>
++                            </div>
++                        </div>
+ 
+-                    // reset cards position and size
+-                    this.topCard.style.transform =
+-                        'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
+-                    if (this.nextCard) this.nextCard.style.transform =
+-                        'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(0.95)'
++                        <c:forEach var="index" begin="1" end="${restaurantList.size()-1}">
++                            <div class="item">
++                                    <%--                                <p style="width: 23px">${restaurantList.get(index).name}</p>--%>
++                                    <%--                            <img src="images/banana.jpg" alt="${restaurantList.get(0).name}">--%>
++                                <div class="card" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
++                                     tabindex="-1"
++                                     aria-labelledby="staticBackdropLabel1" aria-hidden="true">
++                                    <div class="card-dialog">
++                                        <div class="card-content">
++                                            <div class="card-header">
++                                                <h4 class="card-title"
++                                                    id="staticBackdropLabel1">${restaurantList.get(index).name}</h4>
++                                            </div>
++                                            <div class="card-body">
++                                                <h5>Category:</h5>
++                                                <p>${restaurantList.get(index).category}</p>
++                                                <h5>Address:</h5>
++                                                <p>${restaurantList.get(index).streetAddress}</p>
++                                            </div>
++                                        </div>
++                                    </div>
++                                </div>
++                            </div>
++                        </c:forEach>
+ 
+-                }
++                    </div>
++                    <!-- Next / Previous controls here -->
++                    <div class="card-footer">
++                        <a class="left carousel-control" href="#carousel-modal-demo" data-slide="next">
++                            <button type="submit" class="btn btn-danger bi bi-heartbreak-fill"
++                                    data-bs-target="#staticBackdrop"> Dislike
++                            </button>
++                        </a>
++                        <a class="right fix-bottom carousel-control" href="#carousel-modal-demo" data-slide="next">
++                            <button type="submit" class="btn btn-primary bi bi-heart-fill"
++                                    data-bs-target="#staticBackdrop"> Like
++                            </button>
++                        </a>
++                    </div>
+ 
+-            }
++                </div>
++            </div>
++        </div>
++    </div>
++</div>
++<script src="//code.jquery.com/jquery.js"></script>
++<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+ 
+-        }
+ 
+-        push() {
+-
+-            let card = document.createElement('div')
+-
+-            card.classList.add('card')
+-
+-            card.style.backgroundImage =
+-                "url('https://picsum.photos/320/320/?random=" + Math.round(Math.random() * 1000000) + "')"
+-
+-            this.board.insertBefore(card, this.board.firstChild)
+-
+-        }
+-
+-    }
+-
+-    let board = document.querySelector('#board')
+-
+-    let carousel = new Carousel(board)
+-</script>
+ </body>
+-
+-<%@ include file = "common/footer.jsp" %>
++</html>
+\ No newline at end of file
+Index: src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.techelevator.controller.viewRestaurants;\r\n\r\nimport com.techelevator.model.Restaurant;\r\nimport com.techelevator.model.RestaurantDao;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.ui.ModelMap;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\nimport org.springframework.web.bind.annotation.RequestMethod;\r\nimport org.springframework.web.bind.annotation.RequestParam;\r\n\r\nimport javax.servlet.http.HttpSession;\r\nimport java.util.List;\r\n\r\n@Controller\r\npublic class viewRestaurantsController {\r\n\r\n    @Autowired\r\n    private RestaurantDao restaurantDao;\r\n\r\n\r\n    @RequestMapping(path = \"/viewRestaurants\", method = RequestMethod.POST)\r\n    public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String zipCode, HttpSession session) {\r\n        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);\r\n        session.setAttribute(\"restaurantList\", restaurantList);\r\n        return \"viewRestaurantsResults\";\r\n    }\r\n\r\n\r\n    @RequestMapping(path=\"/viewRestaurantsResults\", method = RequestMethod.GET)\r\n    public String showAllResults(HttpSession session, ModelMap modelHolder){\r\n        List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute(\"restaurantList\");\r\n        Restaurant restaurant = restaurantList.get(0);\r\n        modelHolder.put(\"restaurantList\", restaurantList);\r\n        modelHolder.put(\"restaurant\", restaurant);\r\n        return \"viewRestaurantsResults\";\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java b/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java
+--- a/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ b/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java	(date 1660770054157)
+@@ -2,6 +2,7 @@
+ 
+ import com.techelevator.model.Restaurant;
+ import com.techelevator.model.RestaurantDao;
++import com.techelevator.model.Schedule;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Controller;
+ import org.springframework.ui.ModelMap;
+@@ -10,6 +11,7 @@
+ import org.springframework.web.bind.annotation.RequestParam;
+ 
+ import javax.servlet.http.HttpSession;
++import java.util.ArrayList;
+ import java.util.List;
+ 
+ @Controller
+@@ -23,7 +25,7 @@
+     public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String zipCode, HttpSession session) {
+         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndZip(cuisine, zipCode);
+         session.setAttribute("restaurantList", restaurantList);
+-        return "viewRestaurantsResults";
++        return "redirect:/viewRestaurantsResults";
+     }
+ 
+ 
+@@ -33,6 +35,12 @@
+         Restaurant restaurant = restaurantList.get(0);
+         modelHolder.put("restaurantList", restaurantList);
+         modelHolder.put("restaurant", restaurant);
++
++        List<Schedule> schedulesList = (List<Schedule>) session.getAttribute("schedulesList");
++        List<Schedule> restaurantSchedule = restaurantDao.getScheduleByRestaurantID(restaurant.getRestaurantId());
++        modelHolder.put("schedulesList", schedulesList);
++        modelHolder.put("restaurantSchedule", restaurantSchedule);
++
+         return "viewRestaurantsResults";
+     }
+ }
+Index: README.md
+===================================================================
+diff --git a/README.md b/README.md
+deleted file mode 100644
+--- a/README.md	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ /dev/null	(revision e2c51b1604086adb92373793247fa4979422dc69)
+@@ -1,97 +0,0 @@
+-# Capstone Starter Project
+-
+-### Read the [Authentication](AUTHENTICATION.md) information
+-
+-## There are two versions of this project
+-
+-### Standard CSS Version
+-
+-The page layout is based upon a combination of CSS Grid and CSS FlexBox layouts. Please refer to `VisualStyles.md` for more details.
+-
+-### Bootstrap Version
+-
+-If you prefer the bootstrap version, `git check boostrap` to check out
+-the bootstrap branch of this repo. There you'll find a `BOOTSTRAP.md`
+-file with further details.
+-
+-
+-### IMPORTANT: The first thing to do once you choose  is to create a new branch from that version! 
+-
+-Don't work from either the main or the bootstrap branch. Keep those clean to use as a reference.
+-
+-## Database
+-
+-Inside the `<project-root>/database/` directory you will find an executable Bash script (`.sh` file) and several SQL scripts (`.sql` files). These can be used to (re)build a PostgreSQL database for the capstone project. From a terminal session, simply execute the following commands:
+-
+-```
+-cd <project-root>/database/
+-./create-capstone-db.sh
+-```
+-
+-This Bash script will drop the existing database (if necessary), create a new databsae named `capstone`, and run the various SQL scripts in the correct order. You do not need to modify the Bash script.
+-
+-Each of the SQL scripts has a specific purpose as described below:
+-
+-| File Name    | Description                                                                                                                                                                                                                |
+-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+-| `data.sql`   | This script is used to populate the database with any static setup data or test/demo data. This script is intended to be modified by the project team.                                                                     |
+-| `dropdb.sql` | This script is used to destroy the database so that it can be recreated. It drops the database and associated users. This script is **not** intended to be modified by the project team.                                   |
+-| `schema.sql` | This script is used to create all of the database objects (e.g. tables and sequences). This script is intended to be modified by the project team                                                                          |
+-| `user.sql`   | This script is used to create the database application users and grant them the appropriate privileges. See below for more information on these users. This script is **not** intended to be modified by the project team. |
+-
+-### Database Users
+-
+-The database superuser (i.e. `postgres`) should only be used for database administration and should not be used by applications. As such, two database users are created for use by the capstone application as described below:
+-
+-| Username           | Description                                                                                                                                                                                                                                                                                             |
+-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+-| `capstone_owner`   | This user is the schema owner. It has full access (i.e. granted all privileges) to all database objects within the `capstone` schema and also has privileges to create new schema objects. This user can be used to connect to the database from PGAdmin for administrative purposes.                   |
+-| `capstone_appuser` | This user is intended to be used by the application to make connections to the database. This user is granted `SELECT`, `INSERT`, `UPDATE`, `DELETE` privileges for all database tables and can `SELECT` from all sequences. The application datasource has been configured to connect using this user. |
+-
+-## Spring MVC Configuration
+-
+-### Datasource
+-
+-A Datasource has been configured that can be injected into your DAO objects. It connects to the database using the `capstone_appuser` database user. You can change the name of this database if you wish, but remember to change it here and in the `create-capstone-db.sh` script in the database folder.
+-
+-#### Database Transactions
+-
+-The Datasource has been configured to disable autocommit behavior. Instead, database transactions can be managed by using the `@Transactional` annotation on Controllers that make database modifications.
+-
+-### JSP
+-
+-Spring has been configured to look for JSP files in the `<project-root>/src/main/webapp/WEB-INF/jsp/` directory.
+-
+-## Web Resources
+-
+-The following directories have been created for static web resource files:
+-
+-| Directory                             | Description                                       |
+-| ------------------------------------- | ------------------------------------------------- |
+-| `<project-root>/src/main/webapp/css/` | `.css` files go here                              |
+-| `<project-root>/src/main/webapp/img/` | image files (e.g. `.png`, `.jpg`, `.gif`) go here |
+-| `<project-root>/src/main/webapp/js/`  | `.js` files go here                               |
+-
+-
+-
+-## Deploying
+-
+-The project is already set up and ready to be deployed to Heroku. You will need to create a new Heroku application using these commands at the root directory:
+-
+-```
+-heroku create
+-heroku config:set SPRING_PROFILES_ACTIVE=heroku
+-```
+-
+-And then use this command to push your application:
+-
+-```
+-git push heroku master
+-```
+-
+-Once that's complete, you will want to set up the database on Heroku by sending your SQL files up to it:
+-
+-```
+-heroku psql < database/schema.sql
+-heroku psql < database/data.sql
+-```
+Index: database/create-capstone-db.sh
+===================================================================
+diff --git a/database/create-capstone-db.sh b/database/create-capstone-db.sh
+deleted file mode 100644
+--- a/database/create-capstone-db.sh	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ /dev/null	(revision e2c51b1604086adb92373793247fa4979422dc69)
+@@ -1,7 +0,0 @@
+-#!/bin/bash
+-BASEDIR=$(dirname $0)
+-psql -U postgres -f "$BASEDIR/dropdb.sql" &&
+-createdb -U postgres capstone &&
+-psql -U postgres -d capstone -f "$BASEDIR/schema.sql" &&
+-psql -U postgres -d capstone -f "$BASEDIR/user.sql" &&
+-psql -U postgres -d capstone -f "$BASEDIR/data.sql"
+\ No newline at end of file
+Index: .gitignore
+===================================================================
+diff --git a/.gitignore b/.gitignore
+deleted file mode 100644
+--- a/.gitignore	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ /dev/null	(revision e2c51b1604086adb92373793247fa4979422dc69)
+@@ -1,595 +0,0 @@
+-### VisualStudioCode template
+-.vscode/*
+-!.vscode/settings.json
+-!.vscode/tasks.json
+-!.vscode/launch.json
+-!.vscode/extensions.json
+-*.code-workspace
+-
+-# Local History for Visual Studio Code
+-.history/
+-
+-### JetBrains template
+-# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
+-# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+-
+-# User-specific stuff
+-.idea/**/workspace.xml
+-.idea/**/tasks.xml
+-.idea/**/usage.statistics.xml
+-.idea/**/dictionaries
+-.idea/**/shelf
+-
+-# Generated files
+-.idea/**/contentModel.xml
+-
+-# Sensitive or high-churn files
+-.idea/**/dataSources/
+-.idea/**/dataSources.ids
+-.idea/**/dataSources.local.xml
+-.idea/**/sqlDataSources.xml
+-.idea/**/dynamic.xml
+-.idea/**/uiDesigner.xml
+-.idea/**/dbnavigator.xml
+-
+-# Gradle
+-.idea/**/gradle.xml
+-.idea/**/libraries
+-
+-# Gradle and Maven with auto-import
+-# When using Gradle or Maven with auto-import, you should exclude module files,
+-# since they will be recreated, and may cause churn.  Uncomment if using
+-# auto-import.
+-# .idea/artifacts
+-# .idea/compiler.xml
+-# .idea/jarRepositories.xml
+-# .idea/modules.xml
+-# .idea/*.iml
+-# .idea/modules
+-# *.iml
+-# *.ipr
+-
+-# CMake
+-cmake-build-*/
+-
+-# Mongo Explorer plugin
+-.idea/**/mongoSettings.xml
+-
+-# File-based project format
+-*.iws
+-
+-# IntelliJ
+-out/
+-
+-# mpeltonen/sbt-idea plugin
+-.idea_modules/
+-
+-# JIRA plugin
+-atlassian-ide-plugin.xml
+-
+-# Cursive Clojure plugin
+-.idea/replstate.xml
+-
+-# Crashlytics plugin (for Android Studio and IntelliJ)
+-com_crashlytics_export_strings.xml
+-crashlytics.properties
+-crashlytics-build.properties
+-fabric.properties
+-
+-# Editor-based Rest Client
+-.idea/httpRequests
+-
+-# Android studio 3.1+ serialized cache file
+-.idea/caches/build_file_checksums.ser
+-
+-### Example user template template
+-### Example user template
+-
+-# IntelliJ project files
+-.idea
+-*.iml
+-out
+-gen
+-### Maven template
+-target/
+-pom.xml.tag
+-pom.xml.releaseBackup
+-pom.xml.versionsBackup
+-pom.xml.next
+-release.properties
+-dependency-reduced-pom.xml
+-buildNumber.properties
+-.mvn/timing.properties
+-# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+-.mvn/wrapper/maven-wrapper.jar
+-
+-### macOS template
+-# General
+-.DS_Store
+-.AppleDouble
+-.LSOverride
+-
+-# Icon must end with two \r
+-Icon
+-
+-# Thumbnails
+-._*
+-
+-# Files that might appear in the root of a volume
+-.DocumentRevisions-V100
+-.fseventsd
+-.Spotlight-V100
+-.TemporaryItems
+-.Trashes
+-.VolumeIcon.icns
+-.com.apple.timemachine.donotpresent
+-
+-# Directories potentially created on remote AFP share
+-.AppleDB
+-.AppleDesktop
+-Network Trash Folder
+-Temporary Items
+-.apdisk
+-
+-### VisualStudio template
+-## Ignore Visual Studio temporary files, build results, and
+-## files generated by popular Visual Studio add-ons.
+-##
+-## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
+-
+-# User-specific files
+-*.rsuser
+-*.suo
+-*.user
+-*.userosscache
+-*.sln.docstates
+-
+-# User-specific files (MonoDevelop/Xamarin Studio)
+-*.userprefs
+-
+-# Mono auto generated files
+-mono_crash.*
+-
+-# Build results
+-[Dd]ebug/
+-[Dd]ebugPublic/
+-[Rr]elease/
+-[Rr]eleases/
+-x64/
+-x86/
+-[Ww][Ii][Nn]32/
+-[Aa][Rr][Mm]/
+-[Aa][Rr][Mm]64/
+-bld/
+-[Bb]in/
+-[Oo]bj/
+-[Ll]og/
+-[Ll]ogs/
+-
+-# Visual Studio 2015/2017 cache/options directory
+-.vs/
+-# Uncomment if you have tasks that create the project's static files in wwwroot
+-#wwwroot/
+-
+-# Visual Studio 2017 auto generated files
+-Generated\ Files/
+-
+-# MSTest test Results
+-[Tt]est[Rr]esult*/
+-[Bb]uild[Ll]og.*
+-
+-# NUnit
+-*.VisualState.xml
+-TestResult.xml
+-nunit-*.xml
+-
+-# Build Results of an ATL Project
+-[Dd]ebugPS/
+-[Rr]eleasePS/
+-dlldata.c
+-
+-# Benchmark Results
+-BenchmarkDotNet.Artifacts/
+-
+-# .NET Core
+-project.lock.json
+-project.fragment.lock.json
+-artifacts/
+-
+-# ASP.NET Scaffolding
+-ScaffoldingReadMe.txt
+-
+-# StyleCop
+-StyleCopReport.xml
+-
+-# Files built by Visual Studio
+-*_i.c
+-*_p.c
+-*_h.h
+-*.ilk
+-*.meta
+-*.obj
+-*.iobj
+-*.pch
+-*.pdb
+-*.ipdb
+-*.pgc
+-*.pgd
+-*.rsp
+-*.sbr
+-*.tlb
+-*.tli
+-*.tlh
+-*.tmp
+-*.tmp_proj
+-*_wpftmp.csproj
+-*.log
+-*.vspscc
+-*.vssscc
+-.builds
+-*.pidb
+-*.svclog
+-*.scc
+-
+-# Chutzpah Test files
+-_Chutzpah*
+-
+-# Visual C++ cache files
+-ipch/
+-*.aps
+-*.ncb
+-*.opendb
+-*.opensdf
+-*.sdf
+-*.cachefile
+-*.VC.db
+-*.VC.VC.opendb
+-
+-# Visual Studio profiler
+-*.psess
+-*.vsp
+-*.vspx
+-*.sap
+-
+-# Visual Studio Trace Files
+-*.e2e
+-
+-# TFS 2012 Local Workspace
+-$tf/
+-
+-# Guidance Automation Toolkit
+-*.gpState
+-
+-# ReSharper is a .NET coding add-in
+-_ReSharper*/
+-*.[Rr]e[Ss]harper
+-*.DotSettings.user
+-
+-# TeamCity is a build add-in
+-_TeamCity*
+-
+-# DotCover is a Code Coverage Tool
+-*.dotCover
+-
+-# AxoCover is a Code Coverage Tool
+-.axoCover/*
+-!.axoCover/settings.json
+-
+-# Coverlet is a free, cross platform Code Coverage Tool
+-coverage*.json
+-coverage*.xml
+-coverage*.info
+-
+-# Visual Studio code coverage results
+-*.coverage
+-*.coveragexml
+-
+-# NCrunch
+-_NCrunch_*
+-.*crunch*.local.xml
+-nCrunchTemp_*
+-
+-# MightyMoose
+-*.mm.*
+-AutoTest.Net/
+-
+-# Web workbench (sass)
+-.sass-cache/
+-
+-# Installshield output folder
+-[Ee]xpress/
+-
+-# DocProject is a documentation generator add-in
+-DocProject/buildhelp/
+-DocProject/Help/*.HxT
+-DocProject/Help/*.HxC
+-DocProject/Help/*.hhc
+-DocProject/Help/*.hhk
+-DocProject/Help/*.hhp
+-DocProject/Help/Html2
+-DocProject/Help/html
+-
+-# Click-Once directory
+-publish/
+-
+-# Publish Web Output
+-*.[Pp]ublish.xml
+-*.azurePubxml
+-# Note: Comment the next line if you want to checkin your web deploy settings,
+-# but database connection strings (with potential passwords) will be unencrypted
+-*.pubxml
+-*.publishproj
+-
+-# Microsoft Azure Web App publish settings. Comment the next line if you want to
+-# checkin your Azure Web App publish settings, but sensitive information contained
+-# in these scripts will be unencrypted
+-PublishScripts/
+-
+-# NuGet Packages
+-*.nupkg
+-# NuGet Symbol Packages
+-*.snupkg
+-# The packages folder can be ignored because of Package Restore
+-**/[Pp]ackages/*
+-# except build/, which is used as an MSBuild target.
+-!**/[Pp]ackages/build/
+-# Uncomment if necessary however generally it will be regenerated when needed
+-#!**/[Pp]ackages/repositories.config
+-# NuGet v3's project.json files produces more ignorable files
+-*.nuget.props
+-*.nuget.targets
+-
+-# Microsoft Azure Build Output
+-csx/
+-*.build.csdef
+-
+-# Microsoft Azure Emulator
+-ecf/
+-rcf/
+-
+-# Windows Store app package directories and files
+-AppPackages/
+-BundleArtifacts/
+-Package.StoreAssociation.xml
+-_pkginfo.txt
+-*.appx
+-*.appxbundle
+-*.appxupload
+-
+-# Visual Studio cache files
+-# files ending in .cache can be ignored
+-*.[Cc]ache
+-# but keep track of directories ending in .cache
+-!?*.[Cc]ache/
+-
+-# Others
+-ClientBin/
+-~$*
+-*~
+-*.dbmdl
+-*.dbproj.schemaview
+-*.jfm
+-*.pfx
+-*.publishsettings
+-orleans.codegen.cs
+-
+-# Including strong name files can present a security risk
+-# (https://github.com/github/gitignore/pull/2483#issue-259490424)
+-#*.snk
+-
+-# Since there are multiple workflows, uncomment next line to ignore bower_components
+-# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
+-#bower_components/
+-
+-# RIA/Silverlight projects
+-Generated_Code/
+-
+-# Backup & report files from converting an old project file
+-# to a newer Visual Studio version. Backup files are not needed,
+-# because we have git ;-)
+-_UpgradeReport_Files/
+-Backup*/
+-UpgradeLog*.XML
+-UpgradeLog*.htm
+-ServiceFabricBackup/
+-*.rptproj.bak
+-
+-# SQL Server files
+-*.mdf
+-*.ldf
+-*.ndf
+-
+-# Business Intelligence projects
+-*.rdl.data
+-*.bim.layout
+-*.bim_*.settings
+-*.rptproj.rsuser
+-*- [Bb]ackup.rdl
+-*- [Bb]ackup ([0-9]).rdl
+-*- [Bb]ackup ([0-9][0-9]).rdl
+-
+-# Microsoft Fakes
+-FakesAssemblies/
+-
+-# GhostDoc plugin setting file
+-*.GhostDoc.xml
+-
+-# Node.js Tools for Visual Studio
+-.ntvs_analysis.dat
+-node_modules/
+-
+-# Visual Studio 6 build log
+-*.plg
+-
+-# Visual Studio 6 workspace options file
+-*.opt
+-
+-# Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
+-*.vbw
+-
+-# Visual Studio LightSwitch build output
+-**/*.HTMLClient/GeneratedArtifacts
+-**/*.DesktopClient/GeneratedArtifacts
+-**/*.DesktopClient/ModelManifest.xml
+-**/*.Server/GeneratedArtifacts
+-**/*.Server/ModelManifest.xml
+-_Pvt_Extensions
+-
+-# Paket dependency manager
+-.paket/paket.exe
+-paket-files/
+-
+-# FAKE - F# Make
+-.fake/
+-
+-# CodeRush personal settings
+-.cr/personal
+-
+-# Python Tools for Visual Studio (PTVS)
+-__pycache__/
+-*.pyc
+-
+-# Cake - Uncomment if you are using it
+-# tools/**
+-# !tools/packages.config
+-
+-# Tabs Studio
+-*.tss
+-
+-# Telerik's JustMock configuration file
+-*.jmconfig
+-
+-# BizTalk build output
+-*.btp.cs
+-*.btm.cs
+-*.odx.cs
+-*.xsd.cs
+-
+-# OpenCover UI analysis results
+-OpenCover/
+-
+-# Azure Stream Analytics local run output
+-ASALocalRun/
+-
+-# MSBuild Binary and Structured Log
+-*.binlog
+-
+-# NVidia Nsight GPU debugger configuration file
+-*.nvuser
+-
+-# MFractors (Xamarin productivity tool) working folder
+-.mfractor/
+-
+-# Local History for Visual Studio
+-.localhistory/
+-
+-# BeatPulse healthcheck temp database
+-healthchecksdb
+-
+-# Backup folder for Package Reference Convert tool in Visual Studio 2017
+-MigrationBackup/
+-
+-# Ionide (cross platform F# VS Code tools) working folder
+-.ionide/
+-
+-# Fody - auto-generated XML schema
+-FodyWeavers.xsd
+-
+-### Eclipse template
+-.metadata
+-bin/
+-tmp/
+-*.bak
+-*.swp
+-*~.nib
+-local.properties
+-.settings/
+-.loadpath
+-.recommenders
+-
+-# External tool builders
+-.externalToolBuilders/
+-
+-# Locally stored "Eclipse launch configurations"
+-*.launch
+-
+-# PyDev specific (Python IDE for Eclipse)
+-*.pydevproject
+-
+-# CDT-specific (C/C++ Development Tooling)
+-.cproject
+-
+-# CDT- autotools
+-.autotools
+-
+-# Java annotation processor (APT)
+-.factorypath
+-
+-# PDT-specific (PHP Development Tools)
+-.buildpath
+-
+-# sbteclipse plugin
+-.target
+-
+-# Tern plugin
+-.tern-project
+-
+-# TeXlipse plugin
+-.texlipse
+-
+-# STS (Spring Tool Suite)
+-.springBeans
+-
+-# Code Recommenders
+-.recommenders/
+-
+-# Annotation Processing
+-.apt_generated/
+-.apt_generated_test/
+-
+-# Scala IDE specific (Scala & Java development for Eclipse)
+-.cache-main
+-.scala_dependencies
+-.worksheet
+-
+-# Uncomment this line if you wish to ignore the project description file.
+-# Typically, this file would be tracked if it contains build/dependency configurations:
+-#.project
+-
+-### Kotlin template
+-# Compiled class file
+-*.class
+-
+-# Log file
+-
+-# BlueJ files
+-*.ctxt
+-
+-# Mobile Tools for Java (J2ME)
+-.mtj.tmp/
+-
+-# Package Files #
+-*.jar
+-*.war
+-*.nar
+-*.ear
+-*.zip
+-*.tar.gz
+-*.rar
+-
+-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+-hs_err_pid*
+-
+-### Java template
+-# Compiled class file
+-
+-# Log file
+-
+-# BlueJ files
+-
+-# Mobile Tools for Java (J2ME)
+-
+-# Package Files #
+-
+-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+-
+Index: database/user.sql
+===================================================================
+diff --git a/database/user.sql b/database/user.sql
+deleted file mode 100644
+--- a/database/user.sql	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ /dev/null	(revision e2c51b1604086adb92373793247fa4979422dc69)
+@@ -1,23 +0,0 @@
+--- ********************************************************************************
+--- This script creates the database users and grants them the necessary permissions
+--- ********************************************************************************
+-
+-CREATE USER capstone_owner WITH PASSWORD 'capstone_owner1';
+-
+-GRANT ALL 
+-ON ALL TABLES IN SCHEMA public
+-TO capstone_owner;
+-
+-GRANT ALL 
+-ON ALL SEQUENCES IN SCHEMA public
+-TO capstone_owner; 
+-
+-CREATE USER capstone_appuser WITH PASSWORD 'capstone_appuser1';
+-
+-GRANT SELECT, INSERT, UPDATE, DELETE
+-ON ALL TABLES IN SCHEMA public
+-TO capstone_appuser;
+-
+-GRANT USAGE, SELECT
+-ON ALL SEQUENCES IN SCHEMA public
+-TO capstone_appuser; 
+\ No newline at end of file
+Index: database/data.sql
+===================================================================
+diff --git a/database/data.sql b/database/data.sql
+deleted file mode 100644
+--- a/database/data.sql	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ /dev/null	(revision e2c51b1604086adb92373793247fa4979422dc69)
+@@ -1,452 +0,0 @@
+--- *****************************************************************************
+--- This script contains INSERT statements for populating tables with seed data
+--- *****************************************************************************
+-
+-BEGIN;
+-DROP TABLE IF EXISTS restaurant CASCADE;
+-DROP TABLE IF EXISTS schedule CASCADE;
+-
+--- INSERT statements go here
+-create table restaurant (
+-    restaurant_id serial PRIMARY KEY,
+-    name varchar(255),
+-    stars int,
+-    street_address varchar(255),
+-    city varchar(255),
+-    state varchar(255),
+-    zipcode varchar(255),
+-    category varchar(255)
+-);
+-
+---94043
+-
+-insert into restaurant (name,
+-                        stars,
+-                        street_address,
+-                        city,
+-                        state,
+-                        zipcode,
+-                        category) values ('Roger Bar & Restaurant',
+-                                          4,
+-                                          '800 Moffett Blvd',
+-                                          'Mountain View',
+-                                          'CA',
+-                                          '94043',
+-                                          'American');
+-insert into restaurant (name,
+-                        stars,
+-                        street_address,
+-                        city,
+-                        state,
+-                        zipcode,
+-                        category) values ('The Emerald Hour',
+-                                          5,
+-                                          '1625 N Shoreline Blvd',
+-                                          'Mountain View',
+-                                          'CA',
+-                                          '94043',
+-                                          'Spanish');
+-insert into restaurant (name,
+-                        stars,
+-                        street_address,
+-                        city,
+-                        state,
+-                        zipcode,
+-                        category) values ('Wagon Wheel BBQ',
+-                                          5,
+-                                          '861 Leong Dr',
+-                                          'Mountain View',
+-                                          'CA',
+-                                          '94043',
+-                                          'Barbeque');
+-insert into restaurant (name,
+-                        stars,
+-                        street_address,
+-                        city,
+-                        state,
+-                        zipcode,
+-                        category) values ('The Fly-By',
+-                                          5,
+-                                          '800 Moffett Blvd',
+-                                          'Mountain View',
+-                                          'CA',
+-                                          '94043',
+-                                          'Cafes');
+-insert into restaurant (name,
+-                        stars,
+-                        street_address,
+-                        city,
+-                        state,
+-                        zipcode,
+-                        category) values ('Cucina Venti Restaurant',
+-                                          4,
+-                                          '1390 Pear Ave Ste D',
+-                                          'Mountain View',
+-                                          'CA',
+-                                          '94043',
+-                                          'Italian');
+-
+--- 94306
+-insert into restaurant (name,
+-                        stars,
+-                        street_address,
+-                        city,
+-                        state,
+-                        zipcode,
+-                        category) values ('Hobee''s',
+-                                          4,
+-                                          '4224 El Camino Real',
+-                                          'Palo Alto',
+-                                          'CA',
+-                                          '94306',
+-                                          'American');
+-insert into restaurant (name,
+-                        stars,
+-                        street_address,
+-                        city,
+-                        state,
+-                        zipcode,
+-                        category) values ('Mandarin Roots',
+-                                          4,
+-                                          '3345 El Camino Real',
+-                                          'Palo Alto',
+-                                          'CA',
+-                                          '94306',
+-                                          'Chinese');
+-insert into restaurant (name,
+-                        stars,
+-                        street_address,
+-                        city,
+-                        state,
+-                        zipcode,
+-                        category) values ('Sushi Tomo',
+-                                          4,
+-                                          '4131 El Camino Way',
+-                                          'Palo Alto',
+-                                          'CA',
+-                                          '94306',
+-                                          'Japanese');
+-
+-insert into restaurant (name,
+-                        stars,
+-                        street_address,
+-                        city,
+-                        state,
+-                        zipcode,
+-                        category) values ('Siam Fine Thai Cuisine',
+-                                          4,
+-                                          '3924 El Camino Real',
+-                                          'Palo Alto',
+-                                          'CA',
+-                                          '94306',
+-                                          'Thai');
+-
+-insert into restaurant (name,
+-                        stars,
+-                        street_address,
+-                        city,
+-                        state,
+-                        zipcode,
+-                        category) values ('Sanchos''Taqueria',
+-                                          4,
+-                                          '2723 Middlefield Rd',
+-                                          'Palo Alto',
+-                                          'CA',
+-                                          '94306',
+-                                          'Mexican');
+-insert into restaurant (name,
+-                        stars,
+-                        street_address,
+-                        city,
+-                        state,
+-                        zipcode,
+-                        category) values ('Dinah''s Poolside Restaurant',
+-                                          5,
+-                                          '4261 El Camino Real',
+-                                          'Palo Alto',
+-                                          'CA',
+-                                          '94306',
+-                                          'American');
+-create table schedule (
+-    restaurant_id int,
+-    day_of_week int,
+-    time_open time,
+-    time_closed time,
+-    FOREIGN KEY (restaurant_id) REFERENCES restaurant (restaurant_id)
+-);
+-
+--- restaurant id 1
+-
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (1,
+-                                           1,
+-                                           '10:00',
+-                                           '23:59');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (1,
+-                                           2,
+-                                           '16:00',
+-                                           '23:59');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (1,
+-                                           3,
+-                                           '16:00',
+-                                           '23:59');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (1,
+-                                           4,
+-                                           '16:00',
+-                                           '23:59');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (1,
+-                                           5,
+-                                           '16:00',
+-                                           '23:59');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (1,
+-                                           6,
+-                                           '16:00',
+-                                           '23:59');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (1,
+-                                           7,
+-                                           '10:00',
+-                                           '23:59');
+-
+--- restaurant id 2
+-
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (2,
+-                                           1,
+-                                           '16:00',
+-                                           '22:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (2,
+-                                           2,
+-                                           '16:00',
+-                                           '22:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (2,
+-                                           3,
+-                                           '16:00',
+-                                           '22:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (2,
+-                                           4,
+-                                           '16:00',
+-                                           '22:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (2,
+-                                           5,
+-                                           '16:00',
+-                                           '22:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (2,
+-                                           6,
+-                                           '16:00',
+-                                           '22:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (2,
+-                                           7,
+-                                           '16:00',
+-                                           '22:00');
+-
+--- restaurant id 3
+-
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (3,
+-                                           1,
+-                                           '07:00',
+-                                           '21:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (3,
+-                                           2,
+-                                           '07:00',
+-                                           '21:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (3,
+-                                           3,
+-                                           '07:00',
+-                                           '21:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (3,
+-                                           4,
+-                                           '07:00',
+-                                           '21:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (3,
+-                                           5,
+-                                           '07:00',
+-                                           '21:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (3,
+-                                           6,
+-                                           '07:00',
+-                                           '21:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (3,
+-                                           7,
+-                                           '07:00',
+-                                           '21:00');
+-
+--- restaurant id 4
+-
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (4,
+-                                           1,
+-                                           '07:00',
+-                                           '18:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (4,
+-                                           2,
+-                                           '07:00',
+-                                           '18:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (4,
+-                                           3,
+-                                           '07:00',
+-                                           '18:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (4,
+-                                           4,
+-                                           '07:00',
+-                                           '18:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (4,
+-                                           5,
+-                                           '07:00',
+-                                           '18:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (4,
+-                                           6,
+-                                           '07:00',
+-                                           '18:00');
+-insert into schedule (restaurant_id,
+-                      day_of_week,
+-                      time_open,
+-                      time_closed) values (4,
+-                                           7,
+-                                           '07:00',
+-                                           '18:00');
+-
+--- restaurant id 5
+-
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (5,1,'11:00','22:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (5,2,'11:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (5,3,'11:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (5,4,'11:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (5,5,'11:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (5,6,'11:00','22:00');
+-insert into schedule (restaurant_id, day_of_week,time_open,time_closed) values (5,7,'11:00','22:00');
+---restaurant id 6
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,1,'08:00','15:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,2,'08:00','14:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,3,'08:00','14:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,4,'08:00','14:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,5,'08:00','14:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,6,'08:00','14:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (6,7,'08:00','15:00');
+-
+---restaurant id 7
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,1,'11:00','20:30');
+---insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,2,'08:00','14:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,3,'11:00','20:30');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,4,'11:00','20:30');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,5,'11:00','20:30');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,6,'11:00','21:30');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (7,7,'11:00','21:30');
+-
+---restaurant id 8
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,1,'12:30','21:00');
+---insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,2,'12:30','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,3,'11:30','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,4,'11:30','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,5,'11:30','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,6,'11:30','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (8,7,'11:00','21:00');
+-
+---restaurant id 9
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,1,'11:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,2,'16:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,3,'16:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,4,'11:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,5,'11:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,6,'11:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (9,7,'11:00','21:00');
+-
+---restaurant id 10
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,1,'10:30','19:30');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,2,'10:30','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,3,'10:30','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,4,'10:30','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,5,'10:30','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,6,'10:30','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (10,7,'11:00','21:00');
+-
+-
+---restaurant id 11
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,1,'08:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,2,'08:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,3,'08:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,4,'08:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,5,'08:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,6,'08:00','21:00');
+-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,7,'08:00','21:00');
+-
+-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO capstone_appuser;
+-
+-COMMIT;
+\ No newline at end of file
+Index: database/schema.sql
+===================================================================
+diff --git a/database/schema.sql b/database/schema.sql
+deleted file mode 100644
+--- a/database/schema.sql	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ /dev/null	(revision e2c51b1604086adb92373793247fa4979422dc69)
+@@ -1,18 +0,0 @@
+--- *************************************************************************************************
+--- This script creates all of the database objects (tables, sequences, etc) for the database
+--- *************************************************************************************************
+-
+-BEGIN;
+-
+--- CREATE statements go here
+-DROP TABLE IF EXISTS app_user;
+-
+-CREATE TABLE app_user (
+-  id SERIAL PRIMARY KEY,
+-  user_name varchar(32) NOT NULL UNIQUE,
+-  password varchar(32) NOT NULL,
+-  role varchar(32),
+-  salt varchar(255) NOT NULL
+-);
+-
+-COMMIT;
+\ No newline at end of file
+Index: VISUALSTYLES.md
+===================================================================
+diff --git a/VISUALSTYLES.md b/VISUALSTYLES.md
+deleted file mode 100644
+--- a/VISUALSTYLES.md	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ /dev/null	(revision e2c51b1604086adb92373793247fa4979422dc69)
+@@ -1,14 +0,0 @@
+-# Grid and Flexbox Layouts
+-
+-[Introduction to Grid layouts
+-](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout)
+-
+-[Relationship between Grid and flexbox
+-](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Relationship_of_Grid_Layout#grid_and_flexbox)
+-
+-
+-* Grid by Example: [Examples](https://gridbyexample.com/examples/)
+-* Grid by Example: [Patterns](https://gridbyexample.com/patterns/)
+-
+-
+-[Introduction to Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox)
+Index: database/dropdb.sql
+===================================================================
+diff --git a/database/dropdb.sql b/database/dropdb.sql
+deleted file mode 100644
+--- a/database/dropdb.sql	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ /dev/null	(revision e2c51b1604086adb92373793247fa4979422dc69)
+@@ -1,11 +0,0 @@
+--- **************************************************************
+--- This script destroys the database and associated users
+--- **************************************************************
+-
+--- The following line terminates any active connections to the database so that it can be destroyed
+-SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'capstone';
+-
+-DROP DATABASE capstone;
+-
+-DROP USER capstone_owner;
+-DROP USER capstone_appuser;
+\ No newline at end of file
+Index: BOOTSTRAP.md
+===================================================================
+diff --git a/BOOTSTRAP.md b/BOOTSTRAP.md
+deleted file mode 100644
+--- a/BOOTSTRAP.md	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ /dev/null	(revision e2c51b1604086adb92373793247fa4979422dc69)
+@@ -1,17 +0,0 @@
+-## Bootstrap
+-
+-Version 5.2 has been included in this version of the starter project. The icons are also installed and available.
+-
+-From the website:
+-(https://getbootstrap.com/docs/5.2/getting-started/introduction/)
+-
+-    Bootstrap is a powerful, feature-packed frontend toolkit. Build anything—from prototype to production—in minutes.
+-
+-Checkout the left side menu to see the documentation and sample HTML/CSS.
+-
+-You may also want to download and check out the [Examples](https://getbootstrap.com/docs/5.2/examples/). They provide prebuilt layouts, components and various views you can integrate into your app.
+-
+-
+-* Documentation: https://getbootstrap.com/docs/5.2/getting-started/introduction/
+-* Examples: https://getbootstrap.com/docs/5.2/examples/
+-* Icons: https://icons.getbootstrap.com/#usage
+Index: AUTHENTICATION.md
+===================================================================
+diff --git a/AUTHENTICATION.md b/AUTHENTICATION.md
+deleted file mode 100644
+--- a/AUTHENTICATION.md	(revision e2c51b1604086adb92373793247fa4979422dc69)
++++ /dev/null	(revision e2c51b1604086adb92373793247fa4979422dc69)
+@@ -1,57 +0,0 @@
+-# Overview
+-
+-This project is a basic template that provides the following capabilities out of the box:
+-
+-* authentication
+-
+-There are two provided users:
+-
+-| Username | Password | Role  |
+-|----------|----------|-------|
+-| Admin    | admin    | admin |
+-| User     | user     | user  |
+-
+-
+-## Authentication
+-
+-The authentication provider provided allows you to develop code in Spring MVC without having to develop your own authentication/authorization framework. The `AuthProvider` provided defines several methods that can be used from various parts of your application. This includes but is not limited to:
+-
+-* Get current logged in user
+-* Create new user
+-* Log in as user
+-
+-See `AuthProvider.java` for a full description of how the methods can be used in your application.
+-
+-### Set Up
+-
+-A `SessionAuthProvider` class is included with this project to implement the `AuthProvider` interface. As such, the following items need to be configured.
+-
+-#### Database
+-
+-A sql script is provided to create the users table at `schema.sql`. If you need to modify the table
+-structure, make sure to update the `User` model and the associated data access classes.
+-
+-### Usage
+-
+-You can access the `AuthProvider` by allowing it to be injected into your controllers:
+-
+-```java
+-@Autowired
+-private AuthProvider auth;
+-```
+-
+-Once you have an instance of the `AuthProvider`, you can invoke these methods on it:
+-
+-* `getCurrentUser()` - returns the current logged in user (null if they are not)
+-* `signIn(String username, String password)` - validates the credentials and authenticates the user
+-* `logOff()` - logs the user out of the system
+-* `changePassword(String existingPassword, String newPassword)` - validates the user's existing credentials and changes their password
+-* `register(String username, String password, String role)` - creates a new user with the provided credentials and role
+-
+-If you want to restrict access to a specific controller or controller action, you can call the method `userHasRole(String[] roles)` to see if the currently logged in user has any of the roles defined. If not, it returns a false, and you can define what to do at that point.
+-
+-```java
+-if( ! auth.userHasRole(["admin", "editor"]) ) { // If user doesn't have the admin or editor role
+-    throw new UnauthorizedException();
+-}
+-```

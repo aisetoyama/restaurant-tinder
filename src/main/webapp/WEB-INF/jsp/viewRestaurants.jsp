@@ -19,9 +19,19 @@
   <option value = "Any Category">Any Category</option>
 </select>
   <br>
-
-    <label for="zipCode">Zip Code</label>
-    <input type="text" name="zipCode" id="zipCode" placeholder="00000"/>
+    <label for="city">City</label>
+    <select id="city" name="city">
+      <option value = "Mountain View, CA">Mountain View, CA</option>
+      <option value = "Palo Alto, CA">Palo Alto, CA</option>
+      <option value = "Barbeque">Barbeque</option>
+      <option value = "Cafes">Cafes</option>
+      <option value = "Italian">Italian</option>
+      <option value = "Chinese">Chinese</option>
+      <option value = "Japanese">Japanese</option>
+      <option value = "Thai">Thai</option>
+      <option value = "Mexican">Mexican</option>
+      <option value = "Any Category">Any Category</option>
+    </select>
 <br>
     <button type="submit">Submit</button>
 
