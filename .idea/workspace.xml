@@ -10,14 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3d5c860-63eb-4142-a83f-5daa574bafa1" name="Changes" comment="deleted api ai/brandon">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/noResults.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/model/JdbcRestaurantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/model/JdbcRestaurantDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/JdbcRestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/JdbcRestaurantDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/model/JdbcRestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/model/JdbcRestaurantDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/viewRestaurantsResults.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/jsp/viewRestaurantsResults.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/jsp/viewRestaurantsResults.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="view_restaurant_carousel" />
+        <entry key="$PROJECT_DIR$" value="carousel_city_hours" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

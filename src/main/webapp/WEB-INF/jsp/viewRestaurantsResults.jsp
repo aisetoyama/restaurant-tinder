@@ -17,70 +17,20 @@
     <div class="modal fade" id="ModalCarousel" tabindex="-1" role="dialog" aria-labelledby="ModalCarouselLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div id="carousel-modal-demo" class="carousel slide" data-ride="false" data-interval="false" data-wrap="false">
+                <div id="carousel-modal-demo" class="carousel slide" data-ride="false" data-interval="false"
+                     data-wrap="false">
                     <!-- Sliding images statring here -->
                     <div class="carousel-inner">
-
-                        <div class="item active">
-                            <%--                            <p style="width: 23px">${restaurantList.get(0).name}</p>--%>
-                            <%--                            <img src="images/banana.jpg" alt="${restaurantList.get(0).name}">--%>
-                            <div class="card" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                                 tabindex="-1"
-                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="card-dialog">
-                                    <div class="card-content">
-                                        <div class="card-header">
-                                            <h4 class="card-title"
-                                                id="staticBackdropLabel">${restaurantList.get(0).name}</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <button type="button" class="close" data-dismiss="modal">X</button>
-                                            <c:url var="restaurantImage" value="/images/restaurant_${restaurantList.get(0).restaurantId}.png"></c:url>
-                                            <img class="img-thumbnail w-50" src="${restaurantImage}" alt="restaurant image"/>
-                                            <h5>Category:</h5>
-                                            <p>${restaurantList.get(0).category}</p>
-                                            <h5>Address:</h5>
-                                            <p>${restaurantList.get(0).streetAddress}</p>
-                                            <h5>Hours:</h5>
-                                            <ul>
-                                                <c:forEach items="${allRestaurantSchedule.get(0)}" var="schedule">
-                                                    <ul id="schedule">
-                                                        <li><c:choose>
-                                                            <c:when test="${schedule.dayOfWeek == 1}">
-                                                                <strong>Monday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
-                                                            </c:when>
-                                                            <c:when test="${schedule.dayOfWeek == 2}">
-                                                                <strong>Tuesday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
-                                                            </c:when>
-                                                            <c:when test="${schedule.dayOfWeek == 3}">
-                                                                <strong>Wednesday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
-                                                            </c:when>
-                                                            <c:when test="${schedule.dayOfWeek == 4}">
-                                                                <strong>Thursday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
-                                                            </c:when>
-                                                            <c:when test="${schedule.dayOfWeek == 5}">
-                                                                <strong>Friday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
-                                                            </c:when>
-                                                            <c:when test="${schedule.dayOfWeek == 6}">
-                                                                <strong>Saturday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <strong>Sunday:</strong> ${schedule.timeOpen} - ${schedule.timeClosed}
-                                                            </c:otherwise>
-                                                        </c:choose></li>
-                                                    </ul>
-                                                </c:forEach>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <c:forEach var="index" begin="1" end="${restaurantList.size()-1}">
-                            <div class="item">
-                                    <%--                                <p style="width: 23px">${restaurantList.get(index).name}</p>--%>
-                                    <%--                            <img src="images/banana.jpg" alt="${restaurantList.get(0).name}">--%>
+                        <c:forEach var="index" begin="0" end="${restaurantList.size()-1}">
+                            <c:choose>
+                                <c:when test="${index ==  0}">
+                                    <c:set var="activeOrNot" value="item active"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="activeOrNot" value=""/>
+                                </c:otherwise>
+                            </c:choose>
+                            <div class="item ${activeOrNot}">
                                 <div class="card" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                                      tabindex="-1"
                                      aria-labelledby="staticBackdropLabel1" aria-hidden="true">
@@ -92,8 +42,10 @@
                                             </div>
                                             <div class="card-body">
                                                 <button type="button" class="close" data-dismiss="modal">X</button>
-                                                <c:url var="restaurantImage" value="/images/restaurant_${restaurantList.get(index).restaurantId}.png"></c:url>
-                                                <img class="img-thumbnail w-50" src="${restaurantImage}" alt="restaurant image"/>
+                                                <c:url var="restaurantImage"
+                                                       value="/images/restaurant_${restaurantList.get(index).restaurantId}.png"></c:url>
+                                                <img class="img-thumbnail w-50" src="${restaurantImage}"
+                                                     alt="restaurant image"/>
                                                 <h5>Category:</h5>
                                                 <p>${restaurantList.get(index).category}</p>
                                                 <h5>Address:</h5>
@@ -151,8 +103,9 @@
                                     data-bs-target="#staticBackdrop"> Call To Order
                             </button>
                         </c:if>
+                        <button type="submit" class="btn btn-success"> Open Now!
+                        </button>
                     </div>
-
                 </div>
             </div>
         </div>
