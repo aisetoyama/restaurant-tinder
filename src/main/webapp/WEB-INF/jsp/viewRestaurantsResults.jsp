@@ -16,6 +16,8 @@
                 <h4 class="card-title" id="staticBackdropLabel">${restaurant.name}</h4>
             </div>
             <div class="card-body">
+                <c:url var="restaurantImage" value="/images/restaurant_${restaurant.restaurantId}.png"></c:url>
+                <img class="img-thumbnail w-50" src="${restaurantImage}" alt="restaurant image"/>
                 <h5>Category:</h5>
                 <p>${restaurant.category}</p>
                 <h5>Address:</h5>

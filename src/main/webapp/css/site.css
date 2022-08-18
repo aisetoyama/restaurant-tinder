@@ -5,5 +5,22 @@ body {
 }
 
 
+.btn-color {
+    background-color: salmon;
+    color: white;
+}
+
+.salmon-text-color {
+    color: salmon;
+}
+
+.nav-color {
+    background-color: salmon;
+}
+
+.cover-img {
+    width: 400px;
+}
+
 
 
