@@ -19,6 +19,25 @@ create table restaurant (
                             phone_number varchar(255)
 );
 
+create table events (
+                        event_id int,
+                        host_name varchar(255),
+                        restaurant_id int,
+                        likes int,
+                        dislikes int,
+                        deadline date,
+       constraint pk_events primary key (event_id)
+);
+
+create table events_user_id
+(
+    event_id integer not null,
+    user_id integer not null,
+    constraint pk_events_user primary key (event_id, user_id),
+    constraint fk_events_user_events FOREIGN KEY (event_id) references events (event_id),
+    constraint fk_events_user_user FOREIGN KEY (user_id) REFERENCES app_user (id)
+);
+
 --94043
 
 insert into restaurant (name,
@@ -474,3 +493,4 @@ insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (1
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO capstone_appuser;
 
 COMMIT;
+
