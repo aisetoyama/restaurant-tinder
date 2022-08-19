@@ -499,5 +499,7 @@ insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (1
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,7,'08:00','21:00');
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO capstone_appuser;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO capstone_appuser;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO capstone_owner;
 
 COMMIT;

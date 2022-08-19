@@ -7,6 +7,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.io.Console;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlAllRestaurants);
         while (results.next()){
             Restaurant restaurant = new Restaurant();
-            restaurant.setRestaurantId(results.getLong("restaurant_id"));
+            restaurant.setRestaurantId(results.getInt("restaurant_id"));
             restaurant.setName(results.getString("name"));
             restaurant.setStars(results.getInt("stars"));
             restaurant.setStreetAddress(results.getString("street_address"));
@@ -56,7 +57,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
         }
         while (results.next()){
             Restaurant restaurant = new Restaurant();
-            restaurant.setRestaurantId(results.getLong("restaurant_id"));
+            restaurant.setRestaurantId(results.getInt("restaurant_id"));
             restaurant.setName(results.getString("name"));
             restaurant.setStars(results.getInt("stars"));
             restaurant.setStreetAddress(results.getString("street_address"));
@@ -78,7 +79,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
             while (results.next()) {
                 Schedule schedule = new Schedule();
-                schedule.setRestaurantId(results.getLong("restaurant_id"));
+                schedule.setRestaurantId(results.getInt("restaurant_id"));
                 schedule.setDayOfWeek(results.getInt("day_of_week"));
                 schedule.setTimeOpen(results.getTime("time_open"));
                 schedule.setTimeClosed(results.getTime("time_closed"));
@@ -91,10 +92,6 @@ public class JdbcRestaurantDao implements RestaurantDao{
 
     @Override
     public void addEventToTable(List<Long> restaurantId, String username, LocalDate deadline) {
-//        String cleanUsername = username.replaceAll("[^a-zA-Z0-9]", "");
-        String cleanUsername = username.substring(0, username.indexOf("@"));
-//        String sql = "DROP TABLE IF EXISTS "+ cleanUsername + "; CREATE TABLE " + cleanUsername + " (username varchar(255), restaurant_id integer, likes integer, dislikes integer);";
-//        jdbcTemplate.update(sql);
         String sqlForUserId = "select id from app_user where user_name = ?";
         SqlRowSet results=jdbcTemplate.queryForRowSet(sqlForUserId,username);
         int user_id = 0;
@@ -118,6 +115,35 @@ public class JdbcRestaurantDao implements RestaurantDao{
             jdbcTemplate.update(insertSql, event_id,username, id, 0, 0,deadline);
         }
     }
+
+    @Override
+    public List<Restaurant> getRestaurantsByEventId(int eventId, String hostName){
+        List<Restaurant> allRestaurantsList = new ArrayList<>();
+        String sqlJoins = "select name,stars,street_address,city,state,zipcode,category,phone_number,restaurant.restaurant_id " +
+                "from restaurant " +
+                "    join events on restaurant.restaurant_id = events.restaurant_id " +
+                "    join event_user_id eui on events.event_id = eui.event_id " +
+                "    where eui.event_id = ?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlJoins,eventId);
+
+        while(results.next()){
+            Restaurant restaurant = new Restaurant();
+            restaurant.setRestaurantId(results.getInt("restaurant_id"));
+            restaurant.setName(results.getString("name"));
+            restaurant.setStars(results.getInt("stars"));
+            restaurant.setStreetAddress(results.getString("street_address"));
+            restaurant.setCity(results.getString("city"));
+            restaurant.setState(results.getString("state"));
+            restaurant.setZipcode(results.getString("zipcode"));
+            restaurant.setCategory(results.getString("category"));
+            restaurant.setPhoneNumber(results.getString("phone_number"));
+            allRestaurantsList.add(restaurant);
+        }
+        return allRestaurantsList;
+
+    }
+
 
 
 }

@@ -10,12 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3d5c860-63eb-4142-a83f-5daa574bafa1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/guestForm.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/model/JdbcRestaurantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/model/JdbcRestaurantDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/model/RestaurantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/model/RestaurantDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/JdbcRestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/JdbcRestaurantDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/model/JdbcRestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/model/JdbcRestaurantDao.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -346,7 +350,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660939390962</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="altered data.sql again, now it works">
+      <created>1660942239216</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1660942239216</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,6 +370,7 @@
     <MESSAGE value="started on javascript" />
     <MESSAGE value="fixed carousel" />
     <MESSAGE value="altered data.sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="altered data.sql" />
+    <MESSAGE value="altered data.sql again, now it works" />
+    <option name="LAST_COMMIT_MESSAGE" value="altered data.sql again, now it works" />
   </component>
 </project>

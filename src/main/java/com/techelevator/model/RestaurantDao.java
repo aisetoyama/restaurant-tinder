@@ -14,5 +14,7 @@ public interface RestaurantDao {
 
     public void addEventToTable(List<Long> restaurantId, String username, LocalDate deadline);
 
+    public List<Restaurant> getRestaurantsByEventId(int eventId, String hostName);
+
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.io.Console;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -56,23 +57,40 @@ public class viewRestaurantsController {
 
     @RequestMapping(path="/viewRestaurantsResults", method = RequestMethod.GET)
     public String showAllResults(HttpSession session, ModelMap modelHolder){
-        List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
-        Restaurant restaurant = restaurantList.get(0);
+        List<Restaurant> restaurantList;
+        restaurantList = (List<Restaurant>) session.getAttribute("eventRestaurantList");
+//        Restaurant restaurant = restaurantList.get(0);
         modelHolder.put("restaurantList", restaurantList);
-        modelHolder.put("restaurant", restaurant);
+//        modelHolder.put("restaurant", restaurant);
 
         List<Long> restaurantIds =  new ArrayList<>();
         for (Restaurant res : restaurantList) {
             restaurantIds.add(res.getRestaurantId());
         }
 
-        List<Schedule> schedulesList = (List<Schedule>) session.getAttribute("schedulesList");
+//        List<Schedule> schedulesList = (List<Schedule>) session.getAttribute("schedulesList");
         List<List<Schedule>> allRestaurantSchedule = restaurantDao.getScheduleByRestaurantID(restaurantIds);
-        modelHolder.put("schedulesList", schedulesList);
+//        modelHolder.put("schedulesList", schedulesList);
         modelHolder.put("allRestaurantSchedule", allRestaurantSchedule);
 
         return "viewRestaurantsResults";
     }
 
+    @RequestMapping(path = "/guestForm", method = RequestMethod.GET)
+    public String showGuestForm() {
+        return "/guestForm";
+    }
 
+
+    @RequestMapping(path="/guestForm", method = RequestMethod.POST)
+    public String guestFormSubmission(@RequestParam int eventNumber, @RequestParam String hostName, HttpSession session){
+        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByEventId(eventNumber,hostName);
+//        List<Long> restaurantIds =  new ArrayList<>();
+//        for (Restaurant res : restaurantList) {
+//            restaurantIds.add(res.getRestaurantId());
+//        }
+        session.setAttribute("eventRestaurantList", restaurantList);
+
+        return "redirect:/viewRestaurantsResults";
+    }
 }
