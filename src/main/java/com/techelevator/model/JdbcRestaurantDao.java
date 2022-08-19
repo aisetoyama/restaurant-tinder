@@ -106,7 +106,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
         String insertSql;
         String sqlReference = "insert into event_user_id (user_id) values (?);";
         jdbcTemplate.update(sqlReference,user_id);
-        String sqlGetMaxEventId = "select max(event_id) from event_user_id where user_id = ?";
+        String sqlGetMaxEventId = "select max(event_id) as event_id from event_user_id where user_id = ?";
         SqlRowSet resultsForMax = jdbcTemplate.queryForRowSet(sqlGetMaxEventId,user_id);
         int event_id = 0;
         if(resultsForMax.next()) {

@@ -5,6 +5,20 @@
 BEGIN;
 DROP TABLE IF EXISTS restaurant CASCADE;
 DROP TABLE IF EXISTS schedule CASCADE;
+DROP TABLE IF EXISTS events CASCADE;
+DROP TABLE IF EXISTS event_user_id CASCADE;
+
+--relational event and user id table statements;
+create table event_user_id (
+    event_id serial PRIMARY KEY,
+    user_id int,
+    FOREIGN KEY (user_id) REFERENCES app_user (id)
+
+
+);
+
+
+
 
 -- INSERT statements go here
 create table restaurant (
@@ -19,23 +33,17 @@ create table restaurant (
                             phone_number varchar(255)
 );
 
-create table events (
-                        event_id int,
-                        host_name varchar(255),
-                        restaurant_id int,
-                        likes int,
-                        dislikes int,
-                        deadline date,
-       constraint pk_events primary key (event_id)
-);
+--Event table statements
 
-create table events_user_id
-(
-    event_id integer not null,
-    user_id integer not null,
-    constraint pk_events_user primary key (event_id, user_id),
-    constraint fk_events_user_events FOREIGN KEY (event_id) references events (event_id),
-    constraint fk_events_user_user FOREIGN KEY (user_id) REFERENCES app_user (id)
+create table events (
+    event_id int,
+    host_name varchar(255),
+    restaurant_id int,
+    likes int,
+    dislikes int,
+    deadline date,
+    FOREIGN KEY (event_id) REFERENCES event_user_id (event_id),
+    FOREIGN KEY (restaurant_id) REFERENCES restaurant (restaurant_id)
 );
 
 --94043
@@ -493,4 +501,3 @@ insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (1
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO capstone_appuser;
 
 COMMIT;
-
