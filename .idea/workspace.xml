@@ -10,14 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3d5c860-63eb-4142-a83f-5daa574bafa1" name="Changes" comment="deleted api ai/brandon">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/noResults.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/nonUserHeader.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/unauthorizedAccess.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_8_16_2022_8_30_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_8_16_2022_8_30_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_8_17_2022_2_02_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_8_17_2022_2_02_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/user/authentication/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/user/authentication/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/user/registration/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/user/registration/RegistrationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/controller/viewRestaurants/viewRestaurantsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/techelevator/model/JdbcRestaurantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/techelevator/model/JdbcRestaurantDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/user/authentication/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/user/authentication/AccountController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/user/registration/RegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/user/registration/RegistrationController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/JdbcRestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/classes/com/techelevator/model/JdbcRestaurantDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/jsp/common/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/capstone-1.0/WEB-INF/jsp/common/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/controller/user/authentication/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/controller/user/authentication/AccountController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/controller/user/registration/RegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/controller/user/registration/RegistrationController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/controller/viewRestaurants/viewRestaurantsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/techelevator/model/JdbcRestaurantDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/techelevator/model/JdbcRestaurantDao.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,18 +38,21 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="JavaScript File" />
         <option value="Jsp File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="view_restaurant_carousel" />
+        <entry key="$PROJECT_DIR$" value="carousel_city_hours" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JspContextManager">
+    <jsp-to-context jsp-file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/header.jsp" context-file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/viewRestaurants.jsp" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -69,7 +82,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Student/workspace/blue-final-capstone-restaurant-tinder/database/data.sql&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Student/workspace/blue-final-capstone-restaurant-tinder/src/main/webapp/WEB-INF/jsp/common&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
@@ -82,6 +95,11 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Student\workspace\blue-final-capstone-restaurant-tinder\src\main\webapp\WEB-INF\jsp\common" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="excludedTypes">
       <set>
@@ -298,6 +316,7 @@
       <workItem from="1660835386413" duration="300000" />
       <workItem from="1660835695012" duration="45000" />
       <workItem from="1660835744742" duration="9808000" />
+      <workItem from="1660878209306" duration="2474000" />
     </task>
     <task id="LOCAL-00001" summary="fixed privileges issue">
       <created>1660666168954</created>

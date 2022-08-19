@@ -3,7 +3,6 @@ package com.techelevator.controller.viewRestaurants;
 import com.techelevator.model.Restaurant;
 import com.techelevator.model.RestaurantDao;
 import com.techelevator.model.Schedule;
-import com.techelevator.model.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,10 +28,13 @@ public class viewRestaurantsController {
     public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String city, HttpSession session) {
         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndCity(cuisine, city);
         session.setAttribute("restaurantList", restaurantList);
+        String username = (String) session.getAttribute("username");
+        if(username == null){
+            return "redirect:/unauthorizedAccess";
+        }
         if (restaurantList.size() == 0) {
             return "redirect:/noResults";
         }
-        String username = (String) session.getAttribute("username");
 
         List<Long> restaurantIds =  new ArrayList<>();
         for (Restaurant res : restaurantList) {
@@ -43,6 +45,12 @@ public class viewRestaurantsController {
 
         return "redirect:/viewRestaurantsResults";
     }
+
+    @RequestMapping("/unauthorizedAccess")
+    public String showPleaseLoginOrRegister() {
+        return "unauthorizedAccess";
+    }
+
     @RequestMapping("/noResults")
     public String showNoResultsScreen() {
         return "/noResults";

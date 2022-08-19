@@ -40,7 +40,7 @@ public class RegistrationController {
         if (!dao.isValidEmail(user.getUsername()) || result.hasErrors()) {
             flash.addFlashAttribute("user", user);
             flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
-            flash.addFlashAttribute("message", !dao.isValidEmail(user.getUsername()) && result.hasErrors() ? "Please fix the following errors: Unique emails only and please fix password" : result.hasErrors() ? "Please fix the following errors" : !dao.isValidEmail(user.getUsername()) ? "Unique emails only" : "");
+            flash.addFlashAttribute("message", !dao.isValidEmail(user.getUsername()) && result.hasErrors() ? "Please fix the following errors: Unique emails only and fix password" : result.hasErrors() ? "Please fix the following errors" : !dao.isValidEmail(user.getUsername()) ? "Unique emails only" : "");
             return "redirect:/register";
         }
         auth.register(user.getUsername(), user.getPassword());

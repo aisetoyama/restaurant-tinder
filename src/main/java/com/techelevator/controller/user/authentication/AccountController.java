@@ -28,9 +28,11 @@ public class AccountController {
     public String index(ModelMap modelHolder) {
         modelHolder.put("user", auth.getCurrentUser());
 
-
         return "index";
     }
+
+
+
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
     public String login(ModelMap modelHolder) {

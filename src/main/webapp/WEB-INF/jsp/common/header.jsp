@@ -15,6 +15,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <c:url var="cssUrl" value="/css/site.css"/>
     <link rel="stylesheet" href="${cssUrl}" />
+    <c:url var="jsUrl" value="/js/index.js"/>
+    <script src="${jsUrl}"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg nav-color">
@@ -40,12 +43,6 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="${viewRestaurantsUrl}">View Restaurants</a>
                 </li>
-              <%--  <c:if test="${appCurrentUser.role == 'admin'}">
-                    <c:url var="administrationUrl" value="/admin"/>
-                    <li class="nav-item">
-                        <a class="nav-link" href="${administrationUrl}">Administration</a>
-                    </li>
-                </c:if>--%>
             </ul>
             <ul class="navbar-nav d-flex">
                 <c:if test="${empty appCurrentUser}">
