@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public interface RestaurantDao {
@@ -10,7 +12,7 @@ public interface RestaurantDao {
 
     public List<List<Schedule>> getScheduleByRestaurantID(List<Long> restaurantId);
 
-    public void createEventTable(List<Long> restaurantId, String username);
+    public void addEventToTable(List<Long> restaurantId, String username, LocalDate deadline);
 
 
 }

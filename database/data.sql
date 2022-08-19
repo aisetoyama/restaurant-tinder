@@ -5,6 +5,27 @@
 BEGIN;
 DROP TABLE IF EXISTS restaurant CASCADE;
 DROP TABLE IF EXISTS schedule CASCADE;
+DROP TABLE IF EXISTS events CASCADE;
+DROP TABLE IF EXISTS event_user_id CASCADE;
+
+--relational event and user id table statements;
+create table event_user_id (
+    event_id serial PRIMARY KEY,
+    user_id int
+
+);
+
+
+--Event table statements
+
+create table events (
+    event_id int,
+    host_name varchar(255),
+    restaurant_id int,
+    likes int,
+    dislikes int,
+    deadline date
+);
 
 -- INSERT statements go here
 create table restaurant (

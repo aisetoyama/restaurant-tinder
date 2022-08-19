@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -88,16 +90,32 @@ public class JdbcRestaurantDao implements RestaurantDao{
     }
 
     @Override
-    public void createEventTable(List<Long> restaurantId, String username) {
+    public void addEventToTable(List<Long> restaurantId, String username, LocalDate deadline) {
 //        String cleanUsername = username.replaceAll("[^a-zA-Z0-9]", "");
         String cleanUsername = username.substring(0, username.indexOf("@"));
-        String sql = "DROP TABLE IF EXISTS "+ cleanUsername + "; CREATE TABLE " + cleanUsername + " (username varchar(255), restaurant_id integer, likes integer, dislikes integer);";
-        jdbcTemplate.update(sql);
+//        String sql = "DROP TABLE IF EXISTS "+ cleanUsername + "; CREATE TABLE " + cleanUsername + " (username varchar(255), restaurant_id integer, likes integer, dislikes integer);";
+//        jdbcTemplate.update(sql);
+        String sqlForUserId = "select id from app_user where user_name = ?";
+        SqlRowSet results=jdbcTemplate.queryForRowSet(sqlForUserId,username);
+        int user_id = 0;
+        if(results.next()){
+
+           user_id = results.getInt("id");
+        }
 
         String insertSql;
+        String sqlReference = "insert into event_user_id (user_id) values (?);";
+        jdbcTemplate.update(sqlReference,user_id);
+        String sqlGetMaxEventId = "select max(event_id) from event_user_id where user_id = ?";
+        SqlRowSet resultsForMax = jdbcTemplate.queryForRowSet(sqlGetMaxEventId,user_id);
+        int event_id = 0;
+        if(resultsForMax.next()) {
+            event_id = resultsForMax.getInt("event_id");
+        }
+
         for (Long id : restaurantId) {
-            insertSql = "INSERT INTO "+ cleanUsername +" (username, restaurant_id, likes, dislikes) VALUES (?,?,?,?)";
-            jdbcTemplate.update(insertSql, username, id, 0, 0);
+            insertSql = "INSERT INTO events ( event_id, host_name, restaurant_id, likes, dislikes, deadline) VALUES (?,?,?,?,?,?)";
+            jdbcTemplate.update(insertSql, event_id,username, id, 0, 0,deadline);
         }
     }
 
