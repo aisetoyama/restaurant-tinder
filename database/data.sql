@@ -11,21 +11,14 @@ DROP TABLE IF EXISTS event_user_id CASCADE;
 --relational event and user id table statements;
 create table event_user_id (
     event_id serial PRIMARY KEY,
-    user_id int
+    user_id int,
+    FOREIGN KEY (user_id) REFERENCES app_user (id)
+
 
 );
 
 
---Event table statements
 
-create table events (
-    event_id int,
-    host_name varchar(255),
-    restaurant_id int,
-    likes int,
-    dislikes int,
-    deadline date
-);
 
 -- INSERT statements go here
 create table restaurant (
@@ -38,6 +31,19 @@ create table restaurant (
                             zipcode varchar(255),
                             category varchar(255),
                             phone_number varchar(255)
+);
+
+--Event table statements
+
+create table events (
+    event_id int,
+    host_name varchar(255),
+    restaurant_id int,
+    likes int,
+    dislikes int,
+    deadline date,
+    FOREIGN KEY (event_id) REFERENCES event_user_id (event_id),
+    FOREIGN KEY (restaurant_id) REFERENCES restaurant (restaurant_id)
 );
 
 --94043
