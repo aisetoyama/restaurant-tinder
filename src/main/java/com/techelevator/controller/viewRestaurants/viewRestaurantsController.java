@@ -27,7 +27,7 @@ public class viewRestaurantsController {
 
 
     @RequestMapping(path = "/viewRestaurants", method = RequestMethod.POST)
-    public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String city, @RequestParam LocalDateTime deadline, HttpSession session) {
+    public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String city, HttpSession session) {
         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndCity(cuisine, city);
         session.setAttribute("restaurantList", restaurantList);
         if (restaurantList.size() == 0) {
