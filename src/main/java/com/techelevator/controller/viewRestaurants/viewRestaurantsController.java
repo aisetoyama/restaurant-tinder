@@ -29,7 +29,7 @@ public class viewRestaurantsController {
 
 
     @RequestMapping(path = "/viewRestaurants", method = RequestMethod.POST)
-    public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String city, @RequestParam LocalDate deadline, HttpSession session) {
+    public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String city, @RequestParam String deadline, HttpSession session) {
         List<Restaurant> restaurantList = restaurantDao.getRestaurantsByCuisineAndCity(cuisine, city);
         session.setAttribute("restaurantList", restaurantList);
         if (restaurantList.size() == 0) {
@@ -40,7 +40,8 @@ public class viewRestaurantsController {
         for (Restaurant res : restaurantList) {
             restaurantIds.add(res.getRestaurantId());
         }
-        restaurantDao.addEventToTable(restaurantIds, username, deadline);
+        LocalDate deadlineDate =LocalDate.parse(deadline);
+        restaurantDao.addEventToTable(restaurantIds, username, deadlineDate);
 
         return "redirect:/viewRestaurantsResults";
     }
