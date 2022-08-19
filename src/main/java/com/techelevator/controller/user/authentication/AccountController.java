@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 
@@ -27,6 +28,7 @@ public class AccountController {
     public String index(ModelMap modelHolder) {
         modelHolder.put("user", auth.getCurrentUser());
 
+
         return "index";
     }
 
@@ -36,8 +38,9 @@ public class AccountController {
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam String username, @RequestParam String password, RedirectAttributes flash) {
+    public String login(@RequestParam String username, @RequestParam String password, RedirectAttributes flash, HttpSession session) {
         if (auth.signIn(username, password)) {
+            session.setAttribute("username", username);
             return "redirect:/";
         } else {
             flash.addFlashAttribute("message", "Login Invalid");
