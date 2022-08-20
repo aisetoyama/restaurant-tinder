@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -15,10 +16,11 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class JdbcRestaurantDao implements RestaurantDao{
+public class JdbcRestaurantDao implements RestaurantDao {
     private JdbcTemplate jdbcTemplate;
+
     @Autowired
-    public JdbcRestaurantDao(DataSource dataSource){
+    public JdbcRestaurantDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
@@ -27,7 +29,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
         List<Restaurant> allRestaurantsList = new ArrayList<>();
         String sqlAllRestaurants = "SELECT * FROM RESTAURANT";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlAllRestaurants);
-        while (results.next()){
+        while (results.next()) {
             Restaurant restaurant = new Restaurant();
             restaurant.setRestaurantId(results.getInt("restaurant_id"));
             restaurant.setName(results.getString("name"));
@@ -50,12 +52,12 @@ public class JdbcRestaurantDao implements RestaurantDao{
 
         if (cuisine.equals("Any Category")) {
             sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE city = ?;";
-            results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,city);
+            results = jdbcTemplate.queryForRowSet(sqlAllRestaurants, city);
         } else {
             sqlAllRestaurants = "SELECT * FROM RESTAURANT WHERE category = ? and city = ?;";
-            results = jdbcTemplate.queryForRowSet(sqlAllRestaurants,cuisine,city);
+            results = jdbcTemplate.queryForRowSet(sqlAllRestaurants, cuisine, city);
         }
-        while (results.next()){
+        while (results.next()) {
             Restaurant restaurant = new Restaurant();
             restaurant.setRestaurantId(results.getInt("restaurant_id"));
             restaurant.setName(results.getString("name"));
@@ -93,31 +95,31 @@ public class JdbcRestaurantDao implements RestaurantDao{
     @Override
     public void addEventToTable(List<Long> restaurantId, String username, LocalDate deadline) {
         String sqlForUserId = "select id from app_user where user_name = ?";
-        SqlRowSet results=jdbcTemplate.queryForRowSet(sqlForUserId,username);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForUserId, username);
         int user_id = 0;
-        if(results.next()){
+        if (results.next()) {
 
-           user_id = results.getInt("id");
+            user_id = results.getInt("id");
         }
 
         String insertSql;
         String sqlReference = "insert into event_user_id (user_id) values (?);";
-        jdbcTemplate.update(sqlReference,user_id);
+        jdbcTemplate.update(sqlReference, user_id);
         String sqlGetMaxEventId = "select max(event_id) as event_id from event_user_id where user_id = ?";
-        SqlRowSet resultsForMax = jdbcTemplate.queryForRowSet(sqlGetMaxEventId,user_id);
+        SqlRowSet resultsForMax = jdbcTemplate.queryForRowSet(sqlGetMaxEventId, user_id);
         int event_id = 0;
-        if(resultsForMax.next()) {
+        if (resultsForMax.next()) {
             event_id = resultsForMax.getInt("event_id");
         }
 
         for (Long id : restaurantId) {
             insertSql = "INSERT INTO events ( event_id, host_name, restaurant_id, likes, dislikes, deadline) VALUES (?,?,?,?,?,?)";
-            jdbcTemplate.update(insertSql, event_id,username, id, 0, 0,deadline);
+            jdbcTemplate.update(insertSql, event_id, username, id, 0, 0, deadline);
         }
     }
 
     @Override
-    public List<Restaurant> getRestaurantsByEventId(int eventId, String hostName){
+    public List<Restaurant> getRestaurantsByEventId(int eventId, String hostName) {
         List<Restaurant> allRestaurantsList = new ArrayList<>();
         String sqlJoins = "select name,stars,street_address,city,state,zipcode,category,phone_number,restaurant.restaurant_id " +
                 "from restaurant " +
@@ -125,9 +127,9 @@ public class JdbcRestaurantDao implements RestaurantDao{
                 "    join event_user_id eui on events.event_id = eui.event_id " +
                 "    where eui.event_id = ?";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlJoins,eventId);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlJoins, eventId);
 
-        while(results.next()){
+        while (results.next()) {
             Restaurant restaurant = new Restaurant();
             restaurant.setRestaurantId(results.getInt("restaurant_id"));
             restaurant.setName(results.getString("name"));
@@ -144,6 +146,21 @@ public class JdbcRestaurantDao implements RestaurantDao{
 
     }
 
+    @Override
+    public boolean isDeadlineExpired(int eventId) {
+        String sqlDeadline = "select deadline from events where event_id = ? limit 1;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlDeadline, eventId);
+        if (results.next()) {
+            String eventDeadline = results.getString("deadline");
+
+            if (LocalDate.parse(eventDeadline).isAfter(LocalDate.now())) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+
+    }
 
 
 }

@@ -25,9 +25,6 @@ public class viewRestaurantsController {
     @Autowired
     private RestaurantDao restaurantDao;
 
-//    @Autowired
-//    private UserDao userDao;
-
 
     @RequestMapping(path = "/viewRestaurants", method = RequestMethod.POST)
     public String showRestaurantResults(@RequestParam String cuisine, @RequestParam String city, @RequestParam String deadline, HttpSession session) {
@@ -37,13 +34,12 @@ public class viewRestaurantsController {
             return "redirect:/noResults";
         }
         String username = (String) session.getAttribute("username");
-        List<Long> restaurantIds =  new ArrayList<>();
+        List<Long> restaurantIds = new ArrayList<>();
         for (Restaurant res : restaurantList) {
             restaurantIds.add(res.getRestaurantId());
         }
-        LocalDate deadlineDate =LocalDate.parse(deadline);
+        LocalDate deadlineDate = LocalDate.parse(deadline);
         restaurantDao.addEventToTable(restaurantIds, username, deadlineDate);
-
         return "redirect:/viewRestaurantsResults";
     }
 
@@ -54,27 +50,24 @@ public class viewRestaurantsController {
     }
 
 
-
-    @RequestMapping(path="/viewRestaurantsResults", method = RequestMethod.GET)
-    public String showAllResults(HttpSession session, ModelMap modelHolder){
+    @RequestMapping(path = "/viewRestaurantsResults", method = RequestMethod.GET)
+    public String showAllResults(HttpSession session, ModelMap modelHolder) {
         List<Restaurant> restaurantList;
-        restaurantList = (List<Restaurant>) session.getAttribute("eventRestaurantList");
-//        Restaurant restaurant = restaurantList.get(0);
+        restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
+        Restaurant restaurant = restaurantList.get(0);
         modelHolder.put("restaurantList", restaurantList);
-//        modelHolder.put("restaurant", restaurant);
+        modelHolder.put("restaurant", restaurant);
 
-        List<Long> restaurantIds =  new ArrayList<>();
+        List<Long> restaurantIds = new ArrayList<>();
         for (Restaurant res : restaurantList) {
             restaurantIds.add(res.getRestaurantId());
         }
 
-//        List<Schedule> schedulesList = (List<Schedule>) session.getAttribute("schedulesList");
         List<List<Schedule>> allRestaurantSchedule = restaurantDao.getScheduleByRestaurantID(restaurantIds);
-//        modelHolder.put("schedulesList", schedulesList);
         modelHolder.put("allRestaurantSchedule", allRestaurantSchedule);
-
         return "viewRestaurantsResults";
     }
+
 
     @RequestMapping(path = "/guestForm", method = RequestMethod.GET)
     public String showGuestForm() {
@@ -82,15 +75,24 @@ public class viewRestaurantsController {
     }
 
 
-    @RequestMapping(path="/guestForm", method = RequestMethod.POST)
-    public String guestFormSubmission(@RequestParam int eventNumber, @RequestParam String hostName, HttpSession session){
-        List<Restaurant> restaurantList = restaurantDao.getRestaurantsByEventId(eventNumber,hostName);
-//        List<Long> restaurantIds =  new ArrayList<>();
-//        for (Restaurant res : restaurantList) {
-//            restaurantIds.add(res.getRestaurantId());
-//        }
-        session.setAttribute("eventRestaurantList", restaurantList);
+    @RequestMapping(path = "/guestForm", method = RequestMethod.POST)
+    public String guestFormSubmission(@RequestParam int eventNumber, @RequestParam String hostName, HttpSession session) {
+        if(restaurantDao.isDeadlineExpired(eventNumber)) {
+            List<Restaurant> restaurantList = restaurantDao.getRestaurantsByEventId(eventNumber, hostName);
+            List<Long> restaurantIds = new ArrayList<>();
+            for (Restaurant res : restaurantList) {
+                restaurantIds.add(res.getRestaurantId());
+            }
+            session.setAttribute("RestaurantList", restaurantList);
+            return "redirect:/viewRestaurantsResults";
+        } else {
+            return "redirect:/eventExpired";
+        }
+    }
 
-        return "redirect:/viewRestaurantsResults";
+
+    @RequestMapping(path = "/eventExpired", method = RequestMethod.GET)
+    public String showExpirationPage() {
+        return "/eventExpired";
     }
 }

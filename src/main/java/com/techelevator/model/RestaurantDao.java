@@ -16,5 +16,7 @@ public interface RestaurantDao {
 
     public List<Restaurant> getRestaurantsByEventId(int eventId, String hostName);
 
+    public boolean isDeadlineExpired(int eventId);
+
 
 }
