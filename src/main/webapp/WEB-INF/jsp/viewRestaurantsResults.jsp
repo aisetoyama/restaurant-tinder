@@ -109,23 +109,31 @@
                                                             </button>
                                                         </form>
                                                     </div>
-
-
                                                     <br>
-                                                    <c:if test="${restaurantList.get(index).phoneNumber != null}">
-                                                        <button type="submit" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal"
-                                                                data-bs-target="#staticBackdrop"> Call To Order
-                                                        </button>
-                                                    </c:if>
-                                                    <button type="submit" class="btn btn-success"> Open Now!
-                                                    </button>
-                                                    <!--next and previous button -->
 
-                                                    <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
-                                                        <button type="submit" class="btn btn-secondary"
-                                                                data-bs-target="#staticBackdrop"> Next
-                                                        </button>
-                                                    </a>
+                                                    <div class="alert alert-success" role="alert">
+                                                        Open Now!
+                                                    </div>
+                                                    <!--next and previous button -->
+                                                    <div class="row btn-group">
+                                                        <c:if test="${restaurantList.get(index).phoneNumber != null}">
+                                                            <div class="dropdown col-sm-6 mr-5">
+                                                                <button class="btn btn-success" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    Call To Order
+                                                                </button>
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                    <li><a class="dropdown-item">${restaurantList.get(index).phoneNumber}</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </c:if>
+                                                        <a class="right fix-bottom col-sm-6" href="#carousel-modal-demo" data-slide="next">
+                                                            <button type="submit" class="btn btn-secondary"
+                                                                    data-bs-target="#staticBackdrop"> Next
+                                                            </button>
+                                                        </a>
+
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -158,6 +166,7 @@
 <%--                        <button type="submit" class="btn btn-success"> Open Now!--%>
 <%--                        </button>--%>
 <%--                    </div>--%>
+
                 </div>
             </div>
         </div>
@@ -165,7 +174,6 @@
 </div>
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
 
 </body>
 </html>
