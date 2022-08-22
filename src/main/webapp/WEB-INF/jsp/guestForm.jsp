@@ -7,8 +7,8 @@
 <div>Please enter the following information to gain access to your event!</div>
 <br>
 
-<c:url var="formAction" value="/viewRestaurantsResults"/> <%-- NEED TO CHANGE THIS --%>
-<form id="main-content" method="GET" action="${formAction}">
+<c:url var="formAction" value="/guestForm"/>
+<form id="main-content" method="POST" action="${formAction}">
     <label for="guestName">Enter your name: </label>
     <input type="text" id="guestName" name="guestName"/>
     <br>

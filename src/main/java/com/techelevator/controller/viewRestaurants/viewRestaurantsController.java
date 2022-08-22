@@ -3,7 +3,6 @@ package com.techelevator.controller.viewRestaurants;
 import com.techelevator.model.Restaurant;
 import com.techelevator.model.RestaurantDao;
 import com.techelevator.model.Schedule;
-import com.techelevator.model.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,11 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.io.Console;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -52,11 +48,9 @@ public class viewRestaurantsController {
 
     @RequestMapping(path = "/viewRestaurantsResults", method = RequestMethod.GET)
     public String showAllResults(HttpSession session, ModelMap modelHolder) {
-        List<Restaurant> restaurantList;
-        restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
-        Restaurant restaurant = restaurantList.get(0);
+        List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
+        System.out.println("HERE at showAllResults: " +  restaurantList);
         modelHolder.put("restaurantList", restaurantList);
-        modelHolder.put("restaurant", restaurant);
 
         List<Long> restaurantIds = new ArrayList<>();
         for (Restaurant res : restaurantList) {
@@ -77,13 +71,15 @@ public class viewRestaurantsController {
 
     @RequestMapping(path = "/guestForm", method = RequestMethod.POST)
     public String guestFormSubmission(@RequestParam int eventNumber, @RequestParam String hostName, HttpSession session) {
-        if(restaurantDao.isDeadlineExpired(eventNumber)) {
-            List<Restaurant> restaurantList = restaurantDao.getRestaurantsByEventId(eventNumber, hostName);
+        if(restaurantDao.isWithinDeadline(eventNumber)) {
+            // Get restaurants by event id and store into session
+            List<Restaurant> restaurantListByEvent = restaurantDao.getRestaurantsByEventId(eventNumber, hostName);
+            session.setAttribute("restaurantList", restaurantListByEvent);
+
             List<Long> restaurantIds = new ArrayList<>();
-            for (Restaurant res : restaurantList) {
+            for (Restaurant res : restaurantListByEvent) {
                 restaurantIds.add(res.getRestaurantId());
             }
-            session.setAttribute("RestaurantList", restaurantList);
             return "redirect:/viewRestaurantsResults";
         } else {
             return "redirect:/eventExpired";

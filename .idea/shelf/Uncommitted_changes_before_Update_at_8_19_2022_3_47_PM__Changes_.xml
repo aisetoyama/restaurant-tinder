@@ -1,0 +1,14 @@
+<changelist name="Uncommitted_changes_before_Update_at_8_19_2022_3_47_PM_[Changes]" date="1660949272840" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_19_2022_3_47_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 8/19/2022 3:47 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/user/authentication/AccountController.class" />
+    <option name="AFTER_PATH" value="target/capstone-1.0/WEB-INF/classes/com/techelevator/controller/user/authentication/AccountController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_19_2022_3_47_PM_[Changes]/AccountController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/techelevator/controller/user/authentication/AccountController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/techelevator/controller/user/authentication/AccountController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_19_2022_3_47_PM_[Changes]/AccountController1.class" />
+  </binary>
+</changelist>

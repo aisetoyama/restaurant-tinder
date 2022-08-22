@@ -1,7 +1,6 @@
 package com.techelevator.model;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public interface RestaurantDao {
@@ -16,7 +15,7 @@ public interface RestaurantDao {
 
     public List<Restaurant> getRestaurantsByEventId(int eventId, String hostName);
 
-    public boolean isDeadlineExpired(int eventId);
+    public boolean isWithinDeadline(int eventId);
 
 
 }

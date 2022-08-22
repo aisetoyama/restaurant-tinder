@@ -147,7 +147,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
     }
 
     @Override
-    public boolean isDeadlineExpired(int eventId) {
+    public boolean isWithinDeadline(int eventId) {
         String sqlDeadline = "select deadline from events where event_id = ? limit 1;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlDeadline, eventId);
         if (results.next()) {
