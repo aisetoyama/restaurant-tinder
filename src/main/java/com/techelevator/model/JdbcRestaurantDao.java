@@ -119,7 +119,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
     }
 
     @Override
-    public List<Restaurant> getRestaurantsByEventId(Long eventId, String hostName) {
+    public List<Restaurant> getRestaurantsByEventId(Long eventId) {
         List<Restaurant> allRestaurantsList = new ArrayList<>();
         String sqlJoins = "select name,stars,street_address,city,state,zipcode,category,phone_number,restaurant.restaurant_id " +
                 "from restaurant " +
