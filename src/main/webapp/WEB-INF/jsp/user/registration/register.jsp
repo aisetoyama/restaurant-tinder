@@ -33,7 +33,29 @@
         <form:password class="form-control" path="confirmPassword" placeholder="confirm password"/>
         <form:errors path="passwordMatching" cssClass="bg-danger"/>
     </div>
-    <button type="submit" class="btn btn-default w-25 btn-color mt-3">submit</button>
+    <fieldset>
+        <legend>Role</legend>
+        <form:errors path="role" cssClass="bg-danger"/>
+        <div class="radio">
+            <label>
+                <form:radiobutton path="role" value="user" checked="checked"/>
+                User
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <form:radiobutton path="role" value="admin"/>
+                Administrator
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <form:radiobutton path="role" value="editor"/>
+                Editor
+            </label>
+        </div>
+    </fieldset>
+    <button type="submit" class="btn btn-default">Save User</button>
 </form:form>
 
 <%@ include file = "../../common/footer.jsp" %>

@@ -43,7 +43,7 @@ public class RegistrationController {
             flash.addFlashAttribute("message", !dao.isValidEmail(user.getUsername()) && result.hasErrors() ? "Please fix the following errors: Unique emails only and please fix password" : result.hasErrors() ? "Please fix the following errors" : !dao.isValidEmail(user.getUsername()) ? "Unique emails only" : "");
             return "redirect:/register";
         }
-        auth.register(user.getUsername(), user.getPassword());
+        auth.register(user.getUsername(), user.getPassword(), user.getRole());
         return "redirect:/registrationSuccess";
     }
 

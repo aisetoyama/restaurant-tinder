@@ -19,8 +19,8 @@ public class User {
     @Email(message="Must be in Email format")
     private String username;
 
-//    @NotBlank(message = "Role is required")
-//    private String role;
+    @NotBlank(message = "Role is required")
+    private String role;
     private long id;
 
 
@@ -85,16 +85,16 @@ public class User {
     /**
      * @return the role
      */
-//    public String getRole() {
-//        return role;
-//    }
+    public String getRole() {
+        return role;
+    }
 
     /**
      * @param role the role to set
      */
-//    public void setRole(String role) {
-//        this.role = role;
-//    }
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     /**
      * @param username the username to set
