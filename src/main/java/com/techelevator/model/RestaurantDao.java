@@ -14,9 +14,9 @@ public interface RestaurantDao {
 
     public void addEventToTable(List<Long> restaurantId, String username, LocalDate deadline);
 
-    public List<Restaurant> getRestaurantsByEventId(Long eventId);
+    public List<Restaurant> getRestaurantsByEventId(int eventId, String hostName);
 
-    public boolean isWithinDeadline(Long eventId);
+    public boolean isWithinDeadline(int eventId);
 
 
 }
