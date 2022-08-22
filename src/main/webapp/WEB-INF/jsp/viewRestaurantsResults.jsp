@@ -102,48 +102,31 @@
                                                             </button>
                                                         </form>
                                                     </div>
-
-
                                                     <br>
-                                                    <!--start of call button-->
 
-                                                    <c:if test="${restaurantList.get(index).phoneNumber != null}">
-<%--                                                        <button type="button" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">--%>
-<%--                                                            Call To Order--%>
-<%--                                                        </button>--%>
-                                                        <button id="example" type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
-                                                            Popover on top
-                                                        </button>
-                                                    </c:if>
-
-                                                    <!-- Modal -->
-<%--                                                    <div class="modal fade" id="phoneNumberModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
-<%--                                                        <div class="modal-dialog">--%>
-<%--                                                            <div class="modal-content">--%>
-<%--                                                                <div class="modal-header">--%>
-<%--                                                                    <h5 class="modal-title" id="exampleModalLabel">${restaurantList.get(index).name}</h5>--%>
-<%--                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                                                                </div>--%>
-<%--                                                                <div class="modal-body">--%>
-<%--                                                                        ${restaurant.get(index).phoneNumber}--%>
-<%--                                                                </div>--%>
-<%--                                                                <div class="modal-footer">--%>
-<%--                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--%>
-<%--                                                                </div>--%>
-<%--                                                            </div>--%>
-<%--                                                        </div>--%>
-<%--                                                    </div>--%>
-                                                    <!--end of call button-->
-
-                                                    <button type="submit" class="btn btn-success"> Open Now!
-                                                    </button>
+                                                    <div class="alert alert-success" role="alert">
+                                                        Open Now!
+                                                    </div>
                                                     <!--next and previous button -->
+                                                    <div class="row btn-group">
+                                                        <c:if test="${restaurantList.get(index).phoneNumber != null}">
+                                                            <div class="dropdown col-sm-6 mr-5">
+                                                                <button class="btn btn-success" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    Call To Order
+                                                                </button>
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                    <li><a class="dropdown-item">${restaurantList.get(index).phoneNumber}</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </c:if>
+                                                        <a class="right fix-bottom col-sm-6" href="#carousel-modal-demo" data-slide="next">
+                                                            <button type="submit" class="btn btn-secondary"
+                                                                    data-bs-target="#staticBackdrop"> Next
+                                                            </button>
+                                                        </a>
 
-                                                    <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
-                                                        <button type="submit" class="btn btn-secondary"
-                                                                data-bs-target="#staticBackdrop"> Next
-                                                        </button>
-                                                    </a>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
