@@ -42,24 +42,24 @@ public class JdbcUserDao implements UserDao {
      * @return the new user
      */
     @Override
-    public User saveUser(String userName, String password) {
+    public User saveUser(String userName, String password, String role) {
 
         try {
             byte[] salt = passwordHasher.generateRandomSalt();
             String hashedPassword = passwordHasher.computeHash(password, salt);
             String saltString = new String(Base64.encode(salt));
             long newId = jdbcTemplate.queryForObject(
-                    "INSERT INTO app_user(user_name, password, salt) VALUES (?, ?, ?) RETURNING id", Long.class,
-                    userName, hashedPassword, saltString);
+                    "INSERT INTO app_user(user_name, password, salt, role) VALUES (?, ?, ?, ?) RETURNING id", Long.class,
+                    userName, hashedPassword, saltString, role);
 
             User newUser = new User();
             newUser.setId(newId);
             newUser.setUsername(userName);
+            newUser.setRole(role);
             return newUser;
         } catch (Exception e) {
             System.out.println("no duplicate emails.");
         }
-//        newUser.setRole(role);
         return null;
     }
 
@@ -120,7 +120,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
-        String sqlSelectAllUsers = "SELECT id, user_name FROM app_user";
+        String sqlSelectAllUsers = "SELECT id, user_name,role FROM app_user";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllUsers);
 
         while (results.next()) {
@@ -148,7 +148,7 @@ public class JdbcUserDao implements UserDao {
         User user = new User();
         user.setId(results.getLong("id"));
         user.setUsername(results.getString("user_name"));
-//        user.setRole(results.getString("role"));
+        user.setRole(results.getString("role"));
         return user;
     }
 

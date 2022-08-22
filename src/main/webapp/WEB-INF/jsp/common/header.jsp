@@ -38,8 +38,10 @@
                     <a class="nav-link text-white" href="${privateUrl}">Private</a>
                 </li>
                 <li class="nav-item">
+                    <c:if test="${appCurrentUser.role == 'user'}">
                     <a class="nav-link text-white" href="${viewRestaurantsUrl}">View Restaurants</a>
-                </li>
+                    </c:if>
+                        </li>
               <%--  <c:if test="${appCurrentUser.role == 'admin'}">
                     <c:url var="administrationUrl" value="/admin"/>
                     <li class="nav-item">

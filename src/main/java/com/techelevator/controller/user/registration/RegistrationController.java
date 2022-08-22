@@ -35,6 +35,19 @@ public class RegistrationController {
         return "user/registration/register";
     }
 
+
+
+//    @RequestMapping(path = "/register", method = RequestMethod.POST)
+//    public String register(@Valid @ModelAttribute("user") User user, BindingResult result, RedirectAttributes flash) {
+//        if (result.hasErrors()) {
+//            flash.addFlashAttribute("user", user);
+//            flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "user", result);
+//            flash.addFlashAttribute("message", "Please fix the following errors:");
+//            return "redirect:/register";
+//        }
+//        auth.register(user.getUsername(), user.getPassword(), user.getRole());
+//        return "redirect:/";
+//    }
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public String register(@Valid @ModelAttribute("user") User user, BindingResult result, RedirectAttributes flash) {
         if (!dao.isValidEmail(user.getUsername()) || result.hasErrors()) {
@@ -43,13 +56,8 @@ public class RegistrationController {
             flash.addFlashAttribute("message", !dao.isValidEmail(user.getUsername()) && result.hasErrors() ? "Please fix the following errors: Unique emails only and please fix password" : result.hasErrors() ? "Please fix the following errors" : !dao.isValidEmail(user.getUsername()) ? "Unique emails only" : "");
             return "redirect:/register";
         }
-        auth.register(user.getUsername(), user.getPassword());
-        return "redirect:/registrationSuccess";
-    }
-
-    @RequestMapping("/registrationSuccess")
-    public String showRegistrationSuccessScreen() {
-        return "user/registration/registrationSuccess";
+        auth.register(user.getUsername(), user.getPassword(), user.getRole());
+        return "redirect:/";
     }
 
 }
