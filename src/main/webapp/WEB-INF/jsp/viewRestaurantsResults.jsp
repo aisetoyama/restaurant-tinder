@@ -106,9 +106,13 @@
 
                                                     <br>
                                                     <!--start of call button-->
+
                                                     <c:if test="${restaurantList.get(index).phoneNumber != null}">
-                                                        <button type="button" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
-                                                            Call To Order
+<%--                                                        <button type="button" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">--%>
+<%--                                                            Call To Order--%>
+<%--                                                        </button>--%>
+                                                        <button id="example" type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+                                                            Popover on top
                                                         </button>
                                                     </c:if>
 
@@ -172,6 +176,7 @@
 <%--                        <button type="submit" class="btn btn-success"> Open Now!--%>
 <%--                        </button>--%>
 <%--                    </div>--%>
+
                 </div>
             </div>
         </div>
@@ -179,7 +184,6 @@
 </div>
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
 
 </body>
 </html>
