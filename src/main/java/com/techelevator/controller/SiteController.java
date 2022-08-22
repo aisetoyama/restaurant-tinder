@@ -19,7 +19,7 @@ public class SiteController {
     @RequestMapping(path = "/private", method = RequestMethod.GET)
     public String privatePage() throws UnauthorizedException {
         if (auth.userHasRole(new String[] { "admin", "user" })) {
-            return "private";
+            return "viewRestaurants";
         } else {
             throw new UnauthorizedException();
         }

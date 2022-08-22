@@ -36,11 +36,11 @@
                     <a class="nav-link text-white" href="${aboutUrl}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="${privateUrl}">Private</a>
+                    <a class="nav-link text-white" href="${privateUrl}">View Restaurants</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="${viewRestaurantsUrl}">View Restaurants</a>
-                </li>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link text-white" href="${viewRestaurantsUrl}">View Restaurants</a>--%>
+<%--                </li>--%>
               <%--  <c:if test="${appCurrentUser.role == 'admin'}">
                     <c:url var="administrationUrl" value="/admin"/>
                     <li class="nav-item">

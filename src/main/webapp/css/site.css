@@ -54,3 +54,11 @@ body {
 #schedule li {
     list-style-type: none;
 }
+
+
+
+.checkbox {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
