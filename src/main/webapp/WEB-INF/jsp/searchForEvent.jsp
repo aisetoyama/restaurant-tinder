@@ -1,13 +1,13 @@
 <%@ include file = "common/header.jsp" %>
 
-<h1>View Restaurants</h1>
+<h1>Search for your Event!</h1>
 
 <body>
 
 <div>Please enter the following information to gain access to your event!</div>
 <br>
 
-<c:url var="formAction" value="/guestForm"/>
+<c:url var="formAction" value="/searchForEvent"/>
 <form id="main-content" method="POST" action="${formAction}">
     <label for="guestName">Enter your name: </label>
     <input type="text" id="guestName" name="guestName"/>

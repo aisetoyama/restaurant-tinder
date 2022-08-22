@@ -98,12 +98,12 @@
 
                                                 <div class="card-footer">
                                                     <div class="row">
-                                                        <form class="col" method="post" action="${viewRestaurantsResultsUrl2}">
+                                                        <form class="col" method="POST" action="${viewRestaurantsResultsUrl2}">
                                                             <button type="submit" class="btn btn-danger bi bi-heartbreak-fill"
                                                                     data-bs-target="#staticBackdrop"> Dislike
                                                             </button>
                                                         </form>
-                                                        <form class="col" method="post" action="${viewRestaurantsResultsUrl1}">
+                                                        <form class="col" method="POST" action="${viewRestaurantsResultsUrl1}">
                                                             <button type="submit" class="btn btn-primary bi bi-heart-fill"
                                                                     data-bs-target="#staticBackdrop"> Like
                                                             </button>

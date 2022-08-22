@@ -163,4 +163,34 @@ public class JdbcRestaurantDao implements RestaurantDao{
     }
 
 
+    @Override
+    public List<Restaurant> finalistRestaurants(Long eventId) {
+        List<Restaurant> allRestaurantsList = new ArrayList<>();
+        List<Long> restaurantIds = new ArrayList<>();
+        String sqlFinalists = "select restaurant_id from events where event_id = ? and dislikes <=0 order by likes DESC limit 5;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFinalists,eventId);
+
+        while (results.next()){
+
+            Long id = results.getLong("restaurant_id");
+            String sqlTemp = "select * from restaurant where restaurant_id = ?";
+            SqlRowSet results2 = jdbcTemplate.queryForRowSet(sqlTemp,id);
+
+            while (results2.next()){
+                Restaurant restaurant = new Restaurant();
+                restaurant.setRestaurantId(results.getInt("restaurant_id"));
+                restaurant.setName(results.getString("name"));
+                restaurant.setStars(results.getInt("stars"));
+                restaurant.setStreetAddress(results.getString("street_address"));
+                restaurant.setCity(results.getString("city"));
+                restaurant.setState(results.getString("state"));
+                restaurant.setZipcode(results.getString("zipcode"));
+                restaurant.setCategory(results.getString("category"));
+                restaurant.setPhoneNumber(results.getString("phone_number"));
+                allRestaurantsList.add(restaurant);
+            }
+        }
+
+        return allRestaurantsList;
+    }
 }

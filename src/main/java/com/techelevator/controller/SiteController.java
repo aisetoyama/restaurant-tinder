@@ -5,8 +5,12 @@ import com.techelevator.authentication.UnauthorizedException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * SiteController
@@ -40,7 +44,11 @@ public class SiteController {
     }
 
     @RequestMapping(path = "/viewRestaurants", method = RequestMethod.GET)
-    public String viewRestaurants() throws UnauthorizedException {
+    public String viewRestaurants(ModelMap modelHolder) throws UnauthorizedException {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
+        modelHolder.put("todayDate", dtf.format(now));
+        System.out.println(dtf.format(now));
         return "viewRestaurants";
     }
 }

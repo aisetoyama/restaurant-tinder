@@ -28,6 +28,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <c:url var="aboutUrl" value="/about"/>
                 <c:url var="viewRestaurantsUrl" value="/viewRestaurants"/>
+                <c:url var="searchEvents" value="/searchForEvent"/>
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" href="${homeUrl}">Home</a>
                 </li>
@@ -39,6 +40,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="${viewRestaurantsUrl}">View Restaurants</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="${searchEvents}">Search for an Event</a>
                 </li>
               <%--  <c:if test="${appCurrentUser.role == 'admin'}">
                     <c:url var="administrationUrl" value="/admin"/>

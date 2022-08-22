@@ -26,7 +26,7 @@
     </select>
 <br>
     <label for="deadline"> Voting Deadline: </label>
-    <input type="date" id="deadline" name="deadline"/>
+    <input type="date" id="deadline" name="deadline" min="${todayDate}"/>
 
     <button type="submit">Submit</button>
 
