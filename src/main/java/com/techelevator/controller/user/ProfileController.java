@@ -16,13 +16,13 @@ public class ProfileController {
     @Autowired
     private AuthProvider auth;
 
-    @RequestMapping(path = "/profile", method = RequestMethod.GET)
-    public String privatePage(ModelMap map) throws UnauthorizedException {
-        if (auth.userHasRole(new String[] { "admin", "user" })) {
-            map.put("user", auth.getCurrentUser());
-            return "user/profile";
-        } else {
-            throw new UnauthorizedException();
-        }
-    }
+//    @RequestMapping(path = "/profile", method = RequestMethod.GET)
+//    public String privatePage(ModelMap map) throws UnauthorizedException {
+//        if (auth.userHasRole(new String[] { "admin", "user" })) {
+//            map.put("user", auth.getCurrentUser());
+//            return "user/profile";
+//        } else {
+//            throw new UnauthorizedException();
+//        }
+//    }
 }

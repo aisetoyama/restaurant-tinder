@@ -76,9 +76,9 @@ public class SessionAuthProviderTest {
 
     @Test
     public void registerTest() {
-        sut.register("TEST", "TESTPASS", "TESTROLE");
+        sut.register("TEST", "TESTPASS");
 
-        verify(mockedDao).saveUser("TEST", "TESTPASS", "TESTROLE");
+        verify(mockedDao).saveUser("TEST", "TESTPASS");
     }
 
     @Test
@@ -138,75 +138,75 @@ public class SessionAuthProviderTest {
         verify(mockedDao, times(0)).changePassword(testUser, "NEWVALUE");
     }
 
-    @Test
-    public void hasRoleSuccessTest() {
-        User testUser = new User();
-        testUser.setId(0);
-        testUser.setUsername("TEST");
-        testUser.setRole("user");
+//    @Test
+//    public void hasRoleSuccessTest() {
+//        User testUser = new User();
+//        testUser.setId(0);
+//        testUser.setUsername("TEST");
+////        testUser.setRole("user");
+//
+//        when(mockedSession.getAttribute(SessionAuthProvider.USER_KEY)).thenReturn(testUser);
+//
+//        assertTrue(sut.userHasRole(new String[] { "user" }));
+//    }
 
-        when(mockedSession.getAttribute(SessionAuthProvider.USER_KEY)).thenReturn(testUser);
+//    @Test
+//    public void hasRoleFailTest() {
+//        User testUser = new User();
+//        testUser.setId(0);
+//        testUser.setUsername("TEST");
+//        testUser.setRole("user");
+//
+//        when(mockedSession.getAttribute(SessionAuthProvider.USER_KEY)).thenReturn(testUser);
+//
+//        assertFalse(sut.userHasRole(new String[] { "admin" }));
+//    }
 
-        assertTrue(sut.userHasRole(new String[] { "user" }));
-    }
+//    @Test
+//    public void hasRoleMultipleSuccessTest() {
+//        User testUser = new User();
+//        testUser.setId(0);
+//        testUser.setUsername("TEST");
+//        testUser.setRole("user");
+//
+//        when(mockedSession.getAttribute(SessionAuthProvider.USER_KEY)).thenReturn(testUser);
+//
+//        assertTrue(sut.userHasRole(new String[] { "admin", "user", "editor" }));
+//    }
 
-    @Test
-    public void hasRoleFailTest() {
-        User testUser = new User();
-        testUser.setId(0);
-        testUser.setUsername("TEST");
-        testUser.setRole("user");
-
-        when(mockedSession.getAttribute(SessionAuthProvider.USER_KEY)).thenReturn(testUser);
-
-        assertFalse(sut.userHasRole(new String[] { "admin" }));
-    }
-
-    @Test
-    public void hasRoleMultipleSuccessTest() {
-        User testUser = new User();
-        testUser.setId(0);
-        testUser.setUsername("TEST");
-        testUser.setRole("user");
-
-        when(mockedSession.getAttribute(SessionAuthProvider.USER_KEY)).thenReturn(testUser);
-
-        assertTrue(sut.userHasRole(new String[] { "admin", "user", "editor" }));
-    }
-
-    @Test
-    public void hasRoleMultipleFailTest() {
-        User testUser = new User();
-        testUser.setId(0);
-        testUser.setUsername("TEST");
-        testUser.setRole("user");
-
-        when(mockedSession.getAttribute(SessionAuthProvider.USER_KEY)).thenReturn(testUser);
-
-        assertFalse(sut.userHasRole(new String[] { "admin", "manager", "editor" }));
-    }
-
-    @Test
-    public void hasRoleNullTest() {
-        User testUser = new User();
-        testUser.setId(0);
-        testUser.setUsername("TEST");
-        testUser.setRole("user");
-
-        when(mockedSession.getAttribute(SessionAuthProvider.USER_KEY)).thenReturn(testUser);
-
-        assertFalse(sut.userHasRole(null));
-    }
-
-    @Test
-    public void hasRoleEmptyTest() {
-        User testUser = new User();
-        testUser.setId(0);
-        testUser.setUsername("TEST");
-        testUser.setRole("user");
-
-        when(mockedSession.getAttribute(SessionAuthProvider.USER_KEY)).thenReturn(testUser);
-
-        assertFalse(sut.userHasRole(new String[] {}));
-    }
+//    @Test
+//    public void hasRoleMultipleFailTest() {
+//        User testUser = new User();
+//        testUser.setId(0);
+//        testUser.setUsername("TEST");
+//        testUser.setRole("user");
+//
+//        when(mockedSession.getAttribute(SessionAuthProvider.USER_KEY)).thenReturn(testUser);
+//
+//        assertFalse(sut.userHasRole(new String[] { "admin", "manager", "editor" }));
+//    }
+//
+//    @Test
+//    public void hasRoleNullTest() {
+//        User testUser = new User();
+//        testUser.setId(0);
+//        testUser.setUsername("TEST");
+//        testUser.setRole("user");
+//
+//        when(mockedSession.getAttribute(SessionAuthProvider.USER_KEY)).thenReturn(testUser);
+//
+//        assertFalse(sut.userHasRole(null));
+//    }
+//
+//    @Test
+//    public void hasRoleEmptyTest() {
+//        User testUser = new User();
+//        testUser.setId(0);
+//        testUser.setUsername("TEST");
+//        testUser.setRole("user");
+//
+//        when(mockedSession.getAttribute(SessionAuthProvider.USER_KEY)).thenReturn(testUser);
+//
+//        assertFalse(sut.userHasRole(new String[] {}));
+//    }
 }
