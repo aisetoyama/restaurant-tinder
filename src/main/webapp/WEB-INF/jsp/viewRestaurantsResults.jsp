@@ -90,25 +90,18 @@
                                                 </c:url>
 
                                                 <div class="card-footer">
-                                                    <form method="post" action="${viewRestaurantsResultsUrl2}">
-                                                        <button type="submit" class="btn btn-danger bi bi-heartbreak-fill"
-                                                                data-bs-target="#staticBackdrop"> Dislike
-                                                        </button>
-                                                    </form>
-
-                                                    <form method="post" action="${viewRestaurantsResultsUrl1}">
-                                                        <button type="submit" class="btn btn-primary bi bi-heart-fill"
-                                                                data-bs-target="#staticBackdrop"> Like
-                                                        </button>
-                                                    </form>
-
-                                                    <!--next and previous button -->
-
-                                                    <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
-                                                        <button type="submit" class="btn btn-secondary"
-                                                                data-bs-target="#staticBackdrop"> Next
-                                                        </button>
-                                                    </a>
+                                                    <div class="row">
+                                                        <form class="col" method="post" action="${viewRestaurantsResultsUrl2}">
+                                                            <button type="submit" class="btn btn-danger bi bi-heartbreak-fill"
+                                                                    data-bs-target="#staticBackdrop"> Dislike
+                                                            </button>
+                                                        </form>
+                                                        <form class="col" method="post" action="${viewRestaurantsResultsUrl1}">
+                                                            <button type="submit" class="btn btn-primary bi bi-heart-fill"
+                                                                    data-bs-target="#staticBackdrop"> Like
+                                                            </button>
+                                                        </form>
+                                                    </div>
 
 
                                                     <br>
@@ -119,6 +112,13 @@
                                                     </c:if>
                                                     <button type="submit" class="btn btn-success"> Open Now!
                                                     </button>
+                                                    <!--next and previous button -->
+
+                                                    <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
+                                                        <button type="submit" class="btn btn-secondary"
+                                                                data-bs-target="#staticBackdrop"> Next
+                                                        </button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
