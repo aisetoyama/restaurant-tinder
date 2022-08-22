@@ -1,5 +1,4 @@
-package com.sample;
-
+package com.techelevator.model;
 
 public class Events {
 

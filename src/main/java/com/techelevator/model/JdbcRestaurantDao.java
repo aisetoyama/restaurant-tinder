@@ -16,11 +16,10 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class JdbcRestaurantDao implements RestaurantDao {
+public class JdbcRestaurantDao implements RestaurantDao{
     private JdbcTemplate jdbcTemplate;
-
     @Autowired
-    public JdbcRestaurantDao(DataSource dataSource) {
+    public JdbcRestaurantDao(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
@@ -29,9 +28,9 @@ public class JdbcRestaurantDao implements RestaurantDao {
         List<Restaurant> allRestaurantsList = new ArrayList<>();
         String sqlAllRestaurants = "SELECT * FROM RESTAURANT";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlAllRestaurants);
-        while (results.next()) {
+        while (results.next()){
             Restaurant restaurant = new Restaurant();
-            restaurant.setRestaurantId(results.getInt("restaurant_id"));
+            restaurant.setRestaurantId(results.getLong("restaurant_id"));
             restaurant.setName(results.getString("name"));
             restaurant.setStars(results.getInt("stars"));
             restaurant.setStreetAddress(results.getString("street_address"));
@@ -59,7 +58,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
         }
         while (results.next()) {
             Restaurant restaurant = new Restaurant();
-            restaurant.setRestaurantId(results.getInt("restaurant_id"));
+            restaurant.setRestaurantId(results.getLong("restaurant_id"));
             restaurant.setName(results.getString("name"));
             restaurant.setStars(results.getInt("stars"));
             restaurant.setStreetAddress(results.getString("street_address"));
@@ -81,7 +80,7 @@ public class JdbcRestaurantDao implements RestaurantDao {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
             while (results.next()) {
                 Schedule schedule = new Schedule();
-                schedule.setRestaurantId(results.getInt("restaurant_id"));
+                schedule.setRestaurantId(results.getLong("restaurant_id"));
                 schedule.setDayOfWeek(results.getInt("day_of_week"));
                 schedule.setTimeOpen(results.getTime("time_open"));
                 schedule.setTimeClosed(results.getTime("time_closed"));
