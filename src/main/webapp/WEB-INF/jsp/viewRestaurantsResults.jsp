@@ -105,7 +105,7 @@
                                                     <!--next and previous button -->
 
                                                     <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
-                                                        <button type="submit" class="btn btn-primary bi bi-heart-fill"
+                                                        <button type="submit" class="btn btn-secondary"
                                                                 data-bs-target="#staticBackdrop"> Next
                                                         </button>
                                                     </a>
