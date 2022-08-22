@@ -131,7 +131,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
 
         while (results.next()) {
             Restaurant restaurant = new Restaurant();
-            restaurant.setRestaurantId(results.getInt("restaurant_id"));
+            restaurant.setRestaurantId(results.getLong("restaurant_id"));
             restaurant.setName(results.getString("name"));
             restaurant.setStars(results.getInt("stars"));
             restaurant.setStreetAddress(results.getString("street_address"));
@@ -167,18 +167,21 @@ public class JdbcRestaurantDao implements RestaurantDao{
     public List<Restaurant> finalistRestaurants(Long eventId) {
         List<Restaurant> allRestaurantsList = new ArrayList<>();
         List<Long> restaurantIds = new ArrayList<>();
-        String sqlFinalists = "select restaurant_id from events where event_id = ? and dislikes <=0 order by likes DESC limit 5;";
+        String sqlFinalists = "select r.restaurant_id, name, stars, street_address, city, state, zipcode, category, phone_number" +
+                " from events join restaurant r on events.restaurant_id = r.restaurant_id " +
+                "where event_id = ? and dislikes <=0 order by likes DESC limit 5;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFinalists,eventId);
 
-        while (results.next()){
-
-            Long id = results.getLong("restaurant_id");
-            String sqlTemp = "select * from restaurant where restaurant_id = ?";
-            SqlRowSet results2 = jdbcTemplate.queryForRowSet(sqlTemp,id);
-
-            while (results2.next()){
+        while(results.next()) {
+            restaurantIds.add(results.getLong("restaurant_id"));
+//        }
+//
+//        for (Long id : restaurantIds) {
+//            String sql = "select * from restaurant where restaurant_id = ?;";
+//            SqlRowSet results2 = jdbcTemplate.queryForRowSet(sql, id);
+//            if (results2.next()) {
                 Restaurant restaurant = new Restaurant();
-                restaurant.setRestaurantId(results.getInt("restaurant_id"));
+                restaurant.setRestaurantId(results.getLong("restaurant_id"));
                 restaurant.setName(results.getString("name"));
                 restaurant.setStars(results.getInt("stars"));
                 restaurant.setStreetAddress(results.getString("street_address"));
@@ -189,8 +192,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
                 restaurant.setPhoneNumber(results.getString("phone_number"));
                 allRestaurantsList.add(restaurant);
             }
-        }
-
+//        }
         return allRestaurantsList;
     }
 }
