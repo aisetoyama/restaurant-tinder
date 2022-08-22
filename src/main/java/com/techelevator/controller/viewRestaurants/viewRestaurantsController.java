@@ -49,7 +49,7 @@ public class viewRestaurantsController {
     @RequestMapping(path = "/viewRestaurantsResults", method = RequestMethod.GET)
     public String showAllResults(HttpSession session, ModelMap modelHolder) {
         List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
-        int eventId = (int) session.getAttribute("eventId");
+        long eventId = (long) session.getAttribute("eventId");
         modelHolder.put("eventId", eventId);
         modelHolder.put("restaurantList", restaurantList);
 
