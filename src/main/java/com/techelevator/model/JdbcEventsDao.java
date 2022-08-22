@@ -16,14 +16,15 @@ public class JdbcEventsDao implements EventsDao {
     }
 
     @Override
-    public void updateLikes(Long restaurantId, Long eventId, int likes) {
-        String sql = "UPDATE events SET likes = ? WHERE restaurant_id = ? AND event_id = ?";
-        jdbcTemplate.update(sql, likes, restaurantId, eventId);
+    public void updateLikes(Long restaurantId, String hostName) {
+        String sql = "UPDATE events SET likes = likes + 1 WHERE restaurant_id = ? AND host_name = ?";
+        jdbcTemplate.update(sql, restaurantId, hostName);
     }
 
     @Override
-    public void updateDislikes(Long restaurantId, Long eventId, int dislikes) {
-        String sql = "UPDATE events SET dislikes = ? WHERE restaurant_id = ? AND event_id = ?";
-        jdbcTemplate.update(sql, dislikes, restaurantId, eventId);
+    public void updateDislikes(Long restaurantId, String hostName) {
+        String sql = "UPDATE events SET dislikes = dislikes + 1 WHERE restaurant_id = ? AND host_name = ?";
+        jdbcTemplate.update(sql, restaurantId, hostName);
     }
+
 }
