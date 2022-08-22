@@ -119,7 +119,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
     }
 
     @Override
-    public List<Restaurant> getRestaurantsByEventId(int eventId, String hostName) {
+    public List<Restaurant> getRestaurantsByEventId(Long eventId, String hostName) {
         List<Restaurant> allRestaurantsList = new ArrayList<>();
         String sqlJoins = "select name,stars,street_address,city,state,zipcode,category,phone_number,restaurant.restaurant_id " +
                 "from restaurant " +
@@ -147,7 +147,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
     }
 
     @Override
-    public boolean isWithinDeadline(int eventId) {
+    public boolean isWithinDeadline(Long eventId) {
         String sqlDeadline = "select deadline from events where event_id = ? limit 1;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlDeadline, eventId);
         if (results.next()) {

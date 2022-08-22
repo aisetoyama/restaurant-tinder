@@ -50,11 +50,11 @@ public class viewRestaurantsController {
     @RequestMapping(path = "/viewRestaurantsResults", method = RequestMethod.GET)
     public String showAllResults(HttpSession session, ModelMap modelHolder) {
         List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
-//        Long eventId = (Long) session.getAttribute("eventId");
+        Long eventId = (Long) session.getAttribute("eventId");
 
-//        System.out.println("Event ID: " + eventId);
+        System.out.println("Event ID: " + eventId);
         modelHolder.put("restaurantList", restaurantList);
-//        modelHolder.put("eventId", eventId);
+        modelHolder.put("eventId", eventId);
 
         List<Long> restaurantIds = new ArrayList<>();
         for (Restaurant res : restaurantList) {
@@ -74,7 +74,7 @@ public class viewRestaurantsController {
 
 
     @RequestMapping(path = "/guestForm", method = RequestMethod.POST)
-    public String guestFormSubmission(@RequestParam int eventNumber, @RequestParam String hostName, HttpSession session) {
+    public String guestFormSubmission(@RequestParam Long eventNumber, @RequestParam String hostName, HttpSession session) {
         if(restaurantDao.isWithinDeadline(eventNumber)) {
             // Get restaurants by event id and store into session
             List<Restaurant> restaurantListByEvent = restaurantDao.getRestaurantsByEventId(eventNumber, hostName);
