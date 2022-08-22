@@ -105,11 +105,32 @@
 
 
                                                     <br>
+                                                    <!--start of call button-->
                                                     <c:if test="${restaurantList.get(index).phoneNumber != null}">
-                                                        <button type="submit" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal"
-                                                                data-bs-target="#staticBackdrop"> Call To Order
+                                                        <button type="button" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
+                                                            Call To Order
                                                         </button>
                                                     </c:if>
+
+                                                    <!-- Modal -->
+<%--                                                    <div class="modal fade" id="phoneNumberModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
+<%--                                                        <div class="modal-dialog">--%>
+<%--                                                            <div class="modal-content">--%>
+<%--                                                                <div class="modal-header">--%>
+<%--                                                                    <h5 class="modal-title" id="exampleModalLabel">${restaurantList.get(index).name}</h5>--%>
+<%--                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--                                                                </div>--%>
+<%--                                                                <div class="modal-body">--%>
+<%--                                                                        ${restaurant.get(index).phoneNumber}--%>
+<%--                                                                </div>--%>
+<%--                                                                <div class="modal-footer">--%>
+<%--                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--%>
+<%--                                                                </div>--%>
+<%--                                                            </div>--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+                                                    <!--end of call button-->
+
                                                     <button type="submit" class="btn btn-success"> Open Now!
                                                     </button>
                                                     <!--next and previous button -->
