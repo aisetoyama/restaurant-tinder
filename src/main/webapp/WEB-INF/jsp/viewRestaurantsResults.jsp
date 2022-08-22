@@ -14,7 +14,7 @@
     </button>
     <h3>Share the following info with your friends to get their votes!</h3>
     <ul>
-        <li>Link: http://localhost:8080/capstone_war_exploded/guestForm</li>
+        <li>Link: http://localhost:8080/capstone_war_exploded/searchForEvent</li>
         <li>Event ID: ${eventId}</li>
     </ul>
 
