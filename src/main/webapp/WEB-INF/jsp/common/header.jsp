@@ -10,50 +10,56 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <c:url var="cssUrl" value="/css/site.css"/>
     <link rel="stylesheet" href="${cssUrl}" />
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg nav-color">
     <div class="container-fluid">
         <c:url var="homeUrl" value="/"/>
-        <a class="navbar-brand" href="${homeUrl}"><img src="images/Small-logo.png"/></a>
+        <a class="navbar-brand" href="${homeUrl}"><img src="images/white_logo.png"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <c:url var="aboutUrl" value="/about"/>
-                <c:url var="privateUrl" value="/private"/>
+                <c:url var="viewRestaurantsUrl" value="/viewRestaurants"/>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="${homeUrl}">Home</a>
+                    <a class="nav-link active text-white" aria-current="page" href="${homeUrl}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${aboutUrl}">About</a>
+                    <a class="nav-link text-white" href="${aboutUrl}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${privateUrl}">Private</a>
+                    <a class="nav-link text-white" href="${privateUrl}">Private</a>
                 </li>
-                <c:if test="${appCurrentUser.role == 'admin'}">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="${viewRestaurantsUrl}">View Restaurants</a>
+                </li>
+              <%--  <c:if test="${appCurrentUser.role == 'admin'}">
                     <c:url var="administrationUrl" value="/admin"/>
                     <li class="nav-item">
                         <a class="nav-link" href="${administrationUrl}">Administration</a>
                     </li>
-                </c:if>
+                </c:if>--%>
             </ul>
             <ul class="navbar-nav d-flex">
                 <c:if test="${empty appCurrentUser}">
                     <c:url var="loginUrl" value="/login"/>
-                    <li class="nav-item"><a class="nav-link" href="${loginUrl}">Login</a></li>
+                    <li class="nav-item text-white"><a class="nav-link" href="${loginUrl}">Login</a></li>
                     <c:url var="registerUrl" value="/register"/>
-                    <li class="nav-item"><a class="nav-link" href="${registerUrl}">Register</a></li>
+                    <li class="nav-item text-white"><a class="nav-link" href="${registerUrl}">Register</a></li>
                 </c:if>
                 <c:if test="${not empty appCurrentUser}">
                     <li class="nav-item"><a class="nav-link" href="profile"><c:out value="${appCurrentUser.username}" /></a></li>
                     <c:url var="logoffUrl" value="/logoff"/>
                     <li class="nav-item">
-                        <form action="${logoffUrl}" method="POST" class="navbar-form">
-                            <button type="submit" class="btn btn-primary">Log Off</button>
+                        <form action="${logoffUrl}" method="POST" class="navbar-link">
+                            <button type="submit" class="text-dark btn btn-outline-light">Log Off</button>
                         </form>
                     </li>
                 </c:if>

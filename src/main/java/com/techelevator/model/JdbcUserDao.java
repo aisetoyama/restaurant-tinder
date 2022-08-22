@@ -22,7 +22,8 @@ public class JdbcUserDao implements UserDao {
     /**
      * Create a new user dao with the supplied data source and the password hasher
      * that will salt and hash all the passwords for users.
-     *  @param dataSource an SQL data source
+     *
+     * @param dataSource     an SQL data source
      * @param passwordHasher an object to salt and hash passwords
      */
     @Autowired
@@ -38,24 +39,28 @@ public class JdbcUserDao implements UserDao {
      *
      * @param userName the user name to give the new user
      * @param password the user's password
-     * @param role the user's role
      * @return the new user
      */
     @Override
-    public User saveUser(String userName, String password, String role) {
-        byte[] salt = passwordHasher.generateRandomSalt();
-        String hashedPassword = passwordHasher.computeHash(password, salt);
-        String saltString = new String(Base64.encode(salt));
-        long newId = jdbcTemplate.queryForObject(
-                "INSERT INTO app_user(user_name, password, salt, role) VALUES (?, ?, ?, ?) RETURNING id", Long.class,
-                userName, hashedPassword, saltString, role);
+    public User saveUser(String userName, String password) {
 
-        User newUser = new User();
-        newUser.setId(newId);
-        newUser.setUsername(userName);
-        newUser.setRole(role);
+        try {
+            byte[] salt = passwordHasher.generateRandomSalt();
+            String hashedPassword = passwordHasher.computeHash(password, salt);
+            String saltString = new String(Base64.encode(salt));
+            long newId = jdbcTemplate.queryForObject(
+                    "INSERT INTO app_user(user_name, password, salt) VALUES (?, ?, ?) RETURNING id", Long.class,
+                    userName, hashedPassword, saltString);
 
-        return newUser;
+            User newUser = new User();
+            newUser.setId(newId);
+            newUser.setUsername(userName);
+            return newUser;
+        } catch (Exception e) {
+            System.out.println("no duplicate emails.");
+        }
+//        newUser.setRole(role);
+        return null;
     }
 
     @Override
@@ -95,14 +100,27 @@ public class JdbcUserDao implements UserDao {
         }
     }
 
+    @Override
+    public boolean isValidEmail(String username) {
+        List<User> userList = getAllUsers();
+        for (User user : userList) {
+            if (user.getUsername().equals(username)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     /**
      * Get all of the users from the database.
+     *
      * @return a List of user objects
      */
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
-        String sqlSelectAllUsers = "SELECT id, user_name, role FROM app_user";
+        String sqlSelectAllUsers = "SELECT id, user_name FROM app_user";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllUsers);
 
         while (results.next()) {
@@ -113,11 +131,24 @@ public class JdbcUserDao implements UserDao {
         return users;
     }
 
+
+//    @Override
+//    public Project getProject(Long projectId) {
+//        Project project = null;
+//        String sql = "SELECT * FROM project WHERE project_id = ?";
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, projectId);
+//        if (results.next()) {
+//            project = mapRowToProject(results);
+//        }
+//        return project;
+//    }
+
+
     private User mapResultToUser(SqlRowSet results) {
         User user = new User();
         user.setId(results.getLong("id"));
         user.setUsername(results.getString("user_name"));
-        user.setRole(results.getString("role"));
+//        user.setRole(results.getString("role"));
         return user;
     }
 

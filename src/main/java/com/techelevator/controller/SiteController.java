@@ -16,26 +16,31 @@ public class SiteController {
     @Autowired
     private AuthProvider auth;
 
-    @RequestMapping(path = "/private", method = RequestMethod.GET)
-    public String privatePage() throws UnauthorizedException {
-        if (auth.userHasRole(new String[] { "admin", "user" })) {
-            return "private";
-        } else {
-            throw new UnauthorizedException();
-        }
-    }
+//    @RequestMapping(path = "/private", method = RequestMethod.GET)
+//    public String privatePage() throws UnauthorizedException {
+//        if (auth.userHasRole(new String[] { "admin", "user" })) {
+//            return "private";
+//        } else {
+//            throw new UnauthorizedException();
+//        }
+//    }
 
-    @RequestMapping(path = "/admin", method = RequestMethod.GET)
-    public String adminPage() throws UnauthorizedException {
-        if (auth.userHasRole(new String[] { "admin" })) {
-            return "administration/admin";
-        } else {
-            throw new UnauthorizedException();
-        }
-    }
+//    @RequestMapping(path = "/admin", method = RequestMethod.GET)
+//    public String adminPage() throws UnauthorizedException {
+//        if (auth.userHasRole(new String[] { "admin" })) {
+//            return "administration/admin";
+//        } else {
+//            throw new UnauthorizedException();
+//        }
+//    }
 
     @RequestMapping(path = "/about", method = RequestMethod.GET)
     public String aboutPage() throws UnauthorizedException {
         return "about";
+    }
+
+    @RequestMapping(path = "/viewRestaurants", method = RequestMethod.GET)
+    public String viewRestaurants() throws UnauthorizedException {
+        return "viewRestaurants";
     }
 }
