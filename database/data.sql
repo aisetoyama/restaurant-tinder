@@ -191,6 +191,9 @@ insert into restaurant (name,
                                               'American',
                                               '6504932844');
 
+
+
+
 create table schedule (
                           restaurant_id int,
                           day_of_week int,
@@ -470,6 +473,40 @@ insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (1
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,5,'08:00','21:00');
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,6,'08:00','21:00');
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (11,7,'08:00','21:00');
+
+--Schedule inserts for Mountain View American ^^
+-- Eureka
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (12,1,'11:00','23:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (12,2,'11:00','23:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (12,3,'11:00','23:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (12,4,'11:00','24:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (12,5,'11:00','01:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (12,6,'11:00','02:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (12,7,'11:00','23:00');
+-- The Melt
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,1,'11:00','24:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,2,'11:00','24:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,3,'11:00','24:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,4,'11:00','24:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,5,'11:00','24:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,6,'11:00','24:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,7,'11:00','24:00');
+-- Steins Beer Garden
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (14,1,'11:30','22:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (14,2,'11:30','22:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (14,3,'11:30','22:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (14,4,'11:30','23:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (14,5,'11:30','23:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (14,6,'10:00','23:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (14,7,'10:00','21:00');
+-- Scratch
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (15,1,'16:00','22:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (15,2,'16:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (15,3,'16:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (15,4,'16:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (15,5,'16:00','21:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (15,6,'10:00','22:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (15,7,'10:00','22:00');
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO capstone_appuser;
 
