@@ -16,7 +16,7 @@
     <div>
         <p>Share the following info with your friends to invite them!</p>
         <p>Link: http://localhost:8080/capstone_war_exploded/guestForm</p>
-        <p>Event ID: ${eventId}</p>
+        <p>Event ID: ${eventIdString}</p>
     </div>
 
     <!-- Modal -->
