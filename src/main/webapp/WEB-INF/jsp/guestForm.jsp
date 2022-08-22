@@ -17,9 +17,6 @@
     <input type="number" id="eventNumber" name="eventNumber"/>  <%-- change type? --%>
     <br>
 
-    <label for="hostName"> Enter your host's name: </label>
-    <input type="text" id="hostName" name="hostName"/>
-    <br>
     <button type="submit">Submit</button>
 
 </form>

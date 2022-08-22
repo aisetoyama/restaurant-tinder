@@ -13,6 +13,12 @@
         View Restaurants
     </button>
 
+    <div>
+        <p>Share the following info with your friends to invite them!</p>
+        <p>Link: http://localhost:8080/capstone_war_exploded/guestForm</p>
+        <p>Event ID: ${eventId}</p>
+    </div>
+
     <!-- Modal -->
     <div class="modal fade" id="ModalCarousel" tabindex="-1" role="dialog" aria-labelledby="ModalCarouselLabel">
         <div class="modal-dialog" role="document">
@@ -83,10 +89,12 @@
                                                 <c:url var="viewRestaurantsResultsUrl1" value="/viewRestaurantsResults">
                                                     <c:param value="${restaurant}" name="restaurant"></c:param>
                                                     <c:param name="reaction" value="true"></c:param>
+                                                    <c:param name="eventId" value="${eventId}"></c:param>
                                                 </c:url>
                                                 <c:url var="viewRestaurantsResultsUrl2" value="/viewRestaurantsResults">
                                                     <c:param value="${restaurant}" name="restaurant"></c:param>
                                                     <c:param name="reaction" value="false"></c:param>
+                                                    <c:param name="eventId" value="${eventId}"></c:param>
                                                 </c:url>
 
                                                 <div class="card-footer">

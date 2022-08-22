@@ -25,11 +25,11 @@ public class EventsController {
 
 
     @RequestMapping(path = "/viewRestaurantsResults", method = RequestMethod.POST)
-    public @ResponseBody ResponseEntity<Void> updateLikes(@RequestParam long restaurant, @RequestParam String reaction) {
+    public @ResponseBody ResponseEntity<Void> updateLikes(@RequestParam long restaurant, @RequestParam long eventId, @RequestParam String reaction) {
         if(reaction.equals("true")){
-            eventsDao.updateLikes(restaurant, auth.getCurrentUser().getUsername());
+            eventsDao.updateLikes(restaurant, eventId);
         } else {
-            eventsDao.updateDislikes(restaurant, auth.getCurrentUser().getUsername());
+            eventsDao.updateDislikes(restaurant, eventId);
         }
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }}
