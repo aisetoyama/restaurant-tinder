@@ -12,7 +12,7 @@ public interface RestaurantDao {
 
     public List<List<Schedule>> getScheduleByRestaurantID(List<Long> restaurantId);
 
-    public void addEventToTable(List<Long> restaurantId, String username, LocalDate deadline);
+    public Long addEventToTable(List<Long> restaurantId, String username, LocalDate deadline);
 
     public List<Restaurant> getRestaurantsByEventId(int eventId, String hostName);
 

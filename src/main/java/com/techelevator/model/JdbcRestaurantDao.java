@@ -92,7 +92,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
     }
 
     @Override
-    public void addEventToTable(List<Long> restaurantId, String username, LocalDate deadline) {
+    public Long addEventToTable(List<Long> restaurantId, String username, LocalDate deadline) {
         String sqlForUserId = "select id from app_user where user_name = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlForUserId, username);
         int user_id = 0;
@@ -102,8 +102,8 @@ public class JdbcRestaurantDao implements RestaurantDao{
         }
 
         String insertSql;
-        String sqlReference = "insert into event_user_id (user_id) values (?);";
-        jdbcTemplate.update(sqlReference, user_id);
+        String sqlReference = "insert into event_user_id (user_id) values (?) returning event_id;";
+        Long eventId = jdbcTemplate.queryForObject(sqlReference, Long.class, user_id);
         String sqlGetMaxEventId = "select max(event_id) as event_id from event_user_id where user_id = ?";
         SqlRowSet resultsForMax = jdbcTemplate.queryForRowSet(sqlGetMaxEventId, user_id);
         int event_id = 0;
@@ -115,6 +115,7 @@ public class JdbcRestaurantDao implements RestaurantDao{
             insertSql = "INSERT INTO events ( event_id, host_name, restaurant_id, likes, dislikes, deadline) VALUES (?,?,?,?,?,?)";
             jdbcTemplate.update(insertSql, event_id, username, id, 0, 0, deadline);
         }
+        return eventId;
     }
 
     @Override

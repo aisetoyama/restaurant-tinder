@@ -35,7 +35,8 @@ public class viewRestaurantsController {
             restaurantIds.add(res.getRestaurantId());
         }
         LocalDate deadlineDate = LocalDate.parse(deadline);
-        restaurantDao.addEventToTable(restaurantIds, username, deadlineDate);
+        Long eventId = restaurantDao.addEventToTable(restaurantIds, username, deadlineDate);
+        session.setAttribute("eventId", eventId);
         return "redirect:/viewRestaurantsResults";
     }
 
@@ -49,8 +50,11 @@ public class viewRestaurantsController {
     @RequestMapping(path = "/viewRestaurantsResults", method = RequestMethod.GET)
     public String showAllResults(HttpSession session, ModelMap modelHolder) {
         List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
-        System.out.println("HERE at showAllResults: " +  restaurantList);
+//        Long eventId = (Long) session.getAttribute("eventId");
+
+//        System.out.println("Event ID: " + eventId);
         modelHolder.put("restaurantList", restaurantList);
+//        modelHolder.put("eventId", eventId);
 
         List<Long> restaurantIds = new ArrayList<>();
         for (Restaurant res : restaurantList) {
@@ -75,6 +79,7 @@ public class viewRestaurantsController {
             // Get restaurants by event id and store into session
             List<Restaurant> restaurantListByEvent = restaurantDao.getRestaurantsByEventId(eventNumber, hostName);
             session.setAttribute("restaurantList", restaurantListByEvent);
+            session.setAttribute("eventId", eventNumber);
 
             List<Long> restaurantIds = new ArrayList<>();
             for (Restaurant res : restaurantListByEvent) {

@@ -83,10 +83,12 @@
                                                 <c:url var="viewRestaurantsResultsUrl1" value="/viewRestaurantsResults">
                                                     <c:param value="${restaurant}" name="restaurant"></c:param>
                                                     <c:param name="reaction" value="true"></c:param>
+                                                    <c:param name="eventId" value="${eventId}"></c:param>
                                                 </c:url>
                                                 <c:url var="viewRestaurantsResultsUrl2" value="/viewRestaurantsResults">
                                                     <c:param value="${restaurant}" name="restaurant"></c:param>
                                                     <c:param name="reaction" value="false"></c:param>
+                                                    <c:param name="eventId" value="${eventId}"></c:param>
                                                 </c:url>
 
                                                 <div class="card-footer">
