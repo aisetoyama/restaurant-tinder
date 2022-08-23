@@ -1,10 +1,11 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ include file = "../../common/header.jsp" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ include file="../../common/header.jsp" %>
 
 <c:url var="registerUrl" value="/register"/>
 
 
-<form:form class="row justify-content-center w-50 mx-auto mt-5 border-white rounded p-5 form-bg shadow" action="${registerUrl}" method="POST" modelAttribute="user">
+<form:form class="row justify-content-center w-50 mx-auto mt-5 border-white rounded p-5 form-bg shadow"
+           action="${registerUrl}" method="POST" modelAttribute="user">
     <h1 class="text-center salmon-text-color">register</h1>
     <div class="form-group">
         <label for="username" class="font-weight-bold">Username</label>
@@ -34,29 +35,16 @@
         <form:errors path="passwordMatching" cssClass="bg-danger"/>
     </div>
     <fieldset>
-<%--        <form:errors path="role" cssClass="bg-danger"/>--%>
         <div class="checkbox">
-        <div class="radio">
-            <label>
-                <form:radiobutton path="role" value="user" checked="checked"/>
-                User
-            </label>
+            <div class="radio">
+                <label>
+                    <form:radiobutton path="role" value="user" checked="checked"/>
+                    User
+                </label>
+            </div>
         </div>
-        </div>
-<%--        <div class="radio">--%>
-<%--            <label>--%>
-<%--                <form:radiobutton path="role" value="admin"/>--%>
-<%--                Administrator--%>
-<%--            </label>--%>
-<%--        </div>--%>
-<%--        <div class="radio">--%>
-<%--            <label>--%>
-<%--                <form:radiobutton path="role" value="editor"/>--%>
-<%--                Editor--%>
-<%--            </label>--%>
-<%--        </div>--%>
     </fieldset>
     <button type="submit" class="btn btn-default">Save User</button>
 </form:form>
 
-<%@ include file = "../../common/footer.jsp" %>
+<%@ include file="../../common/footer.jsp" %>
