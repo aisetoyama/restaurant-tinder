@@ -62,3 +62,37 @@ body {
     visibility: hidden;
     opacity: 0;
 }
+
+
+/* Features Section */
+#features{
+    position:relative;
+}
+
+.feature-title{
+    font-size:1.5rem;
+}
+
+.feature-box{
+    padding:5%;
+}
+
+
+
+.icon{
+    color:#EF8172;
+    margin-bottom:1rem;
+}
+
+.icon:hover{
+    color:#FF4C68;
+}
+
+
+
+
+.container-fluid{
+    /*padding: 7% 15%;*/
+}
+
+
