@@ -1,11 +1,10 @@
-<%@ include file = "common/header.jsp" %>
+<%@ include file="common/header.jsp" %>
 
 <%--<!DOCTYPE html>--%>
 <html>
 <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 </head>
-
 <body>
 <div class="container text-center">
     <h3>View Results</h3>
@@ -54,9 +53,9 @@
                                                      alt="restaurant image"/>
 
                                                 <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">
-                                                    <c:if test="${schedule.dayOfWeek == dateNow && schedule.timeOpen <= timeNow && schedule.timeClosed >= timeNow}">
-                                                        <span class="label label-success">Open Now!</span>
-                                                    </c:if>
+                                                        <c:if test="${schedule.dayOfWeek == dateNow && schedule.timeOpen <= timeNow && schedule.timeClosed >= timeNow}">
+                                                            <span class="label label-success">Open Now!</span>
+                                                        </c:if>
                                                 </c:forEach>
 
                                                 <h5>Category:</h5>
@@ -106,17 +105,26 @@
 
                                                 <div class="card-footer">
                                                     <div class="row">
-                                                        <form class="col" method="POST" action="${viewRestaurantsResultsUrl2}">
-                                                            <button id='dislike${index}' type="submit" class="btn btn-danger bi bi-heartbreak-fill"
-                                                                    data-bs-target="#staticBackdrop" onclick="disable('like${index}', 'dislike${index}')"> Dislike
+                                                        <form class="col" method="POST"
+                                                              action="${viewRestaurantsResultsUrl2}">
+                                                            <button id='dislike${index}' type="submit"
+                                                                    class="btn btn-danger bi bi-heartbreak-fill"
+                                                                    data-bs-target="#staticBackdrop"
+                                                                    onclick="disable('like${index}', 'dislike${index}')">
+                                                                Dislike
                                                             </button>
                                                         </form>
-                                                        <form class="col" method="POST" action="${viewRestaurantsResultsUrl1}">
-                                                            <button id='like${index}' type="submit" class="btn btn-primary bi bi-heart-fill"
-                                                                    data-bs-target="#staticBackdrop" onclick="disable('like${index}', 'dislike${index}')"> Like
+                                                        <form class="col" method="POST"
+                                                              action="${viewRestaurantsResultsUrl1}">
+                                                            <button id='like${index}' type="submit"
+                                                                    class="btn btn-primary bi bi-heart-fill"
+                                                                    data-bs-target="#staticBackdrop"
+                                                                    onclick="disable('like${index}', 'dislike${index}')">
+                                                                Like
                                                             </button>
                                                         </form>
                                                     </div>
+
 
                                                     <br>
 
@@ -157,7 +165,6 @@
                                 </div>
                             </div>
                         </c:forEach>
-
                     </div>
                 </div>
             </div>
@@ -173,13 +180,7 @@
 
         document.getElementById(likeId).classList.add('disabled');
         document.getElementById(dislikeId).classList.add('disabled');
-
     }
-    //     function enable() {
-    // // submit or validate here , disable after that using below
-    //         document.getElementById().classList.remove('disabled');
-    //         document.getElementById('dislike').classList.remove('disabled');
-    //     }
 
 </script>
 </body>
