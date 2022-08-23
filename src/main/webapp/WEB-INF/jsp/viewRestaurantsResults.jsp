@@ -100,13 +100,13 @@
                                                 <div class="card-footer">
                                                     <div class="row">
                                                         <form class="col" method="POST" action="${viewRestaurantsResultsUrl2}">
-                                                            <button id="dislike" type="submit" class="btn btn-danger bi bi-heartbreak-fill"
-                                                                    data-bs-target="#staticBackdrop" onclick="EnableDisable()"> Dislike
+                                                            <button id="dislike" type="submit" class="btn btn-danger bi bi-heartbreak-fill dislike"
+                                                                    data-bs-target="#staticBackdrop"> Dislike
                                                             </button>
                                                         </form>
                                                         <form class="col" method="POST" action="${viewRestaurantsResultsUrl1}">
-                                                            <button id="like" type="submit" class="btn btn-primary bi bi-heart-fill"
-                                                                    data-bs-target="#staticBackdrop" onclick="EnableDisable()"> Like
+                                                            <button id="like" type="submit" class="btn btn-primary bi bi-heart-fill like"
+                                                                    data-bs-target="#staticBackdrop"> Like
                                                             </button>
                                                         </form>
                                                     </div>
@@ -167,14 +167,6 @@
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script>
-    // $('#like').on("click",function() {
-    //     $('#dislike').attr("disabled", "disabled");
-    // });
-    //
-    // $('#dislike').on("click",function() {
-    //     $('#like').attr("disabled", "disabled");
-    // });
-
     $('form').submit(function() {
         $(this).find("button[type='submit']").prop('disabled',true);
     });
