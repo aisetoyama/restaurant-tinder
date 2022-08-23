@@ -164,7 +164,6 @@
 
         document.getElementById(likeId).classList.add('disabled');
         document.getElementById(dislikeId).classList.add('disabled');
-
     }
 
 </script>
