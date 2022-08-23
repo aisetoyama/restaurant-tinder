@@ -42,11 +42,11 @@
                                     <div class="card-dialog">
                                         <div class="card-content">
                                             <div class="card-header">
+                                                <button type="button" class="close" data-dismiss="modal">X</button>
                                                 <h4 class="card-title"
                                                     id="staticBackdropLabel1">${restaurantList.get(index).name}</h4>
                                             </div>
                                             <div class="card-body">
-                                                <button type="button" class="close" data-dismiss="modal">X</button>
                                                 <c:url var="restaurantImage"
                                                        value="/images/restaurant_${restaurantList.get(index).restaurantId}.png"></c:url>
                                                 <img class="img-thumbnail w-50" src="${restaurantImage}"
@@ -54,7 +54,7 @@
                                                 <h5>Category:</h5>
                                                 <p>${restaurantList.get(index).category}</p>
                                                 <h5>Address:</h5>
-                                                <p>${restaurantList.get(index).streetAddress}</p>
+                                                <p>${restaurantList.get(index).streetAddress}, ${restaurantList.get(index).city}, ${restaurantList.get(index).state} ${restaurantList.get(index).zipcode}</p>
                                                 <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">
                                                     <ul id="schedule">
                                                         <li><c:choose>
@@ -120,12 +120,22 @@
                                                     <button type="submit" class="btn btn-success"> Open Now!
                                                     </button>
                                                     <!--next and previous button -->
-
-                                                    <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
-                                                        <button type="submit" class="btn btn-secondary"
-                                                                data-bs-target="#staticBackdrop"> Next
-                                                        </button>
-                                                    </a>
+                                                    <c:choose>
+                                                        <c:when test="${index == restaurantList.size()-1}">
+                                                            <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
+                                                                <button type="submit" class="btn btn-secondary" data-dismiss="modal"
+                                                                        data-bs-target="#staticBackdrop"> Submit & Close
+                                                                </button>
+                                                            </a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
+                                                                <button type="submit" class="btn btn-secondary"
+                                                                        data-bs-target="#staticBackdrop"> Next
+                                                                </button>
+                                                            </a>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,29 +145,6 @@
                         </c:forEach>
 
                     </div>
-                    <!-- Next / Previous controls here -->
-<%--                    <div class="card-footer">--%>
-<%--                        <form method="post" action="${}">--%>
-<%--                            <a class="left" href="#carousel-modal-demo" data-slide="next">--%>
-<%--                                <button type="submit" class="btn btn-danger bi bi-heartbreak-fill"--%>
-<%--                                        data-bs-target="#staticBackdrop"><input type="hidden" value="dislike" id="reaction" name="reaction"> Dislike--%>
-<%--                                </button>--%>
-<%--                            </a>--%>
-<%--                            <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">--%>
-<%--                                <button type="submit" class="btn btn-primary bi bi-heart-fill"--%>
-<%--                                        data-bs-target="#staticBackdrop"><input type="hidden" value="like" name="reaction"> Like--%>
-<%--                                </button>--%>
-<%--                            </a>--%>
-<%--                        </form>--%>
-<%--                        <br>--%>
-<%--                        <c:if test="${restaurantList.get(index).phoneNumber != null}">--%>
-<%--                            <button type="submit" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal"--%>
-<%--                                    data-bs-target="#staticBackdrop"> Call To Order--%>
-<%--                            </button>--%>
-<%--                        </c:if>--%>
-<%--                        <button type="submit" class="btn btn-success"> Open Now!--%>
-<%--                        </button>--%>
-<%--                    </div>--%>
                 </div>
             </div>
         </div>
