@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,10 +53,11 @@ public class viewRestaurantsController {
     public String showAllResults(HttpSession session, ModelMap modelHolder) {
         List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
         Long eventId = (Long) session.getAttribute("eventId");
-
-        System.out.println("Event ID: " + eventId);
+        DateTimeFormatter militaryTimeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
         modelHolder.put("restaurantList", restaurantList);
         modelHolder.put("eventId", eventId);
+        modelHolder.put("dateNow", LocalDate.now().getDayOfWeek().getValue() - 1);
+        modelHolder.put("timeNow", LocalTime.now().format(militaryTimeFormat));
 
         List<Long> restaurantIds = new ArrayList<>();
         for (Restaurant res : restaurantList) {

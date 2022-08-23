@@ -51,6 +51,13 @@
                                                        value="/images/restaurant_${restaurantList.get(index).restaurantId}.png"></c:url>
                                                 <img class="img-thumbnail w-50" src="${restaurantImage}"
                                                      alt="restaurant image"/>
+
+                                                <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">
+                                                        <c:if test="${schedule.dayOfWeek == dateNow && schedule.timeOpen <= timeNow && schedule.timeClosed >= timeNow}">
+                                                            <span class="label label-success">Open Now!</span>
+                                                        </c:if>
+                                                </c:forEach>
+
                                                 <h5>Category:</h5>
                                                 <p>${restaurantList.get(index).category}</p>
                                                 <h5>Address:</h5>
@@ -117,8 +124,6 @@
                                                                 data-bs-target="#staticBackdrop"> Call To Order
                                                         </button>
                                                     </c:if>
-                                                    <button type="submit" class="btn btn-success"> Open Now!
-                                                    </button>
                                                     <!--next and previous button -->
                                                     <c:choose>
                                                         <c:when test="${index == restaurantList.size()-1}">
