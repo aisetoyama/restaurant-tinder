@@ -1,10 +1,11 @@
-<%@ include file="common/header.jsp" %>
+<%@ include file = "common/header.jsp" %>
 
 <%--<!DOCTYPE html>--%>
 <html>
 <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 </head>
+
 <body>
 <div class="container text-center">
     <h3>View Results</h3>
@@ -117,30 +118,38 @@
                                                         </form>
                                                     </div>
 
-
                                                     <br>
-                                                    <c:if test="${restaurantList.get(index).phoneNumber != null}">
-                                                        <button type="submit" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal"
-                                                                data-bs-target="#staticBackdrop"> Call To Order
-                                                        </button>
-                                                    </c:if>
+
+                                                    <div class="row btn-group">
+                                                        <c:if test="${restaurantList.get(index).phoneNumber != null}">
+                                                            <div class="dropdown col-sm-6 mr-5">
+                                                                <button class="btn btn-success" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    Call To Order
+                                                                </button>
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                    <li><a class="dropdown-item">${restaurantList.get(index).phoneNumber}</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </c:if>
+
                                                     <!--next and previous button -->
-                                                    <c:choose>
-                                                        <c:when test="${index == restaurantList.size()-1}">
-                                                            <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
-                                                                <button type="submit" class="btn btn-secondary" data-dismiss="modal"
-                                                                        data-bs-target="#staticBackdrop"> Submit & Close
-                                                                </button>
-                                                            </a>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
-                                                                <button type="submit" class="btn btn-secondary"
-                                                                        data-bs-target="#staticBackdrop" > Next
-                                                                </button>
-                                                            </a>
-                                                        </c:otherwise>
-                                                    </c:choose>
+                                                        <c:choose>
+                                                            <c:when test="${index == restaurantList.size()-1}">
+                                                                <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
+                                                                    <button type="submit" class="btn btn-secondary" data-dismiss="modal"
+                                                                            data-bs-target="#staticBackdrop"> Submit & Close
+                                                                    </button>
+                                                                </a>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
+                                                                    <button type="submit" class="btn btn-secondary"
+                                                                            data-bs-target="#staticBackdrop" > Next
+                                                                    </button>
+                                                                </a>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
