@@ -62,7 +62,7 @@ insert into restaurant (name,
                                               'CA',
                                               '94043',
                                               'American',
-                                              '6507441030');
+                                              '(650) 744-1030');
 insert into restaurant (name,
                         stars,
                         street_address,
@@ -77,7 +77,7 @@ insert into restaurant (name,
                                               'CA',
                                               '94043',
                                               'Spanish',
-                                              '6504202600');
+                                              '(650) 420-2600');
 insert into restaurant (name,
                         stars,
                         street_address,
@@ -92,7 +92,7 @@ insert into restaurant (name,
                                               'CA',
                                               '94043',
                                               'Barbeque',
-                                              '6509880400');
+                                              '(650) 988-0400');
 insert into restaurant (name,
                         stars,
                         street_address,
@@ -107,7 +107,7 @@ insert into restaurant (name,
                                               'CA',
                                               '94043',
                                               'Cafes',
-                                              '6508801000');
+                                              '(650) 880-1000');
 insert into restaurant (name,
                         stars,
                         street_address,
@@ -122,7 +122,7 @@ insert into restaurant (name,
                                               'CA',
                                               '94043',
                                               'Italian',
-                                              '6502541120');
+                                              '(650) 254-1120');
 
 -- 94306
 insert into restaurant (name,
@@ -139,7 +139,7 @@ insert into restaurant (name,
                                               'CA',
                                               '94306',
                                               'American',
-                                              '6508566124');
+                                              '(650) 856-6124');
 insert into restaurant (name,
                         stars,
                         street_address,
@@ -154,7 +154,7 @@ insert into restaurant (name,
                                               'CA',
                                               '94306',
                                               'Chinese',
-                                              '6505658868');
+                                              '(650) 565-8868');
 insert into restaurant (name,
                         stars,
                         street_address,
@@ -169,7 +169,7 @@ insert into restaurant (name,
                                               'CA',
                                               '94306',
                                               'Japanese',
-                                              '6508561100');
+                                              '(650) 856-1100');
 
 insert into restaurant (name,
                         stars,
@@ -185,7 +185,7 @@ insert into restaurant (name,
                                               'CA',
                                               '94306',
                                               'Thai',
-                                              '6508120139');
+                                              '(650) 812-0139');
 
 insert into restaurant (name,
                         stars,
@@ -201,7 +201,7 @@ insert into restaurant (name,
                                               'CA',
                                               '94306',
                                               'Mexican',
-                                              '6503248226');
+                                              '(650) 324-8226');
 insert into restaurant (name,
                         stars,
                         street_address,
@@ -216,7 +216,7 @@ insert into restaurant (name,
                                               'CA',
                                               '94306',
                                               'American',
-                                              '6504932844');
+                                              '(650) 493-2844');
 
 create table schedule (
                           restaurant_id int,
