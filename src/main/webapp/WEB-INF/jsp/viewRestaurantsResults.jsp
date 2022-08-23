@@ -53,15 +53,15 @@
                                                      alt="restaurant image"/>
 
                                                 <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">
-                                                        <c:if test="${schedule.dayOfWeek == dateNow && schedule.timeOpen <= timeNow && schedule.timeClosed >= timeNow}">
-                                                            <span class="label label-success">Open Now!</span>
-                                                        </c:if>
+                                                    <c:if test="${schedule.dayOfWeek == dateNow && schedule.timeOpen <= timeNow && schedule.timeClosed >= timeNow}">
+                                                        <span class="label label-success">Open Now!</span>
+                                                    </c:if>
                                                 </c:forEach>
 
                                                 <h5>Category:</h5>
                                                 <p>${restaurantList.get(index).category}</p>
                                                 <h5>Address:</h5>
-                                                <p>${restaurantList.get(index).streetAddress}</p>
+                                                <p>${restaurantList.get(index).streetAddress}, ${restaurantList.get(index).city}, ${restaurantList.get(index).state} ${restaurantList.get(index).zipcode}</p>
                                                 <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">
                                                     <ul id="schedule">
                                                         <li><c:choose>
@@ -120,24 +120,27 @@
 
                                                     <br>
                                                     <c:if test="${restaurantList.get(index).phoneNumber != null}">
-                                                        <div class="dropdown col-sm-6 mr-5">
-                                                            <button class="btn btn-success" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                Call To Order
-                                                            </button>
-                                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item">${restaurantList.get(index).phoneNumber}</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </c:if>
-                                                    <button type="submit" class="btn btn-success"> Open Now!
-                                                    </button>
-                                                    <!--next and previous button -->
-
-                                                    <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
-                                                        <button type="submit" class="btn btn-secondary"
-                                                                data-bs-target="#staticBackdrop"> Next
+                                                        <button type="submit" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal"
+                                                                data-bs-target="#staticBackdrop"> Call To Order
                                                         </button>
-                                                    </a>
+                                                    </c:if>
+                                                    <!--next and previous button -->
+                                                    <c:choose>
+                                                        <c:when test="${index == restaurantList.size()-1}">
+                                                            <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
+                                                                <button type="submit" class="btn btn-secondary" data-dismiss="modal"
+                                                                        data-bs-target="#staticBackdrop"> Submit & Close
+                                                                </button>
+                                                            </a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
+                                                                <button type="submit" class="btn btn-secondary"
+                                                                        data-bs-target="#staticBackdrop" > Next
+                                                                </button>
+                                                            </a>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </div>
                                             </div>
                                         </div>
@@ -163,11 +166,11 @@
         document.getElementById(dislikeId).classList.add('disabled');
 
     }
-//     function enable() {
-// // submit or validate here , disable after that using below
-//         document.getElementById().classList.remove('disabled');
-//         document.getElementById('dislike').classList.remove('disabled');
-//     }
+    //     function enable() {
+    // // submit or validate here , disable after that using below
+    //         document.getElementById().classList.remove('disabled');
+    //         document.getElementById('dislike').classList.remove('disabled');
+    //     }
 
 </script>
 </body>
