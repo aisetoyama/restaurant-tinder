@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <c:url var="cssUrl" value="/css/site.css"/>
     <link rel="stylesheet" href="${cssUrl}" />
+    <script src="https://kit.fontawesome.com/3ea53c1d6b.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg nav-color">
@@ -68,7 +70,7 @@
         </div>
     </div>
 </nav>
-<div class="container body-content">
+<%--<div class="container body-content">--%>
 <c:if test="${not empty message}">
     <div class="message alert alert-danger" role="alert">
         <c:out value="${message}"/>

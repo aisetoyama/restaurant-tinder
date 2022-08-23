@@ -19,12 +19,12 @@ body {
 
 .nav-color {
     background-color: salmon;
+    font-size: 20px;
 }
 
 .cover-img {
     width: 400px;
 }
-
 
 
 
@@ -67,6 +67,7 @@ body {
 /* Features Section */
 #features{
     position:relative;
+    padding-left: 75px;
 }
 
 .feature-title{
@@ -89,10 +90,79 @@ body {
 }
 
 
-
-
 .container-fluid{
     /*padding: 7% 15%;*/
 }
 
 
+/* Sections */
+
+.salmon-section {
+    background-color: salmon;
+}
+
+.white-section{
+    background-color: #fff;
+}
+#about-us {
+    height: 500px;
+    padding-top: 50px;
+    padding-left: 150px;
+    padding-bottom: 705px;
+    color: white;
+}
+/* Headings */
+
+
+.section-heading{
+    font-size:3rem;
+    line-height: 1.5;
+    padding-left: 75px;
+    padding-right: 70px;
+}
+
+h1 {
+    font-size: 3rem;
+    line-height: 1.5;
+}
+
+.meal-plan h2 {
+    /*padding-left: 75px;*/
+    justify-content: center;
+    text-align: center;
+    padding-top: 100px;
+    color: #f69689;
+    font-size: 2.5rem;
+}
+.meal-plan p {
+    justify-content: center;
+    text-align: center;
+}
+/*boxes  */
+#pricing {
+    background: #EF8172;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    text-align: center;
+}
+
+.feature-box h3 {
+    color: #f69689;
+}
+
+.larger-img {
+    border-radius: 5%;
+    display:inline-block;
+    margin-left: 120px;
+}
+
+.card-header .silver {
+    color: silver;
+}
+
+.card-header .gold {
+    color: #cb9612;
+}
+.card-header .platinum {
+    color: #ce834e;
+}
