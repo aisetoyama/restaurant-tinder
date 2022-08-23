@@ -4,6 +4,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 <div class="container text-center">
@@ -99,13 +100,13 @@
                                                 <div class="card-footer">
                                                     <div class="row">
                                                         <form class="col" method="POST" action="${viewRestaurantsResultsUrl2}">
-                                                            <button type="submit" class="btn btn-danger bi bi-heartbreak-fill"
-                                                                    data-bs-target="#staticBackdrop"> Dislike
+                                                            <button id="dislike" type="submit" class="btn btn-danger bi bi-heartbreak-fill"
+                                                                    data-bs-target="#staticBackdrop" onclick="EnableDisable()"> Dislike
                                                             </button>
                                                         </form>
                                                         <form class="col" method="POST" action="${viewRestaurantsResultsUrl1}">
-                                                            <button type="submit" class="btn btn-primary bi bi-heart-fill"
-                                                                    data-bs-target="#staticBackdrop"> Like
+                                                            <button id="like" type="submit" class="btn btn-primary bi bi-heart-fill"
+                                                                    data-bs-target="#staticBackdrop" onclick="EnableDisable()"> Like
                                                             </button>
                                                         </form>
                                                     </div>
@@ -114,7 +115,7 @@
                                                     <br>
                                                     <c:if test="${restaurantList.get(index).phoneNumber != null}">
                                                         <button type="submit" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal"
-                                                                data-bs-target="#staticBackdrop"> Call To Order
+                                                                data-bs-target="#staticBackdrop" > Call To Order
                                                         </button>
                                                     </c:if>
                                                     <button type="submit" class="btn btn-success"> Open Now!
@@ -165,6 +166,19 @@
 </div>
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script>
+    // $('#like').on("click",function() {
+    //     $('#dislike').attr("disabled", "disabled");
+    // });
+    //
+    // $('#dislike').on("click",function() {
+    //     $('#like').attr("disabled", "disabled");
+    // });
+
+    $('form').submit(function() {
+        $(this).find("button[type='submit']").prop('disabled',true);
+    });
+</script>
 
 
 </body>
