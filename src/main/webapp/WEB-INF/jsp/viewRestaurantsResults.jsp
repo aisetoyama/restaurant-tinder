@@ -1,9 +1,10 @@
-<%@ include file="common/header.jsp" %>
+<%@ include file="common/viewRestaurantsHeader.jsp" %>
 
 <%--<!DOCTYPE html>--%>
 <html>
 <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="container text-center">
