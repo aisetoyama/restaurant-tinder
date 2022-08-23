@@ -17,7 +17,6 @@
         <li>Link: http://localhost:8080/capstone_war_exploded/searchForEvent</li>
         <li>Event ID: ${eventId}</li>
     </ul>
-
     <!-- Modal -->
     <div class="modal fade" id="ModalCarousel" tabindex="-1" role="dialog" aria-labelledby="ModalCarouselLabel">
         <div class="modal-dialog" role="document">
@@ -53,9 +52,9 @@
                                                      alt="restaurant image"/>
 
                                                 <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">
-                                                        <c:if test="${schedule.dayOfWeek == dateNow && schedule.timeOpen <= timeNow && schedule.timeClosed >= timeNow}">
-                                                            <span class="label label-success">Open Now!</span>
-                                                        </c:if>
+                                                    <c:if test="${schedule.dayOfWeek == dateNow && schedule.timeOpen <= timeNow && schedule.timeClosed >= timeNow}">
+                                                        <span class="label label-success">Open Now!</span>
+                                                    </c:if>
                                                 </c:forEach>
 
                                                 <h5>Category:</h5>
@@ -91,7 +90,8 @@
                                                 </c:forEach>
                                                 <!--start of button -->
 
-                                                <c:set var="restaurant" value="${restaurantList.get(index).restaurantId}"></c:set>
+                                                <c:set var="restaurant"
+                                                       value="${restaurantList.get(index).restaurantId}"></c:set>
                                                 <c:url var="viewRestaurantsResultsUrl1" value="/viewRestaurantsResults">
                                                     <c:param value="${restaurant}" name="restaurant"></c:param>
                                                     <c:param name="reaction" value="true"></c:param>
@@ -105,14 +105,22 @@
 
                                                 <div class="card-footer">
                                                     <div class="row">
-                                                        <form class="col" method="POST" action="${viewRestaurantsResultsUrl2}">
-                                                            <button id='dislike${index}' type="submit" class="btn btn-danger bi bi-heartbreak-fill"
-                                                                    data-bs-target="#staticBackdrop" onclick="disable('like${index}', 'dislike${index}')"> Dislike
+                                                        <form class="col" method="POST"
+                                                              action="${viewRestaurantsResultsUrl2}">
+                                                            <button id='dislike${index}' type="submit"
+                                                                    class="btn btn-danger bi bi-heartbreak-fill"
+                                                                    data-bs-target="#staticBackdrop"
+                                                                    onclick="disable('like${index}', 'dislike${index}')">
+                                                                Dislike
                                                             </button>
                                                         </form>
-                                                        <form class="col" method="POST" action="${viewRestaurantsResultsUrl1}">
-                                                            <button id='like${index}' type="submit" class="btn btn-primary bi bi-heart-fill"
-                                                                    data-bs-target="#staticBackdrop" onclick="disable('like${index}', 'dislike${index}')"> Like
+                                                        <form class="col" method="POST"
+                                                              action="${viewRestaurantsResultsUrl1}">
+                                                            <button id='like${index}' type="submit"
+                                                                    class="btn btn-primary bi bi-heart-fill"
+                                                                    data-bs-target="#staticBackdrop"
+                                                                    onclick="disable('like${index}', 'dislike${index}')">
+                                                                Like
                                                             </button>
                                                         </form>
                                                     </div>
@@ -120,23 +128,28 @@
 
                                                     <br>
                                                     <c:if test="${restaurantList.get(index).phoneNumber != null}">
-                                                        <button type="submit" class="btn btn-success bi bi-telephone-fill" data-bs-toggle="modal"
+                                                        <button type="submit"
+                                                                class="btn btn-success bi bi-telephone-fill"
+                                                                data-bs-toggle="modal"
                                                                 data-bs-target="#staticBackdrop"> Call To Order
                                                         </button>
                                                     </c:if>
                                                     <!--next and previous button -->
                                                     <c:choose>
                                                         <c:when test="${index == restaurantList.size()-1}">
-                                                            <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
-                                                                <button type="submit" class="btn btn-secondary" data-dismiss="modal"
+                                                            <a class="right fix-bottom" href="#carousel-modal-demo"
+                                                               data-slide="next">
+                                                                <button type="submit" class="btn btn-secondary"
+                                                                        data-dismiss="modal"
                                                                         data-bs-target="#staticBackdrop"> Submit & Close
                                                                 </button>
                                                             </a>
                                                         </c:when>
                                                         <c:otherwise>
-                                                            <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
+                                                            <a class="right fix-bottom" href="#carousel-modal-demo"
+                                                               data-slide="next">
                                                                 <button type="submit" class="btn btn-secondary"
-                                                                        data-bs-target="#staticBackdrop" > Next
+                                                                        data-bs-target="#staticBackdrop"> Next
                                                                 </button>
                                                             </a>
                                                         </c:otherwise>
@@ -148,7 +161,6 @@
                                 </div>
                             </div>
                         </c:forEach>
-
                     </div>
                 </div>
             </div>
