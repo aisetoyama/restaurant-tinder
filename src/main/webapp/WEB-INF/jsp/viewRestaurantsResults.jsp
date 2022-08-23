@@ -1,12 +1,80 @@
-<%@ include file="common/viewRestaurantsHeader.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%--<!DOCTYPE html>--%>
 <html>
 <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <c:url var="cssUrl" value="/css/site.css"/>
+    <link rel="stylesheet" href="${cssUrl}" />
 </head>
 <body>
+<nav class="navbar">
+    <nav class="navbar navbar-default nav-color text-white" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header text-white">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="${homeUrl}"><img src="images/white_logo.png"/></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse text-white" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav text-white">
+                    <li class="white-text"><a href="#">Home</a></li>
+                    <li class="white-text"><a href="#">About</a></li>
+                    <li class="white-text"><a href="#">View Restaurants</a></li>
+                    <li class="white-text"><a href="#">Search for an Event</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Log In</a></li>
+                    <li><a href="#">Register</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+<%--    <c:url var="aboutUrl" value="/about"/>--%>
+<%--    <c:url var="viewRestaurantsUrl" value="/viewRestaurants"/>--%>
+<%--    <c:url var="searchEvents" value="/searchForEvent"/>--%>
+<%--    <c:url var="privateUrl" value="/private"/>--%>
+<%--    <li>--%>
+<%--        <a class="nav-link active text-white" aria-current="page" href="${homeUrl}">Home</a>--%>
+<%--    </li>--%>
+<%--    <li>--%>
+<%--        <a class="nav-link text-white" href="${aboutUrl}">About</a>--%>
+<%--    </li>--%>
+<%--    <li>--%>
+<%--        <a class="nav-link text-white" href="${privateUrl}">View Restaurants</a>--%>
+<%--    </li>--%>
+<%--    <li>--%>
+<%--        <a class="nav-link text-white" href="${searchEvents}">Search for an Event</a>--%>
+<%--    </li>--%>
+<%--    <c:if test="${empty appCurrentUser}">--%>
+<%--        <c:url var="loginUrl" value="/login"/>--%>
+<%--        <li class="nav-item text-white"><a class="nav-link" href="${loginUrl}">Login</a></li>--%>
+<%--        <c:url var="registerUrl" value="/register"/>--%>
+<%--        <li class="nav-item text-white"><a class="nav-link" href="${registerUrl}">Register</a></li>--%>
+<%--    </c:if>--%>
+<%--    <c:if test="${not empty appCurrentUser}">--%>
+<%--        <li class="nav-item"><a class="nav-link" href="profile"><c:out value="${appCurrentUser.username}" /></a></li>--%>
+<%--        <c:url var="logoffUrl" value="/logoff"/>--%>
+<%--        <li class="nav-item">--%>
+<%--            <form action="${logoffUrl}" method="POST" class="navbar-link">--%>
+<%--                <button type="submit" class="text-dark btn btn-outline-light">Log Off</button>--%>
+<%--            </form>--%>
+<%--        </li>--%>
+<%--    </c:if>--%>
+</nav>
+
+
 <div class="container text-center">
     <h3>View Results</h3>
     <!-- Button trigger modal -->
