@@ -21,9 +21,9 @@ public class SiteController {
     private AuthProvider auth;
 
     @RequestMapping(path = "/private", method = RequestMethod.GET)
-    public String privatePage() throws UnauthorizedException {
+    public String privatePage(ModelMap modelHolder) throws UnauthorizedException {
         if (auth.userHasRole(new String[] { "admin", "user" })) {
-            return "viewRestaurants";
+            return "redirect:/viewRestaurants";
         } else {
             throw new UnauthorizedException();
         }
@@ -45,10 +45,13 @@ public class SiteController {
 
     @RequestMapping(path = "/viewRestaurants", method = RequestMethod.GET)
     public String viewRestaurants(ModelMap modelHolder) throws UnauthorizedException {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime now = LocalDateTime.now();
-        modelHolder.put("todayDate", dtf.format(now));
-        System.out.println(dtf.format(now));
-        return "viewRestaurants";
+        if (auth.userHasRole(new String[]{"admin", "user"})) {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDateTime now = LocalDateTime.now();
+            modelHolder.put("todayDate", dtf.format(now));
+            return "viewRestaurants";
+        } else {
+            throw new UnauthorizedException();
+        }
     }
 }

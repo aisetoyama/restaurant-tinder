@@ -175,11 +175,6 @@
         document.getElementById(dislikeId).classList.add('disabled');
 
     }
-    //     function enable() {
-    // // submit or validate here , disable after that using below
-    //         document.getElementById().classList.remove('disabled');
-    //         document.getElementById('dislike').classList.remove('disabled');
-    //     }
 
 </script>
 </body>
