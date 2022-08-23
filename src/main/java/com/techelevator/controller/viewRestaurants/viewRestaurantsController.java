@@ -67,19 +67,19 @@ public class viewRestaurantsController {
     }
 
 
-    @RequestMapping(path = "/guestForm", method = RequestMethod.GET)
+    @RequestMapping(path = "/searchForEvent", method = RequestMethod.GET)
     public String showGuestForm() {
-        return "/guestForm";
+        return "searchForEvent";
     }
 
 
-    @RequestMapping(path = "/guestForm", method = RequestMethod.POST)
+    @RequestMapping(path = "/searchForEvent", method = RequestMethod.POST)
     public String guestFormSubmission(@RequestParam Long eventNumber, HttpSession session) {
+        session.setAttribute("eventId", eventNumber);
         if(restaurantDao.isWithinDeadline(eventNumber)) {
             // Get restaurants by event id and store into session
             List<Restaurant> restaurantListByEvent = restaurantDao.getRestaurantsByEventId(eventNumber);
             session.setAttribute("restaurantList", restaurantListByEvent);
-            session.setAttribute("eventId", eventNumber);
 
             List<Long> restaurantIds = new ArrayList<>();
             for (Restaurant res : restaurantListByEvent) {
@@ -87,13 +87,16 @@ public class viewRestaurantsController {
             }
             return "redirect:/viewRestaurantsResults";
         } else {
-            return "redirect:/eventExpired";
+            return "redirect:/viewFinalists";
         }
     }
 
 
-    @RequestMapping(path = "/eventExpired", method = RequestMethod.GET)
-    public String showExpirationPage() {
-        return "/eventExpired";
+    @RequestMapping(path = "/viewFinalists", method = RequestMethod.GET)
+    public String showExpirationPage(HttpSession session, ModelMap modelHolder) {
+        Long eventId = (Long) session.getAttribute("eventId");
+        List<Restaurant> finalistList = restaurantDao.finalistRestaurants(eventId);
+        modelHolder.put("finalistList", finalistList);
+        return "viewFinalists";
     }
 }

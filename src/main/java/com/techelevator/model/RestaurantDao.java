@@ -18,5 +18,7 @@ public interface RestaurantDao {
 
     public boolean isWithinDeadline(Long eventId);
 
+    public List<Restaurant> finalistRestaurants(Long eventId);
 
-}
+
+    }
