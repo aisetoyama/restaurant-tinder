@@ -106,13 +106,13 @@
                                                 <div class="card-footer">
                                                     <div class="row">
                                                         <form class="col" method="POST" action="${viewRestaurantsResultsUrl2}">
-                                                            <button type="submit" class="btn btn-danger bi bi-heartbreak-fill"
-                                                                    data-bs-target="#staticBackdrop"> Dislike
+                                                            <button id='dislike${index}' type="submit" class="btn btn-danger bi bi-heartbreak-fill"
+                                                                    data-bs-target="#staticBackdrop" onclick="disable('like${index}', 'dislike${index}')"> Dislike
                                                             </button>
                                                         </form>
                                                         <form class="col" method="POST" action="${viewRestaurantsResultsUrl1}">
-                                                            <button type="submit" class="btn btn-primary bi bi-heart-fill"
-                                                                    data-bs-target="#staticBackdrop"> Like
+                                                            <button id='like${index}' type="submit" class="btn btn-primary bi bi-heart-fill"
+                                                                    data-bs-target="#staticBackdrop" onclick="disable('like${index}', 'dislike${index}')"> Like
                                                             </button>
                                                         </form>
                                                     </div>
@@ -136,7 +136,7 @@
                                                         <c:otherwise>
                                                             <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
                                                                 <button type="submit" class="btn btn-secondary"
-                                                                        data-bs-target="#staticBackdrop"> Next
+                                                                        data-bs-target="#staticBackdrop" > Next
                                                                 </button>
                                                             </a>
                                                         </c:otherwise>
@@ -158,6 +158,20 @@
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
+<script>
+    function disable(likeId, dislikeId) {
+// submit or validate here , disable after that using below
 
+        document.getElementById(likeId).classList.add('disabled');
+        document.getElementById(dislikeId).classList.add('disabled');
+
+    }
+//     function enable() {
+// // submit or validate here , disable after that using below
+//         document.getElementById().classList.remove('disabled');
+//         document.getElementById('dislike').classList.remove('disabled');
+//     }
+
+</script>
 </body>
 </html>
