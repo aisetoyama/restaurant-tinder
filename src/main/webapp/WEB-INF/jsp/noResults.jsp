@@ -8,4 +8,3 @@
 <h1>No Results :( - Please choose a different <a href="${viewRestaurantsUrl}">category</a>!</h1>
 </body>
 
-<%@ include file = "common/footer.jsp" %>

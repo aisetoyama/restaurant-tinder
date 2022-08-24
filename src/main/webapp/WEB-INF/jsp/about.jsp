@@ -48,11 +48,3 @@
         </div>
     </div>
 </section>
-
-
-
-<!-- Pricing -->
-
-
-
-<%@ include file = "common/footer.jsp" %>

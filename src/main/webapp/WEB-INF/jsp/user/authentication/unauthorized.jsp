@@ -7,4 +7,3 @@
 
 <p>If you think you received this in error, please contact your application administrator.</p>
 
-<%@ include file = "../../common/footer.jsp" %>

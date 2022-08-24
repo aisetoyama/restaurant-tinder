@@ -39,7 +39,7 @@
                     <a class="nav-link" href="${aboutUrl}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${privateUrl}">View Restaurants</a>
+                    <a class="nav-link" href="${privateUrl}">Kick off Event</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${searchEvents}">Search for an Event</a>
@@ -59,7 +59,7 @@
                     <li class="nav-item"><a class="nav-link" href="${registerUrl}">Register</a></li>
                 </c:if>
                 <c:if test="${not empty appCurrentUser}">
-                    <li class="nav-item"><a class="nav-link" href="profile"><c:out value="${appCurrentUser.username}" /></a></li>
+                    <li class="nav-item">${appCurrentUser.username}&ensp;</li>
                     <c:url var="logoffUrl" value="/logoff"/>
                     <li class="nav-item">
                         <form action="${logoffUrl}" method="POST" class="navbar-link">

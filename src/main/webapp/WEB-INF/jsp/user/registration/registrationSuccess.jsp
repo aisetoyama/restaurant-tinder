@@ -5,5 +5,3 @@
 <div>
     <h1>Registration is Successful</h1>
 </div>
-
-<%@ include file = "../../common/footer.jsp" %>

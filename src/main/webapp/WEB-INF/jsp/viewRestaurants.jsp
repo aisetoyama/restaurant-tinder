@@ -3,7 +3,7 @@
   <body>
   <c:url var="formAction" value="/viewRestaurants"/>
   <form class="row justify-content-center w-50 mx-auto mt-5 border-white rounded p-5 form-bg shadow" action="${formAction}" method="POST">
-    <h1 class="text-center salmon-text-color">view restaurants</h1>
+    <h1 class="text-center salmon-text-color">kick off an event</h1>
     <div class="form-group mb-3">
       <label class="form-label" for="cuisine">Cuisine Preference: </label>
       <select id="cuisine" name="cuisine">
@@ -35,4 +35,3 @@
 
   </body>
 
-<%@ include file = "common/footer.jsp" %>

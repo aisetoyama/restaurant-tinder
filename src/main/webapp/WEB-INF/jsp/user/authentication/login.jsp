@@ -14,4 +14,3 @@
     <button type="submit" class="btn btn-default btn-color w-25 mt-3">Login</button>
 </form>
 
-<%@ include file = "../../common/footer.jsp" %>

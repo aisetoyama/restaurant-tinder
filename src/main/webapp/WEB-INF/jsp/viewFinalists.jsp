@@ -48,4 +48,3 @@
     </c:forEach>
 </body>
 
-<%@ include file = "common/footer.jsp" %>

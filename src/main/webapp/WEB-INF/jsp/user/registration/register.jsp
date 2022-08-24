@@ -46,5 +46,3 @@
     </fieldset>
     <button type="submit" class="btn btn-default">Save User</button>
 </form:form>
-
-<%@ include file="../../common/footer.jsp" %>

@@ -99,6 +99,9 @@ public class viewRestaurantsController {
     public String showExpirationPage(HttpSession session, ModelMap modelHolder) {
         Long eventId = (Long) session.getAttribute("eventId");
         List<Restaurant> finalistList = restaurantDao.finalistRestaurants(eventId);
+        if (restaurantDao.getRestaurantsByEventId(eventId).size() < 1) {
+            return "noEvent";
+        }
         modelHolder.put("finalistList", finalistList);
         modelHolder.put("guestName", (String) session.getAttribute("guestName"));
         return "viewFinalists";
