@@ -22,6 +22,9 @@ body {
     font-size: 20px;
 }
 
+
+
+
 .cover-img {
     width: 400px;
 }
@@ -36,10 +39,12 @@ body {
     background-size: cover;
     overflow: hidden;
 }
+
 .modal-content {
     width: 700px;
     border:none;
 }
+
 .modal-body {
     padding: 0;
 }
@@ -54,8 +59,6 @@ body {
 #schedule li {
     list-style-type: none;
 }
-
-
 
 .checkbox {
     display: none;
@@ -111,6 +114,15 @@ body {
     padding-bottom: 705px;
     color: white;
 }
+
+#front-page-heading {
+    height: 500px;
+    padding-top: 50px;
+    padding-left: 150px;
+    padding-bottom: 705px;
+    color: white;
+}
+
 /* Headings */
 
 
