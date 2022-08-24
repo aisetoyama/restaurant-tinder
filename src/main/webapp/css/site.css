@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
 }
 
 /*.form-bg {*/
@@ -18,7 +19,7 @@ body {
 }
 
 .nav-color {
-    background-color: salmon;
+    background-color: black;
     color: white;
 }
 
@@ -72,3 +73,31 @@ body {
     opacity: 0;
 }
 
+li a {
+    color: white;
+}
+
+.navbar .nav > li > a {
+    color:  #fff;
+    padding: 20px 8px 8px 8px;
+}
+
+.navbar .nav > ul {
+    font-size: 16px;
+}
+
+.navbar .nav {
+    height: 56px;
+}
+
+.nav-link {
+    color: #fff;
+}
+
+.navbar .nav > li > a:hover {
+    color:  #fb655b;
+}
+
+.card-footer {
+    padding-bottom: 30px;
+}

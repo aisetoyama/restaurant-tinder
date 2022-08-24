@@ -20,7 +20,7 @@
 <nav class="navbar navbar-expand-lg nav-color">
     <div class="container-fluid">
         <c:url var="homeUrl" value="/"/>
-        <a class="navbar-brand" href="${homeUrl}"><img src="images/white_logo.png"/></a>
+        <a class="navbar-brand nav-link" href="${homeUrl}"><img src="images/white_logo.png"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,16 +31,16 @@
                 <c:url var="searchEvents" value="/searchForEvent"/>
                 <c:url var="privateUrl" value="/private"/>
                 <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" href="${homeUrl}">Home</a>
+                    <a class="nav-link" aria-current="page" href="${homeUrl}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="${aboutUrl}">About</a>
+                    <a class="nav-link" href="${aboutUrl}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="${privateUrl}">View Restaurants</a>
+                    <a class="nav-link" href="${privateUrl}">View Restaurants</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="${searchEvents}">Search for an Event</a>
+                    <a class="nav-link" href="${searchEvents}">Search for an Event</a>
                 </li>
               <%--  <c:if test="${appCurrentUser.role == 'admin'}">
                     <c:url var="administrationUrl" value="/admin"/>
@@ -52,16 +52,16 @@
             <ul class="navbar-nav d-flex">
                 <c:if test="${empty appCurrentUser}">
                     <c:url var="loginUrl" value="/login"/>
-                    <li class="nav-item text-white"><a class="nav-link" href="${loginUrl}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${loginUrl}">Login</a></li>
                     <c:url var="registerUrl" value="/register"/>
-                    <li class="nav-item text-white"><a class="nav-link" href="${registerUrl}">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="${registerUrl}">Register</a></li>
                 </c:if>
                 <c:if test="${not empty appCurrentUser}">
                     <li class="nav-item"><a class="nav-link" href="profile"><c:out value="${appCurrentUser.username}" /></a></li>
                     <c:url var="logoffUrl" value="/logoff"/>
                     <li class="nav-item">
                         <form action="${logoffUrl}" method="POST" class="navbar-link">
-                            <button type="submit" class="text-dark btn btn-outline-light">Log Off</button>
+                            <button type="submit" class="text-light btn btn-outline-light">Log Off</button>
                         </form>
                     </li>
                 </c:if>
