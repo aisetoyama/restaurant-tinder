@@ -28,7 +28,7 @@
     </div>
     <div class="form-group mb-3">
       <label class="form-label" for="deadline"> Voting Deadline: </label>
-      <input type="date" id="deadline" name="deadline" min="${todayDate}"/>
+      <input type="date" id="deadline" name="deadline" min="${todayDate}" required/>
     </div>
     <button type="submit" class="btn btn-default btn-color w-25 mt-3">Submit</button>
   </form>

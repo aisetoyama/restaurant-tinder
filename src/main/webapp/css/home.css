@@ -80,3 +80,14 @@ h2 {
 .review-box{
     padding:5%;
 }
+.checkbox {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+.nav-link{
+    color: white;
+}
+.nav-link:hover{
+    color:salmon;
+}
