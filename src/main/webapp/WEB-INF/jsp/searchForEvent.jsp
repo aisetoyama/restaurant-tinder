@@ -31,7 +31,7 @@
     </div>
     <div class="form-group">
         <label for="eventNumber">Enter your event number: </label>
-        <input type="number" class="form-control" id="eventNumber" name="eventNumber" placeholder="enter event number" required>
+        <input type="number" class="form-control" id="eventNumber" name="eventNumber" placeholder="enter event number" min="0" required>
     </div>
     <button type="submit" class="btn btn-default btn-color w-25 mt-3">Submit</button>
 </form>
