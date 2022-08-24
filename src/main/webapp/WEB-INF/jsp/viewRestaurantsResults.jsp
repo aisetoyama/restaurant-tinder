@@ -63,16 +63,24 @@
 
 
 <div class="container text-center">
-    <h3>View Results</h3>
+    <div class="panel panel-default shadow rounded">
+        <div class="panel-body">
+            <h3>Share the following info with your friends to get their votes!</h3>
+            <p>Link: http://localhost:8080/capstone_war_exploded/searchForEvent</p>
+            <p>Event ID: ${eventId}</p>
+            <button type="button" class="btn btn-lg btn-salmon-color" data-toggle="modal" data-target="#ModalCarousel">
+                View Restaurants
+            </button>
+        </div>
+    </div>
+
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalCarousel">
-        View Restaurants
-    </button>
-    <h3>Share the following info with your friends to get their votes!</h3>
-    <ul>
-        <li>Link: http://localhost:8080/capstone_war_exploded/searchForEvent</li>
-        <li>Event ID: ${eventId}</li>
-    </ul>
+
+
+<%--    <ul>--%>
+<%--        <li>Link: http://localhost:8080/capstone_war_exploded/searchForEvent</li>--%>
+<%--        <li>Event ID: ${eventId}</li>--%>
+<%--    </ul>--%>
 
     <!-- Modal -->
     <div class="modal fade" id="ModalCarousel" tabindex="-1" role="dialog" aria-labelledby="ModalCarouselLabel">
@@ -99,8 +107,8 @@
                                         <div class="card-content">
                                             <div class="card-header">
                                                 <button type="button" class="close" data-dismiss="modal">X</button>
-                                                <h4 class="card-title"
-                                                    id="staticBackdropLabel1">${restaurantList.get(index).name}</h4>
+                                                <h2 class="card-title"
+                                                    id="staticBackdropLabel1">${restaurantList.get(index).name}</h2>
                                             </div>
                                             <div class="card-body">
                                                 <c:url var="restaurantImage"
@@ -114,10 +122,8 @@
                                                         </c:if>
                                                 </c:forEach>
 
-                                                <h5>Category:</h5>
-                                                <p>${restaurantList.get(index).category}</p>
-                                                <h5>Address:</h5>
-                                                <p>${restaurantList.get(index).streetAddress}, ${restaurantList.get(index).city}, ${restaurantList.get(index).state} ${restaurantList.get(index).zipcode}</p>
+                                                <p><span class="bold-font">Category:</span> ${restaurantList.get(index).category}</p>
+                                                <p><span class="bold-font">Address:</span> ${restaurantList.get(index).streetAddress}, ${restaurantList.get(index).city}, ${restaurantList.get(index).state} ${restaurantList.get(index).zipcode}</p>
                                                 <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">
                                                     <ul id="schedule">
                                                         <li><c:choose>
@@ -184,10 +190,10 @@
 
                                                     <br>
 
-                                                    <div class="row btn-group">
+                                                    <div class="row btn-group dropup">
                                                         <c:if test="${restaurantList.get(index).phoneNumber != null}">
                                                             <div class="dropdown mr-5 col-md-6">
-                                                                <button class="btn btn-success" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <button class="btn btn-success" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
                                                                     Call To Order
                                                                 </button>
                                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

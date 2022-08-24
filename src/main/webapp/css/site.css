@@ -101,3 +101,22 @@ li a {
 .card-footer {
     padding-bottom: 30px;
 }
+
+.btn-salmon-color {
+    background-color: salmon;
+    color: #fff;
+}
+
+.panel {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+.bold-font {
+    font-weight: bolder;
+}
+
+
+
+
+
