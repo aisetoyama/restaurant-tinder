@@ -118,12 +118,12 @@
 
                                                 <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">
                                                         <c:if test="${schedule.dayOfWeek == dateNow && schedule.timeOpen <= timeNow && schedule.timeClosed >= timeNow}">
-                                                            <span class="label label-success">Open Now!</span>
+                                                            <div class="label label-success">Open Now!</div>
                                                         </c:if>
                                                 </c:forEach>
 
-                                                <p><span class="bold-font">Category:</span> ${restaurantList.get(index).category}</p>
-                                                <p><span class="bold-font">Address:</span> ${restaurantList.get(index).streetAddress}, ${restaurantList.get(index).city}, ${restaurantList.get(index).state} ${restaurantList.get(index).zipcode}</p>
+                                                <p>Category: ${restaurantList.get(index).category}</p>
+                                                <p>Address: ${restaurantList.get(index).streetAddress}, ${restaurantList.get(index).city}, ${restaurantList.get(index).state} ${restaurantList.get(index).zipcode}</p>
                                                 <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">
                                                     <ul id="schedule">
                                                         <li><c:choose>

@@ -1,6 +1,7 @@
 <%@ include file = "../../common/header.jsp" %>
 
 <h1>Whoops!</h1>
+<img src="../../../../images/sad_burger.png" alt="sad burger"/>
 
 <p>You are not authorized to view this content.</p>
 
