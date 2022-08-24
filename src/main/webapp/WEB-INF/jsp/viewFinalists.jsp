@@ -12,7 +12,11 @@
             <p>#${rank}</p>
             <p>Name: ${res.name}</p>
             <p>Category: ${res.category}</p>
-            <p># of Stars: ${res.stars}</p>
+            <p>Stars:
+                <c:url var="star" value="/images/star.png" />
+                <c:forEach begin="1" end="${res.stars}">
+                    <img id = "starImage" src="${star}" alt="star">
+                </c:forEach></p>
             <p>Address: ${res.streetAddress}, ${res.city}, ${res.state} ${res.zipcode}</p>
             <p>Phone Number: ${res.phoneNumber}</p>
             <c:set value="${rank+1}" var="rank"/>

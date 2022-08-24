@@ -61,6 +61,11 @@
 
                                                 <h5>Category:</h5>
                                                 <p>${restaurantList.get(index).category}</p>
+                                                <h5>Stars:</h5>
+                                                <c:url var="star" value="/images/star.png" />
+                                                <c:forEach begin="1" end="${restaurantList.get(index).stars}">
+                                                    <img id = "starImage" src="${star}" alt="star">
+                                                </c:forEach>
                                                 <h5>Address:</h5>
                                                 <p>${restaurantList.get(index).streetAddress}, ${restaurantList.get(index).city}, ${restaurantList.get(index).state} ${restaurantList.get(index).zipcode}</p>
                                                 <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">

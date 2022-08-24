@@ -518,13 +518,13 @@ insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (1
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (12,6,'11:00','02:00');
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (12,7,'11:00','23:00');
 -- The Melt
-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,1,'11:00','24:00');
-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,2,'11:00','24:00');
-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,3,'11:00','24:00');
-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,4,'11:00','24:00');
-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,5,'11:00','24:00');
-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,6,'11:00','24:00');
-insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,7,'11:00','24:00');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,1,'11:00','23:59');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,2,'11:00','23:59');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,3,'11:00','23:59');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,4,'11:00','23:59');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,5,'11:00','23:59');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,6,'11:00','23:59');
+insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (13,7,'11:00','23:59');
 -- Steins Beer Garden
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (14,1,'11:30','22:00');
 insert into schedule (restaurant_id,day_of_week,time_open,time_closed) values (14,2,'11:30','22:00');
