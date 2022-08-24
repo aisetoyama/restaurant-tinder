@@ -27,11 +27,11 @@
     <h6 class="text-center">Please enter the following information to gain access to your event!</h6>
     <div class="form-group">
         <label for="guestName">Enter your name: </label>
-        <input type="text" class="form-control" id="guestName" name="guestName" placeholder="enter name">
+        <input type="text" class="form-control" id="guestName" name="guestName" placeholder="enter name" required>
     </div>
     <div class="form-group">
         <label for="eventNumber">Enter your event number: </label>
-        <input type="number" class="form-control" id="eventNumber" name="eventNumber" placeholder="enter event number">
+        <input type="number" class="form-control" id="eventNumber" name="eventNumber" placeholder="enter event number" required>
     </div>
     <button type="submit" class="btn btn-default btn-color w-25 mt-3">Submit</button>
 </form>
