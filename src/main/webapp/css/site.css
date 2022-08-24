@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
 }
 
 /*.form-bg {*/
@@ -18,7 +19,7 @@ body {
 }
 
 .nav-color {
-    background-color: salmon;
+    background-color: black;
     color: white;
 }
 
@@ -71,4 +72,52 @@ body {
     visibility: hidden;
     opacity: 0;
 }
+
+li a {
+    color: white;
+}
+
+.navbar .nav > li > a {
+    color:  #fff;
+    padding: 20px 8px 8px 8px;
+}
+
+.navbar .nav > ul {
+    font-size: 16px;
+}
+
+.navbar .nav {
+    height: 56px;
+}
+
+.nav-link {
+    color: #fff;
+}
+
+.navbar .nav > li > a:hover {
+    color:  #fb655b;
+}
+
+.card-footer {
+    padding-bottom: 30px;
+}
+
+.btn-salmon-color {
+    background-color: salmon;
+    color: #fff;
+}
+
+.panel {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+.img-thumbnail {
+    margin-bottom: 30px;
+}
+
+.log-button-margin {
+    margin-top: 8px;
+}
+
 

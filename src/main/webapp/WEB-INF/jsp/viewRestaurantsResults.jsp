@@ -5,6 +5,7 @@
 <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <c:url var="cssUrl" value="/css/site.css"/>
@@ -24,68 +25,62 @@
                 </button>
                 <a class="navbar-brand" href="${homeUrl}"><img src="images/white_logo.png"/></a>
             </div>
-
+            <c:url var="homeUrl" value="/"/>
+            <c:url var="aboutUrl" value="/about"/>
+            <c:url var="viewRestaurantsUrl" value="/viewRestaurants"/>
+            <c:url var="searchEvents" value="/searchForEvent"/>
+            <c:url var="privateUrl" value="/private"/>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse text-white" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav text-white">
-                    <li class="white-text"><a href="#">Home</a></li>
-                    <li class="white-text"><a href="#">About</a></li>
-                    <li class="white-text"><a href="#">View Restaurants</a></li>
-                    <li class="white-text"><a href="#">Search for an Event</a></li>
+                    <li><a href="${homeUrl}">Home</a></li>
+                    <li><a href="${aboutUrl}">About</a></li>
+                    <li><a href="${viewRestaurantsUrl}">View Restaurants</a></li>
+                    <li><a href="${searchEvents}">Search for an Event</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Log In</a></li>
-                    <li><a href="#">Register</a></li>
+                    <c:if test="${empty appCurrentUser}">
+                        <c:url var="loginUrl" value="/login"/>
+                        <li class="nav-item"><a class="nav-link" href="${loginUrl}">Login</a></li>
+                        <c:url var="registerUrl" value="/register"/>
+                        <li class="nav-item"><a class="nav-link" href="${registerUrl}">Register</a></li>
+                    </c:if>
+                    <c:if test="${not empty appCurrentUser}">
+                        <li class="nav-item"><a class="nav-link" href="profile"><c:out value="${appCurrentUser.username}" /></a></li>
+                        <c:url var="logoffUrl" value="/logoff"/>
+                        <li class="nav-item">
+                            <form action="${logoffUrl}" method="POST" class="navbar-link">
+                                <button type="submit" class="btn btn-default">Log Off</button>
+                            </form>
+                        </li>
+                    </c:if>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-<%--    <c:url var="aboutUrl" value="/about"/>--%>
-<%--    <c:url var="viewRestaurantsUrl" value="/viewRestaurants"/>--%>
-<%--    <c:url var="searchEvents" value="/searchForEvent"/>--%>
-<%--    <c:url var="privateUrl" value="/private"/>--%>
-<%--    <li>--%>
-<%--        <a class="nav-link active text-white" aria-current="page" href="${homeUrl}">Home</a>--%>
-<%--    </li>--%>
-<%--    <li>--%>
-<%--        <a class="nav-link text-white" href="${aboutUrl}">About</a>--%>
-<%--    </li>--%>
-<%--    <li>--%>
-<%--        <a class="nav-link text-white" href="${privateUrl}">View Restaurants</a>--%>
-<%--    </li>--%>
-<%--    <li>--%>
-<%--        <a class="nav-link text-white" href="${searchEvents}">Search for an Event</a>--%>
-<%--    </li>--%>
-<%--    <c:if test="${empty appCurrentUser}">--%>
-<%--        <c:url var="loginUrl" value="/login"/>--%>
-<%--        <li class="nav-item text-white"><a class="nav-link" href="${loginUrl}">Login</a></li>--%>
-<%--        <c:url var="registerUrl" value="/register"/>--%>
-<%--        <li class="nav-item text-white"><a class="nav-link" href="${registerUrl}">Register</a></li>--%>
-<%--    </c:if>--%>
-<%--    <c:if test="${not empty appCurrentUser}">--%>
-<%--        <li class="nav-item"><a class="nav-link" href="profile"><c:out value="${appCurrentUser.username}" /></a></li>--%>
-<%--        <c:url var="logoffUrl" value="/logoff"/>--%>
-<%--        <li class="nav-item">--%>
-<%--            <form action="${logoffUrl}" method="POST" class="navbar-link">--%>
-<%--                <button type="submit" class="text-dark btn btn-outline-light">Log Off</button>--%>
-<%--            </form>--%>
-<%--        </li>--%>
-<%--    </c:if>--%>
 </nav>
 
 
 <div class="container text-center">
-    <h3>View Results</h3>
+    <div class="panel panel-default shadow rounded">
+        <div class="panel-body">
+            <h3>Share the following info with your friends to get their votes!</h3>
+            <p>Link: http://localhost:8080/capstone_war_exploded/searchForEvent</p>
+            <p>Event ID: ${eventId}</p>
+            <button type="button" class="btn btn-lg btn-salmon-color" data-toggle="modal" data-target="#ModalCarousel">
+                View Restaurants
+            </button>
+        </div>
+    </div>
+
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ModalCarousel">
-        View Restaurants
-    </button>
-    <h3>Share the following info with your friends to get their votes!</h3>
-    <ul>
-        <li>Link: http://localhost:8080/capstone_war_exploded/searchForEvent</li>
-        <li>Event ID: ${eventId}</li>
-    </ul>
+
+
+<%--    <ul>--%>
+<%--        <li>Link: http://localhost:8080/capstone_war_exploded/searchForEvent</li>--%>
+<%--        <li>Event ID: ${eventId}</li>--%>
+<%--    </ul>--%>
 
     <!-- Modal -->
     <div class="modal fade" id="ModalCarousel" tabindex="-1" role="dialog" aria-labelledby="ModalCarouselLabel">
@@ -112,8 +107,8 @@
                                         <div class="card-content">
                                             <div class="card-header">
                                                 <button type="button" class="close" data-dismiss="modal">X</button>
-                                                <h4 class="card-title"
-                                                    id="staticBackdropLabel1">${restaurantList.get(index).name}</h4>
+                                                <h2 class="card-title"
+                                                    id="staticBackdropLabel1">${restaurantList.get(index).name}</h2>
                                             </div>
                                             <div class="card-body">
                                                 <c:url var="restaurantImage"
@@ -123,19 +118,17 @@
 
                                                 <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">
                                                         <c:if test="${schedule.dayOfWeek == dateNow && schedule.timeOpen <= timeNow && schedule.timeClosed >= timeNow}">
-                                                            <span class="label label-success">Open Now!</span>
+                                                            <div class="label label-success">Open Now!</div>
                                                         </c:if>
                                                 </c:forEach>
 
-                                                <h5>Category:</h5>
-                                                <p>${restaurantList.get(index).category}</p>
                                                 <h5>Stars:</h5>
                                                 <c:url var="star" value="/images/star.png" />
                                                 <c:forEach begin="1" end="${restaurantList.get(index).stars}">
                                                     <img id = "starImage" src="${star}" alt="star">
                                                 </c:forEach>
-                                                <h5>Address:</h5>
-                                                <p>${restaurantList.get(index).streetAddress}, ${restaurantList.get(index).city}, ${restaurantList.get(index).state} ${restaurantList.get(index).zipcode}</p>
+                                                <p>Category: ${restaurantList.get(index).category}</p>
+                                                <p>Address: ${restaurantList.get(index).streetAddress}, ${restaurantList.get(index).city}, ${restaurantList.get(index).state} ${restaurantList.get(index).zipcode}</p>
                                                 <c:forEach items="${allRestaurantSchedule.get(index)}" var="schedule">
                                                     <ul id="schedule">
                                                         <li><c:choose>
@@ -179,7 +172,7 @@
 
                                                 <div class="card-footer">
                                                     <div class="row">
-                                                        <form class="col" method="POST"
+                                                        <form class="col-md-6" method="POST"
                                                               action="${viewRestaurantsResultsUrl2}">
                                                             <button id='dislike${index}' type="submit"
                                                                     class="btn btn-danger bi bi-heartbreak-fill"
@@ -188,7 +181,7 @@
                                                                 Dislike
                                                             </button>
                                                         </form>
-                                                        <form class="col" method="POST"
+                                                        <form class="col-md-6" method="POST"
                                                               action="${viewRestaurantsResultsUrl1}">
                                                             <button id='like${index}' type="submit"
                                                                     class="btn btn-primary bi bi-heart-fill"
@@ -202,10 +195,10 @@
 
                                                     <br>
 
-                                                    <div class="row btn-group">
+                                                    <div class="row btn-group dropup">
                                                         <c:if test="${restaurantList.get(index).phoneNumber != null}">
-                                                            <div class="dropdown col-sm-6 mr-5">
-                                                                <button class="btn btn-success" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <div class="dropdown mr-5 col-md-6">
+                                                                <button class="btn btn-success" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false">
                                                                     Call To Order
                                                                 </button>
                                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -217,14 +210,14 @@
                                                     <!--next and previous button -->
                                                         <c:choose>
                                                             <c:when test="${index == restaurantList.size()-1}">
-                                                                <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
+                                                                <a class="right fix-bottom col-md-6" href="#carousel-modal-demo" data-slide="next">
                                                                     <button type="submit" class="btn btn-secondary" data-dismiss="modal"
                                                                             data-bs-target="#staticBackdrop"> Submit & Close
                                                                     </button>
                                                                 </a>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <a class="right fix-bottom" href="#carousel-modal-demo" data-slide="next">
+                                                                <a class="right fix-bottom col-md-6" href="#carousel-modal-demo" data-slide="next">
                                                                     <button type="submit" class="btn btn-secondary"
                                                                             data-bs-target="#staticBackdrop" > Next
                                                                     </button>
