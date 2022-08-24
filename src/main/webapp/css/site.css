@@ -2,7 +2,6 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
 }
 
 /*.form-bg {*/
@@ -19,9 +18,12 @@ body {
 }
 
 .nav-color {
-    background-color: black;
-    color: white;
+    background-color: #000000;
+    font-size: 20px;
 }
+
+
+
 
 .cover-img {
     width: 400px;
@@ -38,6 +40,7 @@ body {
     background-size: cover;
     overflow: hidden;
 }
+
 .modal-content {
     width: 700px;
     border:none;
@@ -57,8 +60,6 @@ body {
     list-style-type: none;
 }
 
-
-
 .checkbox {
     display: none;
     visibility: hidden;
@@ -66,58 +67,114 @@ body {
 }
 
 
-
-.checkbox {
-    display: none;
-    visibility: hidden;
-    opacity: 0;
+/* Features Section */
+#features{
+    position:relative;
+    padding-left: 75px;
 }
 
-li a {
+.feature-title{
+    font-size:1.5rem;
+}
+
+.feature-box{
+    padding:5%;
+}
+
+
+
+.icon{
+    color:#EF8172;
+    margin-bottom:1rem;
+}
+
+.icon:hover{
+    color:#FF4C68;
+}
+
+
+.container-fluid{
+    /*padding: 7% 15%;*/
+}
+
+
+/* Sections */
+
+.black-section {
+    background-color: black;
+}
+
+.white-section{
+    background-color: #fff;
+}
+#about-us {
+    height: 500px;
+    padding-top: 50px;
+    padding-left: 150px;
+    padding-bottom: 705px;
     color: white;
 }
 
-.navbar .nav > li > a {
-    color:  #fff;
-    padding: 20px 8px 8px 8px;
+#front-page-heading {
+    height: 500px;
+    padding-top: 50px;
+    padding-left: 150px;
+    padding-bottom: 705px;
+    color: white;
 }
 
-.navbar .nav > ul {
-    font-size: 16px;
+/* Headings */
+
+
+.section-heading{
+    font-size:3rem;
+    line-height: 1.5;
+    padding-left: 75px;
+    padding-right: 70px;
 }
 
-.navbar .nav {
-    height: 56px;
+h1 {
+    font-size: 3rem;
+    line-height: 1.5;
 }
 
-.nav-link {
-    color: #fff;
+.meal-plan h2 {
+    /*padding-left: 75px;*/
+    justify-content: center;
+    text-align: center;
+    padding-top: 100px;
+    color: #f69689;
+    font-size: 2.5rem;
+}
+.meal-plan p {
+    justify-content: center;
+    text-align: center;
+}
+/*boxes  */
+#pricing {
+    background: black;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    text-align: center;
 }
 
-.navbar .nav > li > a:hover {
-    color:  #fb655b;
+.feature-box h3 {
+    color: #f69689;
 }
 
-.card-footer {
-    padding-bottom: 30px;
+.larger-img {
+    border-radius: 5%;
+    display:inline-block;
+    margin-left: 120px;
 }
 
-.btn-salmon-color {
-    background-color: salmon;
-    color: #fff;
+.card-header .silver {
+    color: silver;
 }
 
-.panel {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-    outline: none;
+.card-header .gold {
+    color: #cb9612;
 }
-
-.img-thumbnail {
-    margin-bottom: 30px;
+.card-header .platinum {
+    color: #ce834e;
 }
-
-.btn-default {
-    margin-top: 10px;
-}
-
-
