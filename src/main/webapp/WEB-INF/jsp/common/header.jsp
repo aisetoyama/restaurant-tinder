@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-    <c:url var="cssUrl" value="/css/site.css"/>
+    <c:url var="cssUrl" value="/css/home.css"/>
     <link rel="stylesheet" href="${cssUrl}" />
     <script src="https://kit.fontawesome.com/3ea53c1d6b.js" crossorigin="anonymous"></script>
 

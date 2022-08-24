@@ -1,4 +1,4 @@
-<%@ include file="common/homeHeader.jsp" %>
+<%@ include file="common/header.jsp" %>
 
 <body>
 <section class="salmon-section" id="front-page-heading">
