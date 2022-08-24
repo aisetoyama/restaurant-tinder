@@ -53,61 +53,6 @@
 
 <!-- Pricing -->
 
-<section class="black-section" id="pricing">
-
-    <div class="container-fluid">
-<div class="row">
-    <div class="pricing-column col-lg-4 col-md-6">
-        <div class="card shadow">
-            <div class="card-header">
-                <h3 class="silver">Silver</h3>
-            </div>
-
-            <div class="card-body">
-                <h2 class="price-text">Free</h2>
-                <p>5 Matches Per Day</p>
-                <p>10 Messages Per Day</p>
-                <p>Unlimited App Usage</p>
-<%--                <button type="button" class="btn btn-outline-dark btn-block">Sign Up</button>--%>
-            </div>
-        </div>
-    </div>
-
-    <div class="pricing-column col-lg-4 col-md-6">
-        <div class="card shadow">
-            <div class="card-header">
-                <h3 class="gold">Gold</h3>
-            </div>
-
-            <div class="card-body">
-                <h2 class="price-text">$49 / mo</h2>
-                <p>Unlimited Matches</p>
-                <p>Unlimited Messages</p>
-                <p>Unlimited App Usage</p>
-<%--                <button type="button" class="btn btn-dark btn-block">Sign Up</button>--%>
-            </div>
-        </div>
-    </div>
-
-    <div class="pricing-column col-lg-4">
-        <div class="card shadow">
-            <div class="card-header">
-                <h3 class="platinum">Platinum</h3>
-            </div>
-
-            <div class="card-body">
-                <h2 class="price-text">$99 / mo</h2>
-                <p>Priority Listing</p>
-                <p>Unlimited Matches</p>
-                <p>Unlimited Messages</p>
-                <p>Unlimited App Usage</p>
-<%--                <button type="button" class="btn btn-dark btn-block">Sign Up</button>--%>
-            </div>
-        </div>
-    </div>
-</div>
-    </div>
-</section>
 
 
 <%@ include file = "common/footer.jsp" %>
