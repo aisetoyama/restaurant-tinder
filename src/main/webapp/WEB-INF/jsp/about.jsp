@@ -1,7 +1,7 @@
 <%@ include file = "common/header.jsp" %>
 
 
-<section class="salmon-section" id="about-us">
+<section class="black-section" id="about-us">
 <div class="container-fluid">
     <div class="row">
     <div class="about-column col lg-6">
@@ -53,7 +53,7 @@
 
 <!-- Pricing -->
 
-<section class="white-section" id="pricing">
+<section class="black-section" id="pricing">
 
     <div class="container-fluid">
 <div class="row">
