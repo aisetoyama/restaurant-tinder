@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-    <c:url var="cssUrl" value="/css/site.css"/>
+    <c:url var="cssUrl" value="/css/viewRestaurants.css"/>
     <link rel="stylesheet" href="${cssUrl}" />
 </head>
 <body>
