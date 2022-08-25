@@ -1,10 +1,12 @@
 <%@ include file = "../../common/header.jsp" %>
+<c:url var="cssUrl" value="/css/site.css"/>
+<link rel="stylesheet" href="${cssUrl}" />
 
 <body>
 <div class="d-flex align-items-center justify-content-center vh-100">
     <div class="text-center">
         <h1 class="display-1 fw-bold"> <span class="text-danger">Whoops!</span></h1>
-        <img src="../../../../images/sad_burger.png"/>
+        <img class="burger-img" src="images/sad_burger.png"/>
         <p class="lead">
             To create an event, please log in or register first.
         </p>
