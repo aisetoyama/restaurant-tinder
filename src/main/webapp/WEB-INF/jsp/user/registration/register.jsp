@@ -44,5 +44,5 @@
             </div>
         </div>
     </fieldset>
-    <button type="submit" class="btn btn-default mt-3">Sign Up</button>
+    <button type="submit" class="btn btn-default btn-color w-25 mt-3">Sign Up</button>
 </form:form>

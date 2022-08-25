@@ -93,10 +93,6 @@ h2 {
     color:salmon;
 }
 
-
-
-
-
 #about-us {
     height: 500px;
     padding-top: 50px;
@@ -175,4 +171,9 @@ h2 {
 }
 .burger {
     height: 200px;
+}
+
+.btn-color {
+    background-color: salmon;
+    color: white;
 }
