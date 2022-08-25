@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 /*.form-bg {*/
@@ -87,7 +87,7 @@ li a {
 }
 
 .navbar .nav {
-    height: 56px;
+    height: 62px;
 }
 
 .nav-link {
@@ -118,6 +118,9 @@ li a {
 
 .btn-default {
     margin-top: 10px;
+    background-color: black;
+    color: white;
+    border-color: white;
 }
 
 

@@ -50,7 +50,7 @@
                         <li class="nav-item"><a class="nav-link" href="profile"><c:out value="${appCurrentUser.username}" /></a></li>
                         <c:url var="logoffUrl" value="/logoff"/>
                         <li class="nav-item">
-                            <form action="${logoffUrl}" method="POST" class="navbar-link">
+                            <form action="${logoffUrl}" method="POST" class="navbar-link navbar-inverse">
                                 <button type="submit" class="btn btn-default">Log Off</button>
                             </form>
                         </li>
