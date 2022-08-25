@@ -185,3 +185,7 @@ h2 {
 .salmon-text-color {
     color: salmon;
 }
+
+.error-img {
+    height: 350px;
+}
