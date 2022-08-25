@@ -80,6 +80,7 @@ h2 {
 .review-box{
     padding:5%;
 }
+
 .checkbox {
     display: none;
     visibility: hidden;
@@ -171,4 +172,7 @@ h2 {
 .about-paragraph {
     padding-top: 25px;
     line-height: 1.5;
+}
+.burger {
+    height: 200px;
 }

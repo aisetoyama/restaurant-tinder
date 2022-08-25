@@ -44,5 +44,5 @@
             </div>
         </div>
     </fieldset>
-    <button type="submit" class="btn btn-default">Save User</button>
+    <button type="submit" class="btn btn-default mt-3">Sign Up</button>
 </form:form>
