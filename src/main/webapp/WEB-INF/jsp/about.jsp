@@ -1,4 +1,4 @@
-<%@ include file="common/aboutHeader.jsp" %>
+<%@ include file="common/header.jsp" %>
 
 
 <section class="black-section" id="about-us">
