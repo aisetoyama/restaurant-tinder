@@ -47,10 +47,10 @@
                         <li class="nav-item"><a class="nav-link" href="${registerUrl}">Register</a></li>
                     </c:if>
                     <c:if test="${not empty appCurrentUser}">
-                        <li class="nav-item"><a class="nav-link" href="profile"><c:out value="${appCurrentUser.username}" /></a></li>
+                        <li class="nav-item"><a class="nav-link"><c:out value="${appCurrentUser.username}" /></a></li>
                         <c:url var="logoffUrl" value="/logoff"/>
                         <li class="nav-item">
-                            <form action="${logoffUrl}" method="POST" class="navbar-link navbar-inverse">
+                            <form action="${logoffUrl}" method="POST" class="navbar-link">
                                 <button type="submit" class="btn btn-default">Log Off</button>
                             </form>
                         </li>
