@@ -191,6 +191,16 @@ h2 {
 }
 
 .navbar-link:hover{
-    color:black;
+    color: black;
 
+}
+
+.log-off-btn {
+    color: white;
+    background-color: black;
+    border-outline: white;
+}
+
+.log-off-btn:hover {
+    color: black;
 }

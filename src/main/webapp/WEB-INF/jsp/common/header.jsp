@@ -63,7 +63,7 @@
                     <c:url var="logoffUrl" value="/logoff"/>
                     <li class="nav-item">
                         <form action="${logoffUrl}" method="POST" class="navbar-link">
-                            <button type="submit" class="text-light btn btn-outline-light">Log Off</button>
+                            <button type="submit" class="log-off-btn btn btn-outline-light">Log Off</button>
                         </form>
                     </li>
                 </c:if>
