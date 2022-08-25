@@ -35,7 +35,7 @@
                 <ul class="nav navbar-nav text-white">
                     <li><a href="${homeUrl}">Home</a></li>
                     <li><a href="${aboutUrl}">About</a></li>
-                    <li><a href="${viewRestaurantsUrl}">View Restaurants</a></li>
+                    <li><a href="${viewRestaurantsUrl}">Kick off Event</a></li>
                     <li><a href="${searchEvents}">Search for an Event</a></li>
                 </ul>
 
